@@ -3,7 +3,7 @@
     <h3 align="center">A Java-powered Amplifier Designer</h3>
 </div>
 
-![screenshot](assets/app_screenshot.png)
+![screenshot](app_screenshot.png)
 
 <br>
 Focalors is an amplifier designer built with Java designed to help engineers, students, and hobbyists determine the best values for their next amplification endeavors.
