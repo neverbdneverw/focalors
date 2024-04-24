@@ -11,6 +11,10 @@ public class PrimaryController {
     private Button primaryButton;
     @FXML
     private Button settingButton;
+    @FXML
+    private Button tutorialButton;
+    @FXML
+    private Button feedbackButton;
 
     @FXML
     private void switchToSecondary() throws IOException {
@@ -21,6 +25,20 @@ public class PrimaryController {
     private void handleSettingButtonEvent(ActionEvent event) throws IOException {
         if (event.getSource().equals(settingButton)) {
             App.setRoot("settings");
+        }
+    }
+
+    @FXML
+    private void handleTutorialButtonEvent(ActionEvent event) throws IOException {
+        if (event.getSource().equals(tutorialButton)) {
+            App.setRoot("tutorial");
+        }
+    }
+
+    @FXML
+    private void handleFeedbackButtonEvent(ActionEvent event) throws IOException {
+        if (event.getSource().equals(feedbackButton)) {
+            App.setRoot("feedback");
         }
     }
 }

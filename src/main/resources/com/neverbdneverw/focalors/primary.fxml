@@ -18,11 +18,11 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" style="-fx-background-color: #0066cc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Help" />
+                        <Button fx:id="tutorialButton" mnemonicParsing="false" onAction="#handleTutorialButtonEvent" text="Tutorial" />
                         <Separator prefWidth="200.0" />
                         <Button fx:id="settingButton" mnemonicParsing="false" onAction="#handleSettingButtonEvent" text="Setting" />
                         <Separator prefWidth="200.0" />
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button fx:id="feedbackButton" mnemonicParsing="false" onAction="#handleFeedbackButtonEvent" text="Feedback" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
