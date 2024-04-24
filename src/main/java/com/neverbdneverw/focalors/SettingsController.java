@@ -4,9 +4,13 @@
  */
 package com.neverbdneverw.focalors;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -15,6 +19,9 @@ import javafx.fxml.Initializable;
  */
 public class SettingsController implements Initializable {
 
+    @FXML
+    private Button settingReturn;
+
     /**
      * Initializes the controller class.
      */
@@ -22,5 +29,10 @@ public class SettingsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void handleSettingReturn(ActionEvent event) throws IOException {
+        App.setRoot("primary");
+    }
     
 }
