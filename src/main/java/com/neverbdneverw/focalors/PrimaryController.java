@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
 public class PrimaryController {
 
@@ -15,6 +16,8 @@ public class PrimaryController {
     private Button tutorialButton;
     @FXML
     private Button feedbackButton;
+    @FXML
+    private Pane imagePane;
 
     @FXML
     private void switchToSecondary() throws IOException {
