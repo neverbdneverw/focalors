@@ -18,6 +18,8 @@
                <children>
                   <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="30.0" style="-fx-background-color: #0066cc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
+                        <Button fx:id="returnHomeButton" mnemonicParsing="false" onAction="#handleReturnHomeButtonEvent" text="Home" />
+                        <Separator fx:id="returnHomeSeparator" prefWidth="200.0" />
                         <Button fx:id="tutorialButton" mnemonicParsing="false" onAction="#handleTutorialButtonEvent" text="Tutorial" />
                         <Separator prefWidth="200.0" />
                         <Button fx:id="settingButton" mnemonicParsing="false" onAction="#handleSettingButtonEvent" text="Setting" />

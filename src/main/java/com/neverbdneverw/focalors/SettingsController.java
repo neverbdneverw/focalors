@@ -15,6 +15,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -120,7 +121,18 @@ public class SettingsController implements Initializable {
 
     @FXML
     private void handleSettingReturn(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+//        App.setRoot("primary");
+        Parent root = App.loadFXML("primary");
+            
+        root.translateYProperty().set(-1 * settingReturn.getScene().getHeight());
+        App.setSceneRoot(root);
+
+        KeyValue rootPaneKV = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.play();
     }
 
     @FXML
@@ -164,34 +176,10 @@ public class SettingsController implements Initializable {
         
         pane.setVisible(true);
         pane.translateXProperty().set(newPaneStart);
-        
-        Interpolator interpolator = new Interpolator() {
-            private double val(double t, double sx, double ex, double maxVal) {
-                double v = (t - sx) * (ex - t);
-                double max = (ex - sx) / 2;
-                return maxVal * v / (max * max);
-            }
 
-            @Override
-            protected double curve(double t) {
-                double x;
-                if (t <= 0.37) {
-                    x = val(t, -0.37, 0.37, 1);
-                } else if (t <= 0.73) {
-                    x = val(t, 0.37, 0.73, 0.25);
-                } else if (t <= 0.91) {
-                    x = val(t, 0.73, 0.91, 0.08);
-                } else {
-                    x = val(t, 0.91, 1, 0.03);
-                }
-                return 1 - x;
-            }
-
-        };
-
-        KeyValue oldPaneKV = new KeyValue(oldPane.translateXProperty(), oldPaneEnd, interpolator);
+        KeyValue oldPaneKV = new KeyValue(oldPane.translateXProperty(), oldPaneEnd, new BounceInterpolator());
         KeyFrame oldPaneKF = new KeyFrame(Duration.millis(500), oldPaneKV);
-        KeyValue newPaneKV = new KeyValue(pane.translateXProperty(), newPaneEnd, interpolator);
+        KeyValue newPaneKV = new KeyValue(pane.translateXProperty(), newPaneEnd, new BounceInterpolator());
         KeyFrame newPaneKF = new KeyFrame(Duration.millis(500), newPaneKV);
         
         Timeline timeline = new Timeline();
