@@ -3,20 +3,131 @@
  */
 
 #settingReturn {
-    -fx-background-image: url("/icons/terminal.png");
-    -fx-background-color: #00cc66;
+    /*-fx-background-image: url("/icons/return.png");*/
+    /*-fx-background-repeat: no-repeat;*/
+    /*-fx-background-size: 64px;*/
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#settingReturn:hover {
+/*    -fx-background-image: url("/icons/return.png");
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 32px;
+    -fx-background-size: 64px;*/
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#appearanceButton {
+    -fx-background-color: #d9d9d9;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#appearanceButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-width: 1px;
+    -fx-background-insets: 2px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+}
+
+#appearanceButton:selected {
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#behaviorButton {
+    -fx-background-color: #d9d9d9;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#behaviorButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#behaviorButton:selected {
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#accuracyButton {
+    -fx-background-color: #d9d9d9;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#accuracyButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#accuracyButton:selected {
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#estimateButton {
+    -fx-background-color: #d9d9d9;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#estimateButton:hover {
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+    -fx-background-color: #38b6ff;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+}
+
+#estimateButton:selected {
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
 }
 
 #imagePane {
-    -fx-background-image: url("/icons/sc.png");
+    -fx-background-image: url("/icons/logo.png");
     -fx-background-repeat: no-repeat;
-    -fx-background-size: contain;
+    -fx-background-size: inherit;
     -fx-background-attachment: fixed;
     -fx-background-position: center;
 }
 
-#appearancePane {
+#accuracyPane {
     -fx-background-color: #00cc66;
+}
+
+#estimationPane {
+    -fx-background-color: #67f5a9;
 }

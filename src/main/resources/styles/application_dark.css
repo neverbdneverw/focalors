@@ -3,20 +3,15 @@
  */
 
 #settingReturn {
-    -fx-background-image: url("/icons/terminal.png");
-    -fx-background-color: #00cc66;
+    -fx-background-image: url("/icons/return.png");
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 32px;
+    -fx-background-size: 64px;
 }
 
 #imagePane {
-    -fx-background-image: url("/icons/sc.png");
+    -fx-background-image: url("/icons/logo.png");
     -fx-background-repeat: no-repeat;
-    -fx-background-size: contain;
+    -fx-background-size: inherit;
     -fx-background-attachment: fixed;
     -fx-background-position: center;
-}
-
-#appearancePane {
-    -fx-background-color: #0066cc;
 }

@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.PrimaryController">
+<AnchorPane fx:id="mainPane" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.PrimaryController">
    <children>
-      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="mainHBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane>
+            <AnchorPane fx:id="sideBarPane">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" style="-fx-background-color: #0066cc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="30.0" style="-fx-background-color: #0066cc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Button fx:id="tutorialButton" mnemonicParsing="false" onAction="#handleTutorialButtonEvent" text="Tutorial" />
                         <Separator prefWidth="200.0" />
@@ -30,15 +30,15 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane HBox.hgrow="ALWAYS">
+            <AnchorPane fx:id="homePagePane" HBox.hgrow="ALWAYS">
                <children>
-                  <BorderPane layoutX="224.0" layoutY="287.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <BorderPane fx:id="homePane" layoutX="224.0" layoutY="287.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <center>
                         <VBox alignment="CENTER" spacing="20.0">
                            <children>
-                              <Pane fx:id="imagePane" prefHeight="200.0" prefWidth="200.0" />
+                              <Pane fx:id="imagePane" prefHeight="300.0" prefWidth="400.0" />
                               <Label text="A Java-powered Amplifier Designer" />
-                              <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Start" />
+                              <Button fx:id="primaryButton" onAction="#switchToMainQueue" text="Start" />
                               <Separator opacity="0.0" orientation="VERTICAL" prefHeight="150.0" />
                               <Label text="Want to learn more about the app? Click here" underline="true" />
                            </children>
