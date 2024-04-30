@@ -13,11 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class PrimaryController implements Initializable {
@@ -43,16 +45,39 @@ public class PrimaryController implements Initializable {
     @FXML
     private HBox mainHBox;
     @FXML
-    private BorderPane homePane;
+    private AnchorPane homePane;
+    @FXML
+    private ImageView homeImageView;
+    @FXML
+    private ImageView tutorialImageView;
+    @FXML
+    private ImageView settingImageView;
+    @FXML
+    private ImageView feedbackImageView;
     
     private AnchorPane mainQueuePane;
     private VBox sideBox;
+    @FXML
+    private Button primaryButton;
+    @FXML
+    private Button aboutFocalorsButton;
+    @FXML
+    private Pane imagePane1;
+    @FXML
+    private ImageView startImageView;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sideBox = (VBox) sideBarPane.getChildren().get(0);
         sideBox.getChildren().remove(returnHomeButton);
         sideBox.getChildren().remove(returnHomeSeparator);
+        
+        homeImageView.setImage(Utils.getImage("home", Color.WHITE));
+        tutorialImageView.setImage(Utils.getImage("tutorial", Color.WHITE));
+        settingImageView.setImage(Utils.getImage("setting", Color.WHITE));
+        feedbackImageView.setImage(Utils.getImage("feedback", Color.WHITE));
+        
+        startImageView.setImage(Utils.getImage("start", Color.WHITE));
     }
     
     @FXML
@@ -65,7 +90,6 @@ public class PrimaryController implements Initializable {
         homePagePane.setBottomAnchor(mainQueuePane, 0.0);
         homePagePane.setLeftAnchor(mainQueuePane, 0.0);
         homePagePane.setRightAnchor(mainQueuePane, 0.0);
-        
         
         KeyValue homePaneKV = new KeyValue(homePane.translateXProperty(), -1 * homePagePane.getWidth() / 2, new BounceInterpolator());
         KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);

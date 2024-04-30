@@ -3,18 +3,60 @@
  */
 
 #settingReturn {
-    /*-fx-background-image: url("/icons/return.png");*/
-    /*-fx-background-repeat: no-repeat;*/
-    /*-fx-background-size: 64px;*/
     -fx-background-color: transparent;
     -fx-border-color: none;
     -fx-border-width: 0px;
 }
 
 #settingReturn:hover {
-/*    -fx-background-image: url("/icons/return.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 64px;*/
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#returnHomeButton {
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#returnHomeButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#tutorialButton {
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#tutorialButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#settingButton {
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#settingButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#feedbackButton {
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#feedbackButton:hover {
     -fx-background-color: #38b6ff;
     -fx-border-color: none;
     -fx-border-width: 0px;
@@ -116,8 +158,20 @@
     -fx-background-insets: 2px;
 }
 
+#aboutFocalorsButton {
+    -fx-background-color: transparent;
+}
+
 #imagePane {
-    -fx-background-image: url("/icons/logo.png");
+    -fx-background-image: url("/icons/logo_smaller.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 300;
+    -fx-background-attachment: fixed;
+    -fx-background-position: center;
+}
+
+#promotionPane {
+    -fx-background-image: url("/icons/promotion.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: inherit;
     -fx-background-attachment: fixed;

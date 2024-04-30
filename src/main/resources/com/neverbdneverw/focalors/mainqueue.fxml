@@ -1,27 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainQueuePane" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.MainQueueController">
+<AnchorPane fx:id="mainQueuePane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.MainQueueController">
    <children>
       <BorderPane fx:id="marginPane" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <VBox alignment="CENTER" spacing="20.0">
+            <VBox alignment="TOP_CENTER">
                <children>
-                  <Label text="Choose a Base:" />
-                  <HBox alignment="CENTER" prefHeight="400.0" spacing="50.0">
+                  <HBox>
                      <children>
-                        <Button fx:id="bjtButton" mnemonicParsing="false" onAction="#handleBJTChosenEvent" text="BJT" />
-                        <Button fx:id="fetButton" mnemonicParsing="false" onAction="#handleFETChosenEvent" text="FET" />
-                        <Button fx:id="opAmpButton" mnemonicParsing="false" onAction="#handleOpAmpChosenEvent" text="OP AMP" />
+                        <Label text="Choose Amplifier Base:">
+                           <font>
+                              <Font name="Segoe UI Bold Italic" size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <AnchorPane prefHeight="64.0">
+                     <children>
+                        <Label text="          Amplifiers typically use transistors in the form of Bipolar Junction Transistors (BJT), Metal-oxide Semiconductor Field Effect Transistor (MOSFET), or General Operational Amplifiers (Op Amp). For the transistors, the common modes used are Common Emitter for BJTs and Common Source for MOSFETS. Such modes are currently offered by the application." textAlignment="JUSTIFY" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="Segoe UI Italic" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <GridPane alignment="CENTER" hgap="16.0" prefWidth="600.0" vgap="16.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.20001220703125" minWidth="10.0" prefWidth="298.4000244140625" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.79998779296875" minWidth="10.0" prefWidth="301.5999755859375" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="159.60001220703126" minHeight="10.0" prefHeight="154.00000610351563" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="154.79999389648435" minHeight="10.0" prefHeight="154.79999389648435" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="bjtButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleBJTChosenEvent" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #ff3131; -fx-background-radius: 16;" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                                 <graphic>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fx:id="bjtImageView" fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../../../Downloads/icons8-transistor-64.png" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="BJT" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="36.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Common Emitter Mode" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Segoe UI Italic" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="fetButton" mnemonicParsing="false" onAction="#handleFETChosenEvent" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                 <graphic>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fx:id="mosfetImageView" fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../../../Downloads/icons8-transistor-48.png" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="MOSFET" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="36.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Common Source Mode" textFill="WHITE" wrapText="true">
+                                                   <font>
+                                                      <Font name="Segoe UI Italic" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="opAmpButton" mnemonicParsing="false" onAction="#handleOpAmpChosenEvent" prefHeight="216.0" prefWidth="250.0" style="-fx-background-color: #0066cc; -fx-background-radius: 16;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2">
+                                 <graphic>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <ImageView fx:id="opampImageView" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" VBox.vgrow="ALWAYS">
+                                             <image>
+                                                <Image url="@../../../../../../../../Downloads/icons8-integrated-circuit-48.png" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER" prefHeight="150.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Op Amp" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="36.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="General Amplifier" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Segoe UI Italic" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="64.0" left="64.0" right="64.0" top="64.0" />
+                           </HBox.margin>
+                        </GridPane>
                      </children>
                   </HBox>
                </children>
+               <BorderPane.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </BorderPane.margin>
             </VBox>
          </center>
       </BorderPane>

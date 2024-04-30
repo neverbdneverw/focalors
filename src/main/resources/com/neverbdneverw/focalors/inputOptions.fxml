@@ -2,9 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -12,9 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="inputsPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.neverbdneverw.focalors.InputOptionsController">
+<AnchorPane id="AnchorPane" fx:id="inputsPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.InputOptionsController">
    <children>
       <BorderPane layoutX="243.0" layoutY="134.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
@@ -25,22 +27,25 @@
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="30.0">
                      <children>
-                        <Button fx:id="returnToOutputsButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToOutputsButton" text="Return" />
-                        <Label text="Input Parameters" />
+                        <Label text="Input Parameters">
+                           <font>
+                              <Font name="Segoe UI Bold Italic" size="32.0" />
+                           </font></Label>
                         <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="toFrequencyResponseButton" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleToFrequencyResponseButton" text="Proceed" />
                      </children>
                   </HBox>
                   <HBox maxHeight="100.0">
                      <children>
-                        <Label text="Enter the input parameters blaj blah. Check the instructions if di mo alam." HBox.hgrow="ALWAYS" />
+                        <Label text="            Enter the your controlled input parameters for the amplifier. If you do not know what to enter, please refer to the tutorials section accessible through the sidebar. These values are constants that are not affected by the calculation of other parameters. The signal input voltage is the peak-to-peak voltage of the signal that goes through the amplifier. The Biasing voltage of the source allows for the amplification to happen. The input frequency is the frequency of the input signal. Depending on how the frequency response will be set on the next stage, this is meant to be the same on the output." textAlignment="JUSTIFY" wrapText="true" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Segoe UI Italic" size="12.0" />
+                           </font></Label>
                      </children>
                   </HBox>
-                  <GridPane VBox.vgrow="ALWAYS">
+                  <GridPane alignment="CENTER" vgap="8.0" VBox.vgrow="ALWAYS">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.5999755859375" minWidth="10.0" prefWidth="470.39996337890625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.60003662109375" minWidth="10.0" prefWidth="80.00003662109373" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -48,44 +53,115 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Signal Input Voltage:" GridPane.halignment="RIGHT">
-                           <padding>
-                              <Insets right="16.0" />
-                           </padding>
-                        </Label>
-                        <TextField GridPane.columnIndex="1" />
-                        <Label text="mVpp" GridPane.columnIndex="2">
-                           <padding>
-                              <Insets left="16.0" />
-                           </padding>
-                        </Label>
-                        <Label text="BIasing Input Voltage:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                           <padding>
-                              <Insets right="16.0" />
-                           </padding>
-                        </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Input Frequency:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-                           <padding>
-                              <Insets right="16.0" />
-                           </padding>
-                        </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Hz" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <padding>
-                              <Insets left="16.0" />
-                           </padding>
-                        </Label>
-                        <Label text="Vdc" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <padding>
-                              <Insets left="16.0" />
-                           </padding>
-                        </Label>
+                        <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.halignment="RIGHT">
+                           <children>
+                              <Label alignment="TOP_LEFT" text="Signal Input Voltage:">
+                                 <padding>
+                                    <Insets right="16.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-border-radius: 8; -fx-background-color: white; -fx-background-insets: 1; -fx-border-width: 2;" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Biasing Voltage:">
+                                 <padding>
+                                    <Insets right="16.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-insets: 1; -fx-background-color: white; -fx-border-radius: 8; -fx-border-width: 2;" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.rowIndex="2">
+                           <children>
+                              <Label text="Input Frequency:">
+                                 <padding>
+                                    <Insets right="16.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-color: white; -fx-background-insets: 1; -fx-border-radius: 8; -fx-border-width: 2;" />
+                           </children>
+                        </VBox>
+                        <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 8;" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="16.0" top="28.0" />
+                           </GridPane.margin>
+                        </ComboBox>
+                        <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="16.0" top="28.0" />
+                           </GridPane.margin>
+                        </ComboBox>
+                        <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 9;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="16.0" top="28.0" />
+                           </GridPane.margin>
+                        </ComboBox>
                      </children>
                      <padding>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                        <Insets bottom="16.0" left="30.0" right="30.0" top="16.0" />
                      </padding>
+                     <VBox.margin>
+                        <Insets bottom="64.0" left="64.0" right="64.0" />
+                     </VBox.margin>
                   </GridPane>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="returnToOutputsButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToOutputsButton" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ff3131; -fx-background-radius: 16;">
+                           <HBox.margin>
+                              <Insets left="16.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+                                 <children>
+                                    <ImageView fx:id="previousImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Previous" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Semibold Italic" size="21.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </Button>
+                        <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="toFrequencyResponseButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleToFrequencyResponseButton" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;">
+                           <HBox.margin>
+                              <Insets right="16.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+                                 <children>
+                                    <ImageView fx:id="nextImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Next" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Semibold Italic" size="21.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
                <BorderPane.margin>
                   <Insets />

@@ -1,17 +1,23 @@
 package com.neverbdneverw.focalors;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 
-public class MainQueueController {
+public class MainQueueController implements Initializable {
     
     @FXML
     private Button bjtButton;
@@ -27,6 +33,21 @@ public class MainQueueController {
     private AnchorPane fetOptionsPane;
     private AnchorPane opAmpOptionsPane;
     private AnchorPane homePagePane;
+    @FXML
+    private BorderPane marginPane;
+    @FXML
+    private ImageView bjtImageView;
+    @FXML
+    private ImageView mosfetImageView;
+    @FXML
+    private ImageView opampImageView;
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        bjtImageView.setImage(new Image(App.class.getResource("/icons/bjt.png").toExternalForm()));
+        mosfetImageView.setImage(new Image(App.class.getResource("/icons/mosfet.png").toExternalForm()));
+        opampImageView.setImage(new Image(App.class.getResource("/icons/opamp.png").toExternalForm()));
+    }
     
     @FXML
     private void handleBJTChosenEvent (ActionEvent event) throws IOException {
@@ -40,7 +61,6 @@ public class MainQueueController {
             homePagePane.setBottomAnchor(bjtOptionsPane, 0.0);
             homePagePane.setLeftAnchor(bjtOptionsPane, 0.0);
             homePagePane.setRightAnchor(bjtOptionsPane, 0.0);
-
 
             KeyValue homePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
             KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);

@@ -15,13 +15,15 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 /**
  *
  * @author HUAWEI-Pc
  */
-public class BJTOptionsController {
+public class BJTOptionsController implements Initializable {
     @FXML
     private Button returnToMainQueueButton;
     @FXML
@@ -32,6 +34,16 @@ public class BJTOptionsController {
     private AnchorPane mainQueuePane;
     private AnchorPane homePagePane;
     private AnchorPane inputsPane;
+    @FXML
+    private ImageView previousImageView;
+    @FXML
+    private ImageView nextImageView;
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        previousImageView.setImage(Utils.getImage("back", Color.WHITE));
+        nextImageView.setImage(Utils.getImage("next", Color.WHITE));
+    }
     
     @FXML
     private void handleReturnToMainQueueButton (ActionEvent event) {

@@ -14,7 +14,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 /**
@@ -33,13 +35,18 @@ public class InputOptionsController implements Initializable {
     private AnchorPane homePagePane;
     @FXML
     private Button toFrequencyResponseButton;
+    @FXML
+    private ImageView previousImageView;
+    @FXML
+    private ImageView nextImageView;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        previousImageView.setImage(Utils.getImage("back", Color.WHITE));
+        nextImageView.setImage(Utils.getImage("next", Color.WHITE));
     }    
 
     @FXML
@@ -97,5 +104,6 @@ public class InputOptionsController implements Initializable {
 
         timeline.play();
     }
+
     
 }
