@@ -37,8 +37,6 @@ import javafx.util.Duration;
 public class SettingsController implements Initializable {
 
     @FXML
-    private Button settingReturn;
-    @FXML
     private ToggleButton appearanceButton;
     @FXML
     private ToggleButton behaviorButton;
@@ -56,27 +54,26 @@ public class SettingsController implements Initializable {
     private AnchorPane accuracyPane;
     @FXML
     private AnchorPane estimationPane;
-    @FXML
-    private ImageView returnImageView;
     
     private ToggleGroup toggleGroup;
     private int activePaneIndex;
     private ArrayList<AnchorPane> settingPanes = new ArrayList<AnchorPane>();
     private ArrayList<ToggleButton> toggleButtons = new ArrayList<ToggleButton>();
+    @FXML
+    private AnchorPane settingAnchorPane;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        settingAnchorPane.setId("settingAnchorPane");
         toggleGroup = new ToggleGroup();
         this.appearanceButton.setToggleGroup(toggleGroup);
         this.behaviorButton.setToggleGroup(toggleGroup);
         this.accuracyButton.setToggleGroup(toggleGroup);
         this.estimateButton.setToggleGroup(toggleGroup);
         toggleGroup.selectToggle(this.appearanceButton);
-        
-        returnImageView.setImage(Utils.getImage("return", Color.rgb(0, 102, 204)));
         
         settingPanes.add(appearancePane);
         settingPanes.add(behaviorPane);
@@ -87,22 +84,6 @@ public class SettingsController implements Initializable {
         toggleButtons.add(behaviorButton);
         toggleButtons.add(accuracyButton);
         toggleButtons.add(estimateButton);
-    }
-
-    @FXML
-    private void handleSettingReturn(ActionEvent event) throws IOException {
-//        App.setRoot("primary");
-        Parent root = App.loadFXML("primary");
-            
-        root.translateYProperty().set(-1 * settingReturn.getScene().getHeight());
-        App.setSceneRoot(root);
-
-        KeyValue rootPaneKV = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
-
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(rootPaneKF);
-        timeline.play();
     }
 
     @FXML

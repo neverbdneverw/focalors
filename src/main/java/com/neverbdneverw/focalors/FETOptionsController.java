@@ -15,6 +15,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 /**
@@ -30,6 +31,12 @@ public class FETOptionsController {
     
     private AnchorPane mainQueuePane;
     private AnchorPane homePagePane;
+    @FXML
+    private ImageView previousImageView;
+    @FXML
+    private Button bjtToInputsButton;
+    @FXML
+    private ImageView nextImageView;
     
     @FXML
     private void handleReturnToMainQueueButton (ActionEvent event) {
@@ -64,5 +71,9 @@ public class FETOptionsController {
 
             timeline.play();
         }
+    }
+
+    @FXML
+    private void handleBJTToInputsButton(ActionEvent event) {
     }
 }

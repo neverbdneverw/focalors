@@ -7,6 +7,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -75,6 +76,8 @@ public class PrimaryController implements Initializable {
         sideBox.getChildren().remove(returnHomeButton);
         sideBox.getChildren().remove(returnHomeSeparator);
         
+        homePane.setId("homePane");
+        
         homeImageView.setImage(Utils.getImage("home", Color.WHITE));
         tutorialImageView.setImage(Utils.getImage("tutorial", Color.WHITE));
         settingImageView.setImage(Utils.getImage("setting", Color.WHITE));
@@ -118,19 +121,41 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handleSettingButtonEvent(ActionEvent event) throws IOException {
-        if (event.getSource().equals(settingButton)) {
-            Parent root = App.loadFXML("settings");
-            
-            root.translateYProperty().set(homePagePane.getScene().getHeight());
-            App.setSceneRoot(root);
-
-            KeyValue rootPaneKV = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
-            KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
-
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(rootPaneKF);
-            timeline.play();
+        AnchorPane removablePane = (AnchorPane) homePagePane.getChildren().get(0);
+        
+        if (!removablePane.getId().equals("homePane")) {
+            handleReturnHomeButtonEvent(event);
         }
+
+        AnchorPane settingPane = (AnchorPane) App.loadFXML("settings");
+        
+        homePagePane.getChildren().add(settingPane);
+        settingPane.translateYProperty().set(-1 * mainHBox.getHeight());
+        homePagePane.setTopAnchor(settingPane, 0.0);
+        homePagePane.setBottomAnchor(settingPane, 0.0);
+        homePagePane.setLeftAnchor(settingPane, 0.0);
+        homePagePane.setRightAnchor(settingPane, 0.0);
+        
+        KeyValue homePaneKV = new KeyValue(homePane.translateYProperty(), homePagePane.getHeight(), new BounceInterpolator());
+        KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
+        KeyValue homePaneOpacityKV = new KeyValue(homePane.opacityProperty(), 0, Interpolator.EASE_OUT);
+        KeyFrame homePaneOpacityKF = new KeyFrame(Duration.millis(100), homePaneOpacityKV);
+        KeyValue rootPaneKV = new KeyValue(settingPane.translateYProperty(), 0, new BounceInterpolator());
+        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(homePaneKF);
+        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.getKeyFrames().add(homePaneOpacityKF);
+        
+        timeline.setOnFinished((e) -> {
+            homePagePane.getChildren().remove(homePane);
+            
+            sideBox.getChildren().add(0, returnHomeButton);
+            sideBox.getChildren().add(1, returnHomeSeparator);
+        });
+        
+        timeline.play();
     }
 
     @FXML
@@ -149,38 +174,51 @@ public class PrimaryController implements Initializable {
     
     @FXML
     private void handleReturnHomeButtonEvent(ActionEvent event) throws IOException {
-        if (event.getSource().equals(returnHomeButton)) {
+        AnchorPane removablePane = (AnchorPane) homePagePane.getChildren().get(0);
+        
+        if (!homePagePane.getChildren().contains(homePane)) {
             homePagePane.getChildren().add(homePane);
-            homePane.translateXProperty().set(-1 * homePagePane.getWidth());
-            homePagePane.setTopAnchor(homePane, 0.0);
-            homePagePane.setBottomAnchor(homePane, 0.0);
-            homePagePane.setLeftAnchor(homePane, 0.0);
-            homePagePane.setRightAnchor(homePane, 0.0);
-            
-            homePane.setOpacity(0);
-            
-            AnchorPane removablePane = (AnchorPane) homePagePane.getChildren().get(0);
-
-            KeyValue homePaneKV = new KeyValue(homePane.translateXProperty(), 0, new BounceInterpolator());
-            KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-            KeyValue homePaneOpacityKV = new KeyValue(homePane.opacityProperty(), 1, Interpolator.EASE_IN);
-            KeyFrame homePaneOpacityKF = new KeyFrame(Duration.millis(300), homePaneOpacityKV);
-            KeyValue rootPaneKV = new KeyValue(removablePane.translateXProperty(), mainPane.getWidth(), new BounceInterpolator());
-            KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
-
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(homePaneKF);
-            timeline.getKeyFrames().add(rootPaneKF);
-            timeline.getKeyFrames().add(homePaneOpacityKF);
-
-            timeline.setOnFinished((e) -> {
-                homePagePane.getChildren().remove(removablePane);
-
-                sideBox.getChildren().remove(returnHomeButton);
-                sideBox.getChildren().remove(returnHomeSeparator);
-            });
-
-            timeline.play();
         }
+
+        KeyValue homePaneKV = null;
+        KeyValue rootPaneKV = null;
+
+        if (removablePane.getId().equals("settingAnchorPane")) {
+            homePane.translateYProperty().set(homePagePane.getHeight());
+            homePaneKV = new KeyValue(homePane.translateYProperty(), 0, new BounceInterpolator());
+            rootPaneKV = new KeyValue(removablePane.translateYProperty(), -1 * mainPane.getHeight(), new BounceInterpolator());
+        } else {
+            homePane.translateXProperty().set(-1 * homePagePane.getWidth());
+            homePaneKV = new KeyValue(homePane.translateXProperty(), 0, new BounceInterpolator());
+            rootPaneKV = new KeyValue(removablePane.translateXProperty(), mainPane.getWidth(), new BounceInterpolator());
+        }
+
+        homePagePane.setTopAnchor(homePane, 0.0);
+        homePagePane.setBottomAnchor(homePane, 0.0);
+        homePagePane.setLeftAnchor(homePane, 0.0);
+        homePagePane.setRightAnchor(homePane, 0.0);
+
+        homePane.setOpacity(0);
+
+//            KeyValue homePaneKV = new KeyValue(homePane.translateXProperty(), 0, new BounceInterpolator());
+        KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
+        KeyValue homePaneOpacityKV = new KeyValue(homePane.opacityProperty(), 1, Interpolator.EASE_IN);
+        KeyFrame homePaneOpacityKF = new KeyFrame(Duration.millis(300), homePaneOpacityKV);
+//            KeyValue rootPaneKV = new KeyValue(removablePane.translateXProperty(), mainPane.getWidth(), new BounceInterpolator());
+        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(homePaneKF);
+        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.getKeyFrames().add(homePaneOpacityKF);
+
+        timeline.setOnFinished((e) -> {
+            homePagePane.getChildren().remove(removablePane);
+
+            sideBox.getChildren().remove(returnHomeButton);
+            sideBox.getChildren().remove(returnHomeSeparator);
+        });
+
+        timeline.play();
     }
 }
