@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,9 +16,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="frequencyResponsePane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.neverbdneverw.focalors.FrequencyResponseOptionsController">
+<AnchorPane id="AnchorPane" fx:id="frequencyResponsePane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.FrequencyResponseOptionsController">
    <children>
       <BorderPane layoutX="253.0" layoutY="144.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
@@ -28,15 +29,19 @@
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="30.0">
                      <children>
-                        <Button fx:id="returnToInputsButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToInputsButton" text="Return" />
-                        <Label text="Frequency Response" />
+                        <Label text="Frequency Response">
+                           <font>
+                              <Font name="Segoe UI Bold Italic" size="32.0" />
+                           </font></Label>
                         <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="toSummaryViewButton" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleToSummaryViewButton" text="Proceed" />
                      </children>
                   </HBox>
                   <HBox maxHeight="100.0">
                      <children>
-                        <Label text="Enter the desired frequency response blaj blah. Check the instructions if di mo alam." HBox.hgrow="ALWAYS" />
+                        <Label text="            Enter your desired frequency response. If you do not know what it is, check the tutorial's pane on the sidebar. The frequency response of an amplifier is designed in order to avoid distortion of signals caused by the capacitances and impedances at play when an amplifier is built. It generally is demonstrated using a Bode Plot where the cutoff frequencies lie on -3 dB." textAlignment="JUSTIFY" wrapText="true" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Segoe UI Italic" size="12.0" />
+                           </font></Label>
                      </children>
                   </HBox>
                   <GridPane VBox.vgrow="ALWAYS">
@@ -46,35 +51,55 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.19999771118164" minHeight="10.0" prefHeight="54.3999755859375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="68.79999999999998" minHeight="10.0" prefHeight="68.79999999999998" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="105.60001220703126" minHeight="10.0" prefHeight="93.60001220703126" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Low Cutoff Frequency:" GridPane.halignment="RIGHT">
-                           <padding>
-                              <Insets right="16.0" />
-                           </padding>
-                        </Label>
                         <Label text="Hz" GridPane.columnIndex="2">
                            <padding>
                               <Insets left="16.0" />
                            </padding>
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
                         </Label>
-                        <Label text="High Cutoff Frequency:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                           <padding>
-                              <Insets right="16.0" />
-                           </padding>
-                        </Label>
-                        <Label text="kHz" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label text="Hz" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="16.0" />
                            </padding>
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
                         </Label>
-                        <Slider GridPane.columnIndex="1" />
-                        <Slider GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <LineChart title="Desired Bode Plot" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                        <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label text="Low Cutoff Frequency:">
+                                 <padding>
+                                    <Insets right="16.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Slider />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="High Cutoff Frequency:">
+                                 <padding>
+                                    <Insets right="16.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Segoe UI Italic" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Slider />
+                           </children>
+                        </VBox>
+                        <LineChart style="-fx-background-color: #fafafa; -fx-border-width: 1; -fx-border-color: black;" title="Desired Bode Plot" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2">
                           <xAxis>
                             <CategoryAxis label="Frequency (Hz)" side="BOTTOM" />
                           </xAxis>
@@ -82,14 +107,61 @@
                             <NumberAxis label="Magnitude (db)" side="LEFT" />
                           </yAxis>
                            <padding>
-                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                              <Insets left="15.0" right="15.0" top="15.0" />
                            </padding>
                         </LineChart>
                      </children>
                      <padding>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                        <Insets left="30.0" right="30.0" />
                      </padding>
                   </GridPane>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="returnToInputsButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToInputsButton" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ff3131; -fx-background-radius: 16;">
+                           <HBox.margin>
+                              <Insets left="16.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+                                 <children>
+                                    <ImageView fx:id="previousImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Previous" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Semibold Italic" size="21.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </Button>
+                        <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="toSummaryViewButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleToSummaryViewButton" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;">
+                           <HBox.margin>
+                              <Insets right="16.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+                                 <children>
+                                    <ImageView fx:id="nextImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Next" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI Semibold Italic" size="21.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
                <BorderPane.margin>
                   <Insets />

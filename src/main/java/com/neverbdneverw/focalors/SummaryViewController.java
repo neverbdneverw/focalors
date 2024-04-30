@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -30,6 +31,10 @@ public class SummaryViewController implements Initializable {
     private Button returnToFreqResButton;
     
     private AnchorPane homePagePane;
+    @FXML
+    private ImageView previousImageView;
+    @FXML
+    private ImageView nextImageView;
 
     /**
      * Initializes the controller class.
