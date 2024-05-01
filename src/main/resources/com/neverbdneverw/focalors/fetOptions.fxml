@@ -155,7 +155,7 @@
                            </graphic>
                         </Button>
                         <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="bjtToInputsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBJTToInputsButton" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;">
+                        <Button fx:id="fetToInputsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleFETToInputsButton" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;">
                            <HBox.margin>
                               <Insets right="16.0" />
                            </HBox.margin>

@@ -14,6 +14,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -24,7 +25,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -54,26 +58,95 @@ public class SettingsController implements Initializable {
     private AnchorPane accuracyPane;
     @FXML
     private AnchorPane estimationPane;
-    
-    private ToggleGroup toggleGroup;
+    @FXML
+    private AnchorPane settingAnchorPane;
+    @FXML
+    private HBox darkModePrefHBox;
+    @FXML
+    private AnchorPane slidingButton;
+    @FXML
+    private StackPane stackParent;
+    @FXML
+    private Region stateIndicator;
+    @FXML
+    private ImageView lightImageView;
+    @FXML
+    private ImageView darkImageView;
+    @FXML
+    private ToggleGroup resistorColor;
+    @FXML
+    private ToggleGroup capacitorColor;
+    @FXML
+    private ToggleGroup wireColor;
+    @FXML
+    private AnchorPane ceilButton;
+    @FXML
+    private StackPane stackParent1;
+    @FXML
+    private ImageView ceilNoImageView;
+    @FXML
+    private ImageView ceilYesImageView;
+    @FXML
+    private AnchorPane autosaveButton;
+    @FXML
+    private StackPane stackParent2;
+    @FXML
+    private ImageView autosaveNoImageView;
+    @FXML
+    private ImageView autoSaveYesImageView;
+    @FXML
+    private ToggleGroup amplifierPref;
+    @FXML
+    private HBox darkModePrefHBox1;
+    @FXML
+    private AnchorPane estimateResistorValuesButton;
+    @FXML
+    private StackPane stackParent3;
+    @FXML
+    private ImageView lightImageView1;
+    @FXML
+    private ImageView darkImageView1;
+    @FXML
+    private HBox darkModePrefHBox11;
+    @FXML
+    private AnchorPane estimateCapacitorValuesButton;
+    @FXML
+    private StackPane stackParent31;
+    @FXML
+    private ImageView lightImageView11;
+    @FXML
+    private ImageView darkImageView11;
+    @FXML
+    private ToggleGroup decimalPlacesGroup;
+    @FXML
+    private ToggleGroup resistorUnitsGroup;
+    @FXML
+    private ToggleGroup capacitorUnitsGroup;
+    @FXML
+    private Region estimateResistorIndicator;
+    @FXML
+    private Region estimateCapacitorIndicator;
+    @FXML
+    private Region ceilStateIndicator;
+    @FXML
+    private Region autosaveIndicator;
+    @FXML
+    private ToggleGroup settingNavigationGroup;
+
     private int activePaneIndex;
     private ArrayList<AnchorPane> settingPanes = new ArrayList<AnchorPane>();
     private ArrayList<ToggleButton> toggleButtons = new ArrayList<ToggleButton>();
-    @FXML
-    private AnchorPane settingAnchorPane;
-
+    private boolean darkModeState = false;
+    private boolean ceilState = false;
+    private boolean autoSaveState = false;
+    private boolean estimateResistorState = false;
+    private boolean estimateCapacitorState = false;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         settingAnchorPane.setId("settingAnchorPane");
-        toggleGroup = new ToggleGroup();
-        this.appearanceButton.setToggleGroup(toggleGroup);
-        this.behaviorButton.setToggleGroup(toggleGroup);
-        this.accuracyButton.setToggleGroup(toggleGroup);
-        this.estimateButton.setToggleGroup(toggleGroup);
-        toggleGroup.selectToggle(this.appearanceButton);
         
         settingPanes.add(appearancePane);
         settingPanes.add(behaviorPane);
@@ -88,7 +161,6 @@ public class SettingsController implements Initializable {
 
     @FXML
     private void handleAppearanceButton(ActionEvent event) {
-//        view.setImage(getImage(Color.rgb(0, 204, 102)));
         animatePaneSwitching(appearancePane);
     }
 
@@ -108,34 +180,50 @@ public class SettingsController implements Initializable {
     }
     
     private void animatePaneSwitching(AnchorPane pane) {
-        double oldPaneStart, oldPaneEnd, newPaneStart, newPaneEnd;
+        double oldPaneStart, oldPaneEnd, newPaneStart, newPaneEnd, oldPaneOpacityStart, oldPaneOpacityEnd, newPaneOpacityStart, newPaneOpacityEnd;
+        double oldPaneSwitchingSpeed, newPaneSwitchingSpeed;
         if (settingPanes.indexOf(pane) == activePaneIndex) {
-            toggleGroup.selectToggle(toggleButtons.get(settingPanes.indexOf(pane)));
+            settingNavigationGroup.selectToggle(toggleButtons.get(settingPanes.indexOf(pane)));
             return;
         } else if (settingPanes.indexOf(pane) < activePaneIndex) {
-            oldPaneStart = newPaneEnd = 0;
+            oldPaneStart = newPaneEnd = newPaneOpacityStart = oldPaneOpacityEnd = 0;
             oldPaneEnd = settingPane.getWidth();
-            newPaneStart = -1 * settingPane.getWidth();
+            newPaneStart = -1 * settingPane.getWidth() / 4;
+            oldPaneOpacityStart = newPaneOpacityEnd = 1;
+            oldPaneSwitchingSpeed = 200;
+            newPaneSwitchingSpeed = 600;
         } else {
-            oldPaneStart = newPaneEnd = 0;
-            oldPaneEnd = -1 * settingPane.getWidth();
+            oldPaneStart = newPaneEnd = oldPaneOpacityEnd = newPaneOpacityStart = 0;
+            oldPaneEnd = -1 * settingPane.getWidth() / 4;
             newPaneStart = settingPane.getWidth();
+            oldPaneOpacityStart = newPaneOpacityEnd = 1;
+            oldPaneSwitchingSpeed = 100;
+            newPaneSwitchingSpeed = 200;
+            
         }
         
         AnchorPane oldPane = settingPanes.get(activePaneIndex);
         oldPane.translateXProperty().set(oldPaneStart);
+        oldPane.opacityProperty().set(oldPaneOpacityStart);
         
         pane.setVisible(true);
         pane.translateXProperty().set(newPaneStart);
+        pane.opacityProperty().set(newPaneOpacityStart);
 
         KeyValue oldPaneKV = new KeyValue(oldPane.translateXProperty(), oldPaneEnd, new BounceInterpolator());
         KeyFrame oldPaneKF = new KeyFrame(Duration.millis(500), oldPaneKV);
+        KeyValue oldPaneOpacityKV = new KeyValue(oldPane.opacityProperty(), oldPaneOpacityEnd, Interpolator.EASE_IN);
+        KeyFrame oldPaneOpacityKF = new KeyFrame(Duration.millis(oldPaneSwitchingSpeed), oldPaneOpacityKV);
         KeyValue newPaneKV = new KeyValue(pane.translateXProperty(), newPaneEnd, new BounceInterpolator());
         KeyFrame newPaneKF = new KeyFrame(Duration.millis(500), newPaneKV);
+        KeyValue newPaneOpacityKV = new KeyValue(pane.opacityProperty(), newPaneOpacityEnd, Interpolator.EASE_IN);
+        KeyFrame newPaneOpacityKF = new KeyFrame(Duration.millis(newPaneSwitchingSpeed), newPaneOpacityKV);
         
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(oldPaneKF);
+        timeline.getKeyFrames().add(oldPaneOpacityKF);
         timeline.getKeyFrames().add(newPaneKF);
+        timeline.getKeyFrames().add(newPaneOpacityKF);
         
         timeline.setOnFinished(t -> {
             settingPanes.forEach((settingPane) -> {
@@ -147,5 +235,114 @@ public class SettingsController implements Initializable {
             });
         });
         timeline.play();
+    }
+    
+    @FXML
+    private void handleDarkModePrefClicked(MouseEvent event) {
+        KeyValue switchKV = null;
+
+        if (darkModeState) {
+            switchKV = new KeyValue(stateIndicator.translateXProperty(), 0, new BounceInterpolator());
+            lightImageView.setImage(Utils.getImage("sun", Color.rgb(0, 102, 204)));
+            darkImageView.setImage(Utils.getImage("moon", Color.BLACK));
+            darkModeState = false;
+        } else {
+            switchKV = new KeyValue(stateIndicator.translateXProperty(), 32, new BounceInterpolator());
+            lightImageView.setImage(Utils.getImage("sun", Color.BLACK));
+            darkImageView.setImage(Utils.getImage("moon", Color.rgb(0, 102, 204)));
+            darkModeState = true;
+        }
+        
+        switchStyleSheets(darkModeState);
+        
+        KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
+        
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(switchKF);
+        timeline.play();
+    }
+
+    @FXML
+    private void handleCeilButtonClicked(MouseEvent event) {
+        KeyValue switchKV = null;
+
+        if (ceilState) {
+            switchKV = new KeyValue(ceilStateIndicator.translateXProperty(), 0, new BounceInterpolator());
+            ceilState = false;
+        } else {
+            switchKV = new KeyValue(ceilStateIndicator.translateXProperty(), 32, new BounceInterpolator());
+            ceilState = true;
+        }
+        
+        KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
+        
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(switchKF);
+        timeline.play();
+    }
+
+    @FXML
+    private void handleAutoSaveButtonClicked(MouseEvent event) {
+        KeyValue switchKV = null;
+
+        if (autoSaveState) {
+            switchKV = new KeyValue(autosaveIndicator.translateXProperty(), 0, new BounceInterpolator());
+            autoSaveState = false;
+        } else {
+            switchKV = new KeyValue(autosaveIndicator.translateXProperty(), 32, new BounceInterpolator());
+            autoSaveState = true;
+        }
+        
+        KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
+        
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(switchKF);
+        timeline.play();
+    }
+
+    @FXML
+    private void handleEstimateResistorClicked(MouseEvent event) {
+        KeyValue switchKV = null;
+
+        if (estimateResistorState) {
+            switchKV = new KeyValue(estimateResistorIndicator.translateXProperty(), 0, new BounceInterpolator());
+            estimateResistorState = false;
+        } else {
+            switchKV = new KeyValue(estimateResistorIndicator.translateXProperty(), 32, new BounceInterpolator());
+            estimateResistorState = true;
+        }
+        
+        KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
+        
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(switchKF);
+        timeline.play();
+    }
+
+    @FXML
+    private void handleEstimateCapacitorClicked(MouseEvent event) {
+        KeyValue switchKV = null;
+
+        if (estimateCapacitorState) {
+            switchKV = new KeyValue(estimateCapacitorIndicator.translateXProperty(), 0, new BounceInterpolator());
+            estimateCapacitorState = false;
+        } else {
+            switchKV = new KeyValue(estimateCapacitorIndicator.translateXProperty(), 32, new BounceInterpolator());
+            estimateCapacitorState = true;
+        }
+        
+        KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
+        
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(switchKF);
+        timeline.play();
+    }
+
+    private void switchStyleSheets(boolean state) {
+        if (state) {
+            settingPane.getScene().getStylesheets().add(App.class.getResource("/styles/application_dark.css").toExternalForm());
+        } else {
+            settingPane.getScene().getStylesheets().remove(App.class.getResource("/styles/application_dark.css").toExternalForm());
+        }
     }
 }

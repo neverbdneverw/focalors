@@ -30,14 +30,14 @@ public class BJTOptionsController implements Initializable {
     private AnchorPane bjtOptionsPane;
     @FXML
     private Button bjtToInputsButton;
-    
-    private AnchorPane mainQueuePane;
-    private AnchorPane homePagePane;
-    private AnchorPane inputsPane;
     @FXML
     private ImageView previousImageView;
     @FXML
     private ImageView nextImageView;
+    
+    private AnchorPane mainQueuePane;
+    private AnchorPane homePagePane;
+    private AnchorPane inputsPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,20 +56,26 @@ public class BJTOptionsController implements Initializable {
             
             homePagePane = (AnchorPane) bjtOptionsPane.getParent();
             homePagePane.getChildren().add(mainQueuePane);
-            mainQueuePane.translateXProperty().set(-1 * homePagePane.getWidth());
+            
+            mainQueuePane.translateXProperty().set(-1 * homePagePane.getWidth() / 4);
+            mainQueuePane.setOpacity(0);
+            
             homePagePane.setTopAnchor(mainQueuePane, 0.0);
             homePagePane.setBottomAnchor(mainQueuePane, 0.0);
             homePagePane.setLeftAnchor(mainQueuePane, 0.0);
             homePagePane.setRightAnchor(mainQueuePane, 0.0);
 
-            KeyValue homePaneKV = new KeyValue(bjtOptionsPane.translateXProperty(), bjtOptionsPane.getWidth(), new BounceInterpolator());
-            KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-            KeyValue rootPaneKV = new KeyValue(mainQueuePane.translateXProperty(), 0, new BounceInterpolator());
-            KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+            KeyValue bjtOptionsPaneKV = new KeyValue(bjtOptionsPane.translateXProperty(), bjtOptionsPane.getWidth(), new BounceInterpolator());
+            KeyFrame bjtOptionsPaneKF = new KeyFrame(Duration.millis(300), bjtOptionsPaneKV);
+            KeyValue mainQueuePaneKV = new KeyValue(mainQueuePane.translateXProperty(), 0, new BounceInterpolator());
+            KeyFrame mainQueuePaneKF = new KeyFrame(Duration.millis(300), mainQueuePaneKV);
+            KeyValue mainQueuePaneOpacityKV = new KeyValue(mainQueuePane.opacityProperty(), 1, Interpolator.EASE_IN);
+            KeyFrame mainQueuePaneOpacityKF = new KeyFrame(Duration.millis(300), mainQueuePaneOpacityKV);
 
             Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(homePaneKF);
-            timeline.getKeyFrames().add(rootPaneKF);
+            timeline.getKeyFrames().add(bjtOptionsPaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneOpacityKF);
 
             timeline.setOnFinished((e) -> {
                 homePagePane.getChildren().remove(bjtOptionsPane);
@@ -91,14 +97,17 @@ public class BJTOptionsController implements Initializable {
         homePagePane.setLeftAnchor(inputsPane, 0.0);
         homePagePane.setRightAnchor(inputsPane, 0.0);
 
-        KeyValue homePaneKV = new KeyValue(bjtOptionsPane.translateXProperty(), -1 * bjtOptionsPane.getWidth(), new BounceInterpolator());
-        KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-        KeyValue rootPaneKV = new KeyValue(inputsPane.translateXProperty(), 0, new BounceInterpolator());
-        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+        KeyValue bjtOptionsPaneKV = new KeyValue(bjtOptionsPane.translateXProperty(), -1 * bjtOptionsPane.getWidth(), new BounceInterpolator());
+        KeyFrame bjtOptionsPaneKF = new KeyFrame(Duration.millis(300), bjtOptionsPaneKV);
+        KeyValue bjtOptionsPaneOpacityKV = new KeyValue(bjtOptionsPane.opacityProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame bjtOptionsPaneOpacityKF = new KeyFrame(Duration.millis(50), bjtOptionsPaneOpacityKV);
+        KeyValue inputsPaneKV = new KeyValue(inputsPane.translateXProperty(), 0, new BounceInterpolator());
+        KeyFrame inputsPaneKF = new KeyFrame(Duration.millis(300), inputsPaneKV);
 
         Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(homePaneKF);
-        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.getKeyFrames().add(bjtOptionsPaneKF);
+        timeline.getKeyFrames().add(inputsPaneKF);
+        timeline.getKeyFrames().add(bjtOptionsPaneOpacityKF);
 
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(bjtOptionsPane);

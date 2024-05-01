@@ -1,76 +1,42 @@
-/*
- * Empty Stylesheet file.
- */
+/*SIDEBAR*/
+#sideBarPane {
+    -fx-background-color: #333333;
+}
 
-#settingReturn {
+.sideBarButton {
     -fx-background-color: transparent;
     -fx-border-color: none;
     -fx-border-width: 0px;
 }
 
-#settingReturn:hover {
-    -fx-background-color: #38b6ff;
+.sideBarButton:hover {
+    -fx-background-color: #fafafa;
+    -fx-background-radius: 8 0 0 8;
     -fx-border-color: none;
     -fx-border-width: 0px;
 }
 
-#returnHomeButton {
-    -fx-background-color: transparent;
+.sideBarButton:selected {
+    -fx-background-color: #fafafa;
+    -fx-background-radius: 8 0 0 8;
     -fx-border-color: none;
     -fx-border-width: 0px;
 }
 
-#returnHomeButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
+.sideBarButtonLabel {
+    -fx-text-fill: black;
 }
 
-#tutorialButton {
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#tutorialButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#settingButton {
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#settingButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#feedbackButton {
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#feedbackButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#appearanceButton {
+.settingNavigationButton {
     -fx-background-color: #d9d9d9;
     -fx-border-width: 1px;
     -fx-border-color: #0066cc;
     -fx-border-radius: 5px;
     -fx-background-insets: 2px;
 }
+/*END OF SIDEBAR*/
 
-#appearanceButton:hover {
+.settingNavigationButton:hover {
     -fx-background-color: #38b6ff;
     -fx-border-width: 1px;
     -fx-background-insets: 2px;
@@ -78,79 +44,7 @@
     -fx-border-radius: 5px;
 }
 
-#appearanceButton:selected {
-    -fx-background-color: white;
-    -fx-border-width: 1px;
-    -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
-}
-
-#behaviorButton {
-    -fx-background-color: #d9d9d9;
-    -fx-border-width: 1px;
-    -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
-}
-
-#behaviorButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-width: 1px;
-    -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
-}
-
-#behaviorButton:selected {
-    -fx-background-color: white;
-    -fx-border-width: 1px;
-    -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
-}
-
-#accuracyButton {
-    -fx-background-color: #d9d9d9;
-    -fx-border-width: 1px;
-    -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
-}
-
-#accuracyButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-width: 1px;
-    -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
-}
-
-#accuracyButton:selected {
-    -fx-background-color: white;
-    -fx-border-width: 1px;
-    -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
-}
-
-#estimateButton {
-    -fx-background-color: #d9d9d9;
-    -fx-border-width: 1px;
-    -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
-}
-
-#estimateButton:hover {
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
-    -fx-background-color: #38b6ff;
-    -fx-border-width: 1px;
-    -fx-border-color: #0066cc;
-}
-
-#estimateButton:selected {
+.settingNavigationButton:selected {
     -fx-background-color: white;
     -fx-border-width: 1px;
     -fx-border-color: #0066cc;
@@ -178,10 +72,50 @@
     -fx-background-position: center;
 }
 
-#accuracyPane {
-    -fx-background-color: #00cc66;
+.resistorColor:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
 }
 
-#estimationPane {
-    -fx-background-color: #67f5a9;
+.resistorColor:selected {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.capacitorColor:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.capacitorColor:selected {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.wireColor:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.wireColor:selected {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.amplifierPrefButton:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 16px;
+}
+
+.amplifierPrefButton:selected {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 16px;
 }

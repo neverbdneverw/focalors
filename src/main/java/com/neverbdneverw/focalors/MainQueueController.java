@@ -62,14 +62,17 @@ public class MainQueueController implements Initializable {
             homePagePane.setLeftAnchor(bjtOptionsPane, 0.0);
             homePagePane.setRightAnchor(bjtOptionsPane, 0.0);
 
-            KeyValue homePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
-            KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-            KeyValue rootPaneKV = new KeyValue(bjtOptionsPane.translateXProperty(), 0, new BounceInterpolator());
-            KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+            KeyValue mainQueuePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
+            KeyFrame mainQueuePaneKF = new KeyFrame(Duration.millis(300), mainQueuePaneKV);
+            KeyValue mainQueuePaneOpacityKV = new KeyValue(mainQueuePane.opacityProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame mainQueuePaneOpacityKF = new KeyFrame(Duration.millis(50), mainQueuePaneOpacityKV);
+            KeyValue bjtOptionsPaneKV = new KeyValue(bjtOptionsPane.translateXProperty(), 0, new BounceInterpolator());
+            KeyFrame bjtOptionsPaneKF = new KeyFrame(Duration.millis(300), bjtOptionsPaneKV);
 
             Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(homePaneKF);
-            timeline.getKeyFrames().add(rootPaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneKF);
+            timeline.getKeyFrames().add(bjtOptionsPaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneOpacityKF);
 
             timeline.setOnFinished((e) -> {
                 homePagePane.getChildren().remove(mainQueuePane);
@@ -92,15 +95,17 @@ public class MainQueueController implements Initializable {
             homePagePane.setLeftAnchor(fetOptionsPane, 0.0);
             homePagePane.setRightAnchor(fetOptionsPane, 0.0);
 
-
-            KeyValue homePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
-            KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-            KeyValue rootPaneKV = new KeyValue(fetOptionsPane.translateXProperty(), 0, new BounceInterpolator());
-            KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+            KeyValue mainQueuePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
+            KeyFrame mainQueuePaneKF = new KeyFrame(Duration.millis(300), mainQueuePaneKV);
+            KeyValue mainQueuePaneOpacityKV = new KeyValue(mainQueuePane.opacityProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame mainQueuePaneOpacityKF = new KeyFrame(Duration.millis(50), mainQueuePaneOpacityKV);
+            KeyValue fetOptionsPaneKV = new KeyValue(fetOptionsPane.translateXProperty(), 0, new BounceInterpolator());
+            KeyFrame fetOptionsPaneKF = new KeyFrame(Duration.millis(300), fetOptionsPaneKV);
 
             Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(homePaneKF);
-            timeline.getKeyFrames().add(rootPaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneKF);
+            timeline.getKeyFrames().add(fetOptionsPaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneOpacityKF);
 
             timeline.setOnFinished((e) -> {
                 homePagePane.getChildren().remove(mainQueuePane);
@@ -123,14 +128,17 @@ public class MainQueueController implements Initializable {
             homePagePane.setLeftAnchor(opAmpOptionsPane, 0.0);
             homePagePane.setRightAnchor(opAmpOptionsPane, 0.0);
 
-            KeyValue homePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
-            KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-            KeyValue rootPaneKV = new KeyValue(opAmpOptionsPane.translateXProperty(), 0, new BounceInterpolator());
-            KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+            KeyValue mainQueuePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
+            KeyFrame mainQueuePaneKF = new KeyFrame(Duration.millis(300), mainQueuePaneKV);
+            KeyValue mainQueuePaneOpacityKV = new KeyValue(mainQueuePane.opacityProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame mainQueuePaneOpacityKF = new KeyFrame(Duration.millis(50), mainQueuePaneOpacityKV);
+            KeyValue opAmpOptionsPaneKV = new KeyValue(opAmpOptionsPane.translateXProperty(), 0, new BounceInterpolator());
+            KeyFrame opAmpOptionsPaneKF = new KeyFrame(Duration.millis(300), opAmpOptionsPaneKV);
 
             Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(homePaneKF);
-            timeline.getKeyFrames().add(rootPaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneKF);
+            timeline.getKeyFrames().add(opAmpOptionsPaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneOpacityKF);
 
             timeline.setOnFinished((e) -> {
                 homePagePane.getChildren().remove(mainQueuePane);

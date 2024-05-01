@@ -7,6 +7,7 @@ package com.neverbdneverw.focalors;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -50,20 +51,26 @@ public class SummaryViewController implements Initializable {
         
         homePagePane = (AnchorPane) summaryViewPane.getParent();
         homePagePane.getChildren().add(frequencyResponsePane);
-        frequencyResponsePane.translateXProperty().set(-1 * homePagePane.getWidth());
+
+        frequencyResponsePane.translateXProperty().set(-1 * homePagePane.getWidth() / 4);
+        frequencyResponsePane.setOpacity(0);
+
         homePagePane.setTopAnchor(frequencyResponsePane, 0.0);
         homePagePane.setBottomAnchor(frequencyResponsePane, 0.0);
         homePagePane.setLeftAnchor(frequencyResponsePane, 0.0);
         homePagePane.setRightAnchor(frequencyResponsePane, 0.0);
 
-        KeyValue homePaneKV = new KeyValue(summaryViewPane.translateXProperty(), summaryViewPane.getWidth(), new BounceInterpolator());
-        KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-        KeyValue rootPaneKV = new KeyValue(frequencyResponsePane.translateXProperty(), 0, new BounceInterpolator());
-        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+        KeyValue summaryViewPaneKV = new KeyValue(summaryViewPane.translateXProperty(), summaryViewPane.getWidth(), new BounceInterpolator());
+        KeyFrame summaryViewPaneKF = new KeyFrame(Duration.millis(300), summaryViewPaneKV);
+        KeyValue frequencyResponsePaneKV = new KeyValue(frequencyResponsePane.translateXProperty(), 0, new BounceInterpolator());
+        KeyFrame frequencyResponsePaneKF = new KeyFrame(Duration.millis(300), frequencyResponsePaneKV);
+        KeyValue frequencyResponsePaneOpacityKV = new KeyValue(frequencyResponsePane.opacityProperty(), 1, Interpolator.EASE_IN);
+        KeyFrame frequencyResponsePaneOpacityKF = new KeyFrame(Duration.millis(300), frequencyResponsePaneOpacityKV);
 
         Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(homePaneKF);
-        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.getKeyFrames().add(summaryViewPaneKF);
+        timeline.getKeyFrames().add(frequencyResponsePaneKF);
+        timeline.getKeyFrames().add(frequencyResponsePaneOpacityKF);
 
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(summaryViewPane);

@@ -1,17 +1,155 @@
-/*
- * Empty Stylesheet file.
- */
+#mainPane {
+    -fx-background-color: #4d4d4d;
+}
 
 #settingReturn {
-    -fx-background-image: url("/icons/return.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: 64px;
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#settingReturn:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#returnHomeButton {
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#returnHomeButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#tutorialButton {
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#tutorialButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#settingButton {
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#settingButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#feedbackButton {
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+#feedbackButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-color: none;
+    -fx-border-width: 0px;
+}
+
+.settingNavigationButton {
+    -fx-background-color: #d9d9d9;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+.settingNavigationButton:hover {
+    -fx-background-color: #38b6ff;
+    -fx-border-width: 1px;
+    -fx-background-insets: 2px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+}
+
+.settingNavigationButton:selected {
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-color: #0066cc;
+    -fx-border-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+#aboutFocalorsButton {
+    -fx-background-color: transparent;
 }
 
 #imagePane {
-    -fx-background-image: url("/icons/logo.png");
+    -fx-background-image: url("/icons/logo_smaller.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 300;
+    -fx-background-attachment: fixed;
+    -fx-background-position: center;
+}
+
+#promotionPane {
+    -fx-background-image: url("/icons/promotion.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: inherit;
     -fx-background-attachment: fixed;
     -fx-background-position: center;
+}
+
+.resistorColor:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.resistorColor:selected {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.capacitorColor:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.capacitorColor:selected {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.wireColor:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.wireColor:selected {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 24px;
+}
+
+.amplifierPrefButton:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 16px;
+}
+
+.amplifierPrefButton:selected {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 16px;
 }

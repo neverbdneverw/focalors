@@ -7,6 +7,7 @@ package com.neverbdneverw.focalors;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -55,20 +56,26 @@ public class InputOptionsController implements Initializable {
         
         homePagePane = (AnchorPane) inputsPane.getParent();
         homePagePane.getChildren().add(sourceOutputPane);
-        sourceOutputPane.translateXProperty().set(-1 * homePagePane.getWidth());
+
+        sourceOutputPane.translateXProperty().set(-1 * homePagePane.getWidth() / 4);
+        sourceOutputPane.setOpacity(0);
+
         homePagePane.setTopAnchor(sourceOutputPane, 0.0);
         homePagePane.setBottomAnchor(sourceOutputPane, 0.0);
         homePagePane.setLeftAnchor(sourceOutputPane, 0.0);
         homePagePane.setRightAnchor(sourceOutputPane, 0.0);
 
-        KeyValue homePaneKV = new KeyValue(inputsPane.translateXProperty(), inputsPane.getWidth(), new BounceInterpolator());
-        KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-        KeyValue rootPaneKV = new KeyValue(sourceOutputPane.translateXProperty(), 0, new BounceInterpolator());
-        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+        KeyValue inputsPaneKV = new KeyValue(inputsPane.translateXProperty(), inputsPane.getWidth(), new BounceInterpolator());
+        KeyFrame inputsPaneKF = new KeyFrame(Duration.millis(300), inputsPaneKV);
+        KeyValue sourceOutputPaneKV = new KeyValue(sourceOutputPane.translateXProperty(), 0, new BounceInterpolator());
+        KeyFrame sourceOutputPaneKF = new KeyFrame(Duration.millis(300), sourceOutputPaneKV);
+        KeyValue sourceOutputPaneOpacityKV = new KeyValue(sourceOutputPane.opacityProperty(), 1, Interpolator.EASE_IN);
+        KeyFrame sourceOutputPaneOpacityKF = new KeyFrame(Duration.millis(300), sourceOutputPaneOpacityKV);
 
         Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(homePaneKF);
-        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.getKeyFrames().add(inputsPaneKF);
+        timeline.getKeyFrames().add(sourceOutputPaneKF);
+        timeline.getKeyFrames().add(sourceOutputPaneOpacityKF);
 
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(inputsPane);
@@ -89,14 +96,17 @@ public class InputOptionsController implements Initializable {
         homePagePane.setLeftAnchor(frequencyResponsePane, 0.0);
         homePagePane.setRightAnchor(frequencyResponsePane, 0.0);
 
-        KeyValue homePaneKV = new KeyValue(inputsPane.translateXProperty(), -1 * inputsPane.getWidth(), new BounceInterpolator());
-        KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-        KeyValue rootPaneKV = new KeyValue(frequencyResponsePane.translateXProperty(), 0, new BounceInterpolator());
-        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+        KeyValue inputsPaneKV = new KeyValue(inputsPane.translateXProperty(), -1 * inputsPane.getWidth(), new BounceInterpolator());
+        KeyFrame inputsPaneKF = new KeyFrame(Duration.millis(300), inputsPaneKV);
+        KeyValue inputsPaneOpacityKV = new KeyValue(inputsPane.opacityProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame inputsPaneOpacityKF = new KeyFrame(Duration.millis(50), inputsPaneOpacityKV);
+        KeyValue frequencyResponsePaneKV = new KeyValue(frequencyResponsePane.translateXProperty(), 0, new BounceInterpolator());
+        KeyFrame frequencyResponsePaneKF = new KeyFrame(Duration.millis(300), frequencyResponsePaneKV);
 
         Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(homePaneKF);
-        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.getKeyFrames().add(inputsPaneKF);
+        timeline.getKeyFrames().add(inputsPaneOpacityKF);
+        timeline.getKeyFrames().add(frequencyResponsePaneKF);
 
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(inputsPane);

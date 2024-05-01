@@ -17,26 +17,33 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 /**
  *
  * @author HUAWEI-Pc
  */
-public class FETOptionsController {
+public class FETOptionsController implements Initializable {
     @FXML
     private Button returnToMainQueueButton;
-    
     @FXML
     private AnchorPane fetOptionsPane;
-    
-    private AnchorPane mainQueuePane;
-    private AnchorPane homePagePane;
     @FXML
     private ImageView previousImageView;
     @FXML
-    private Button bjtToInputsButton;
-    @FXML
     private ImageView nextImageView;
+    @FXML
+    private Button fetToInputsButton;
+    
+    private AnchorPane mainQueuePane;
+    private AnchorPane homePagePane;
+    private AnchorPane inputsPane;
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        previousImageView.setImage(Utils.getImage("back", Color.WHITE));
+        nextImageView.setImage(Utils.getImage("next", Color.WHITE));
+    }
     
     @FXML
     private void handleReturnToMainQueueButton (ActionEvent event) {
@@ -49,21 +56,26 @@ public class FETOptionsController {
             
             homePagePane = (AnchorPane) fetOptionsPane.getParent();
             homePagePane.getChildren().add(mainQueuePane);
-            mainQueuePane.translateXProperty().set(-1 * homePagePane.getWidth());
+            
+            mainQueuePane.translateXProperty().set(-1 * homePagePane.getWidth() / 4);
+            mainQueuePane.setOpacity(0);
+            
             homePagePane.setTopAnchor(mainQueuePane, 0.0);
             homePagePane.setBottomAnchor(mainQueuePane, 0.0);
             homePagePane.setLeftAnchor(mainQueuePane, 0.0);
             homePagePane.setRightAnchor(mainQueuePane, 0.0);
 
-
-            KeyValue homePaneKV = new KeyValue(fetOptionsPane.translateXProperty(), fetOptionsPane.getWidth(), new BounceInterpolator());
-            KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
-            KeyValue rootPaneKV = new KeyValue(mainQueuePane.translateXProperty(), 0, new BounceInterpolator());
-            KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+            KeyValue fetOptionsPaneKV = new KeyValue(fetOptionsPane.translateXProperty(), fetOptionsPane.getWidth(), new BounceInterpolator());
+            KeyFrame fetOptionsPaneKF = new KeyFrame(Duration.millis(300), fetOptionsPaneKV);
+            KeyValue mainQueuePaneKV = new KeyValue(mainQueuePane.translateXProperty(), 0, new BounceInterpolator());
+            KeyFrame mainQueuePaneKF = new KeyFrame(Duration.millis(300), mainQueuePaneKV);
+            KeyValue mainQueuePaneOpacityKV = new KeyValue(mainQueuePane.opacityProperty(), 1, Interpolator.EASE_IN);
+            KeyFrame mainQueuePaneOpacityKF = new KeyFrame(Duration.millis(300), mainQueuePaneOpacityKV);
 
             Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(homePaneKF);
-            timeline.getKeyFrames().add(rootPaneKF);
+            timeline.getKeyFrames().add(fetOptionsPaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneKF);
+            timeline.getKeyFrames().add(mainQueuePaneOpacityKF);
 
             timeline.setOnFinished((e) -> {
                 homePagePane.getChildren().remove(fetOptionsPane);
@@ -74,6 +86,33 @@ public class FETOptionsController {
     }
 
     @FXML
-    private void handleBJTToInputsButton(ActionEvent event) {
+    private void handleFETToInputsButton(ActionEvent event) throws IOException {
+        inputsPane = (AnchorPane) App.loadFXML("inputOptions");
+        
+        homePagePane = (AnchorPane) fetOptionsPane.getParent();
+        homePagePane.getChildren().add(inputsPane);
+        inputsPane.translateXProperty().set(homePagePane.getWidth());
+        homePagePane.setTopAnchor(inputsPane, 0.0);
+        homePagePane.setBottomAnchor(inputsPane, 0.0);
+        homePagePane.setLeftAnchor(inputsPane, 0.0);
+        homePagePane.setRightAnchor(inputsPane, 0.0);
+
+        KeyValue fetOptionsPaneKV = new KeyValue(fetOptionsPane.translateXProperty(), -1 * fetOptionsPane.getWidth(), new BounceInterpolator());
+        KeyFrame fetOptionsPaneKF = new KeyFrame(Duration.millis(300), fetOptionsPaneKV);
+        KeyValue fetOptionsPaneOpacityKV = new KeyValue(fetOptionsPane.opacityProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame fetOptionsPaneOpacityKF = new KeyFrame(Duration.millis(50), fetOptionsPaneOpacityKV);
+        KeyValue inputsPaneKV = new KeyValue(inputsPane.translateXProperty(), 0, new BounceInterpolator());
+        KeyFrame inputsPaneKF = new KeyFrame(Duration.millis(300), inputsPaneKV);
+
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(fetOptionsPaneKF);
+        timeline.getKeyFrames().add(inputsPaneKF);
+        timeline.getKeyFrames().add(fetOptionsPaneOpacityKF);
+
+        timeline.setOnFinished((e) -> {
+            homePagePane.getChildren().remove(fetOptionsPane);
+        });
+
+        timeline.play();
     }
 }

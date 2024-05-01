@@ -14,7 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -69,6 +72,14 @@ public class PrimaryController implements Initializable {
     private ImageView startImageView;
     @FXML
     private Pane promotionPane;
+    @FXML
+    private Label tutorialText;
+    @FXML
+    private Label settingText;
+    @FXML
+    private Label feedbackText;
+    @FXML
+    private Label returnHomeText;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,6 +95,8 @@ public class PrimaryController implements Initializable {
         feedbackImageView.setImage(Utils.getImage("feedback", Color.WHITE));
         
         startImageView.setImage(Utils.getImage("start", Color.WHITE));
+        
+        handleHoveredAndSelected();
     }
     
     @FXML
@@ -100,13 +113,13 @@ public class PrimaryController implements Initializable {
         KeyValue homePaneKV = new KeyValue(homePane.translateXProperty(), -1 * homePagePane.getWidth() / 2, new BounceInterpolator());
         KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
         KeyValue homePaneOpacityKV = new KeyValue(homePane.opacityProperty(), 0, Interpolator.EASE_OUT);
-        KeyFrame homePaneOpacityKF = new KeyFrame(Duration.millis(100), homePaneOpacityKV);
-        KeyValue rootPaneKV = new KeyValue(mainQueuePane.translateXProperty(), 0, new BounceInterpolator());
-        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+        KeyFrame homePaneOpacityKF = new KeyFrame(Duration.millis(50), homePaneOpacityKV);
+        KeyValue mainQueuePaneKV = new KeyValue(mainQueuePane.translateXProperty(), 0, new BounceInterpolator());
+        KeyFrame mainQueuePaneKF = new KeyFrame(Duration.millis(300), mainQueuePaneKV);
 
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(homePaneKF);
-        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.getKeyFrames().add(mainQueuePaneKF);
         timeline.getKeyFrames().add(homePaneOpacityKF);
         
         timeline.setOnFinished((e) -> {
@@ -160,16 +173,80 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handleTutorialButtonEvent(ActionEvent event) throws IOException {
-        if (event.getSource().equals(tutorialButton)) {
-            App.setRoot("tutorial");
+        AnchorPane removablePane = (AnchorPane) homePagePane.getChildren().get(0);
+        
+        if (!removablePane.getId().equals("homePane")) {
+            handleReturnHomeButtonEvent(event);
         }
+
+        AnchorPane tutorialPane = (AnchorPane) App.loadFXML("tutorial");
+        
+        homePagePane.getChildren().add(tutorialPane);
+        tutorialPane.translateYProperty().set(-1 * mainHBox.getHeight());
+        homePagePane.setTopAnchor(tutorialPane, 0.0);
+        homePagePane.setBottomAnchor(tutorialPane, 0.0);
+        homePagePane.setLeftAnchor(tutorialPane, 0.0);
+        homePagePane.setRightAnchor(tutorialPane, 0.0);
+        
+        KeyValue homePaneKV = new KeyValue(homePane.translateYProperty(), homePagePane.getHeight(), new BounceInterpolator());
+        KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
+        KeyValue homePaneOpacityKV = new KeyValue(homePane.opacityProperty(), 0, Interpolator.EASE_OUT);
+        KeyFrame homePaneOpacityKF = new KeyFrame(Duration.millis(100), homePaneOpacityKV);
+        KeyValue rootPaneKV = new KeyValue(tutorialPane.translateYProperty(), 0, new BounceInterpolator());
+        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(homePaneKF);
+        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.getKeyFrames().add(homePaneOpacityKF);
+        
+        timeline.setOnFinished((e) -> {
+            homePagePane.getChildren().remove(homePane);
+            
+            sideBox.getChildren().add(0, returnHomeButton);
+            sideBox.getChildren().add(1, returnHomeSeparator);
+        });
+        
+        timeline.play();
     }
 
     @FXML
     private void handleFeedbackButtonEvent(ActionEvent event) throws IOException {
-        if (event.getSource().equals(feedbackButton)) {
-            App.setRoot("feedback");
+        AnchorPane removablePane = (AnchorPane) homePagePane.getChildren().get(0);
+        
+        if (!removablePane.getId().equals("homePane")) {
+            handleReturnHomeButtonEvent(event);
         }
+
+        AnchorPane feedbackPane = (AnchorPane) App.loadFXML("feedback");
+        
+        homePagePane.getChildren().add(feedbackPane);
+        feedbackPane.translateYProperty().set(-1 * mainHBox.getHeight());
+        homePagePane.setTopAnchor(feedbackPane, 0.0);
+        homePagePane.setBottomAnchor(feedbackPane, 0.0);
+        homePagePane.setLeftAnchor(feedbackPane, 0.0);
+        homePagePane.setRightAnchor(feedbackPane, 0.0);
+        
+        KeyValue homePaneKV = new KeyValue(homePane.translateYProperty(), homePagePane.getHeight(), new BounceInterpolator());
+        KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
+        KeyValue homePaneOpacityKV = new KeyValue(homePane.opacityProperty(), 0, Interpolator.EASE_OUT);
+        KeyFrame homePaneOpacityKF = new KeyFrame(Duration.millis(100), homePaneOpacityKV);
+        KeyValue rootPaneKV = new KeyValue(feedbackPane.translateYProperty(), 0, new BounceInterpolator());
+        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(homePaneKF);
+        timeline.getKeyFrames().add(rootPaneKF);
+        timeline.getKeyFrames().add(homePaneOpacityKF);
+        
+        timeline.setOnFinished((e) -> {
+            homePagePane.getChildren().remove(homePane);
+            
+            sideBox.getChildren().add(0, returnHomeButton);
+            sideBox.getChildren().add(1, returnHomeSeparator);
+        });
+        
+        timeline.play();
     }
     
     @FXML
@@ -181,16 +258,16 @@ public class PrimaryController implements Initializable {
         }
 
         KeyValue homePaneKV = null;
-        KeyValue rootPaneKV = null;
+        KeyValue removablePaneKV = null;
 
         if (removablePane.getId().equals("settingAnchorPane")) {
             homePane.translateYProperty().set(homePagePane.getHeight());
             homePaneKV = new KeyValue(homePane.translateYProperty(), 0, new BounceInterpolator());
-            rootPaneKV = new KeyValue(removablePane.translateYProperty(), -1 * mainPane.getHeight(), new BounceInterpolator());
+            removablePaneKV = new KeyValue(removablePane.translateYProperty(), -1 * mainPane.getHeight(), new BounceInterpolator());
         } else {
-            homePane.translateXProperty().set(-1 * homePagePane.getWidth());
+            homePane.translateXProperty().set(-1 * homePagePane.getWidth() / 4);
             homePaneKV = new KeyValue(homePane.translateXProperty(), 0, new BounceInterpolator());
-            rootPaneKV = new KeyValue(removablePane.translateXProperty(), mainPane.getWidth(), new BounceInterpolator());
+            removablePaneKV = new KeyValue(removablePane.translateXProperty(), mainPane.getWidth(), new BounceInterpolator());
         }
 
         homePagePane.setTopAnchor(homePane, 0.0);
@@ -200,12 +277,10 @@ public class PrimaryController implements Initializable {
 
         homePane.setOpacity(0);
 
-//            KeyValue homePaneKV = new KeyValue(homePane.translateXProperty(), 0, new BounceInterpolator());
         KeyFrame homePaneKF = new KeyFrame(Duration.millis(300), homePaneKV);
         KeyValue homePaneOpacityKV = new KeyValue(homePane.opacityProperty(), 1, Interpolator.EASE_IN);
         KeyFrame homePaneOpacityKF = new KeyFrame(Duration.millis(300), homePaneOpacityKV);
-//            KeyValue rootPaneKV = new KeyValue(removablePane.translateXProperty(), mainPane.getWidth(), new BounceInterpolator());
-        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), rootPaneKV);
+        KeyFrame rootPaneKF = new KeyFrame(Duration.millis(300), removablePaneKV);
 
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(homePaneKF);
@@ -220,5 +295,47 @@ public class PrimaryController implements Initializable {
         });
 
         timeline.play();
+    }
+
+    private void handleHoveredAndSelected () {
+        returnHomeButton.hoverProperty().addListener((observable, oldValue, hovered) -> {
+            if (hovered) {
+                returnHomeText.getStyleClass().add("sideBarButtonLabel");
+                homeImageView.setImage(Utils.getImage("home", Color.BLACK));
+            } else {
+                returnHomeText.getStyleClass().remove("sideBarButtonLabel");
+                homeImageView.setImage(Utils.getImage("home", Color.WHITE));
+            }
+        });
+
+        tutorialButton.hoverProperty().addListener((observable, oldValue, hovered) -> {
+            if (hovered) {
+                tutorialText.getStyleClass().add("sideBarButtonLabel");
+                tutorialImageView.setImage(Utils.getImage("tutorial", Color.BLACK));
+            } else {
+                tutorialText.getStyleClass().remove("sideBarButtonLabel");
+                tutorialImageView.setImage(Utils.getImage("tutorial", Color.WHITE));
+            }
+        });
+        
+        settingButton.hoverProperty().addListener((observable, oldValue, hovered) -> {
+            if (hovered) {
+                settingText.getStyleClass().add("sideBarButtonLabel");
+                settingImageView.setImage(Utils.getImage("setting", Color.BLACK));
+            } else {
+                settingText.getStyleClass().remove("sideBarButtonLabel");
+                settingImageView.setImage(Utils.getImage("setting", Color.WHITE));
+            }
+        });
+        
+        feedbackButton.hoverProperty().addListener((observable, oldValue, hovered) -> {
+            if (hovered) {
+                feedbackText.getStyleClass().add("sideBarButtonLabel");
+                feedbackImageView.setImage(Utils.getImage("feedback", Color.BLACK));
+            } else {
+                feedbackText.getStyleClass().remove("sideBarButtonLabel");
+                feedbackImageView.setImage(Utils.getImage("feedback", Color.WHITE));
+            }
+        });
     }
 }
