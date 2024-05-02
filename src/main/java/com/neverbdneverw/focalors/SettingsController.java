@@ -253,7 +253,7 @@ public class SettingsController implements Initializable {
             darkModeState = true;
         }
         
-        switchStyleSheets(darkModeState);
+        App.setCSS(darkModeState);
         
         KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
         
@@ -336,13 +336,5 @@ public class SettingsController implements Initializable {
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(switchKF);
         timeline.play();
-    }
-
-    private void switchStyleSheets(boolean state) {
-        if (state) {
-            settingPane.getScene().getStylesheets().add(App.class.getResource("/styles/application_dark.css").toExternalForm());
-        } else {
-            settingPane.getScene().getStylesheets().remove(App.class.getResource("/styles/application_dark.css").toExternalForm());
-        }
     }
 }

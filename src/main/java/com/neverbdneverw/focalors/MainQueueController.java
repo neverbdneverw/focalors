@@ -47,6 +47,10 @@ public class MainQueueController implements Initializable {
         bjtImageView.setImage(new Image(App.class.getResource("/icons/bjt.png").toExternalForm()));
         mosfetImageView.setImage(new Image(App.class.getResource("/icons/mosfet.png").toExternalForm()));
         opampImageView.setImage(new Image(App.class.getResource("/icons/opamp.png").toExternalForm()));
+        
+        Utils.buttonAddHoverEffect(bjtButton);
+        Utils.buttonAddHoverEffect(fetButton);
+        Utils.buttonAddHoverEffect(opAmpButton);
     }
     
     @FXML

@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="frequencyResponsePane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.FrequencyResponseOptionsController">
+<AnchorPane id="AnchorPane" fx:id="frequencyResponsePane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.FrequencyResponseOptionsController">
    <children>
       <BorderPane layoutX="253.0" layoutY="144.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
@@ -40,7 +40,7 @@
                      <children>
                         <Label text="            Enter your desired frequency response. If you do not know what it is, check the tutorial's pane on the sidebar. The frequency response of an amplifier is designed in order to avoid distortion of signals caused by the capacitances and impedances at play when an amplifier is built. It generally is demonstrated using a Bode Plot where the cutoff frequencies lie on -3 dB." textAlignment="JUSTIFY" wrapText="true" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Segoe UI Italic" size="12.0" />
+                              <Font name="Segoe UI Italic" size="14.0" />
                            </font></Label>
                      </children>
                   </HBox>
@@ -117,7 +117,7 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="returnToInputsButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToInputsButton" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ff3131; -fx-background-radius: 16;">
+                        <Button fx:id="returnToInputsButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToInputsButton" prefHeight="50.0" prefWidth="200.0" styleClass="navigationBackButton">
                            <HBox.margin>
                               <Insets left="16.0" />
                            </HBox.margin>
@@ -139,7 +139,7 @@
                            </graphic>
                         </Button>
                         <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="toSummaryViewButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleToSummaryViewButton" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;">
+                        <Button fx:id="toSummaryViewButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleToSummaryViewButton" prefHeight="100.0" prefWidth="200.0" styleClass="navigationProceedButton">
                            <HBox.margin>
                               <Insets right="16.0" />
                            </HBox.margin>

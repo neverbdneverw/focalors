@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleButton?>
@@ -28,27 +29,43 @@
                      </HBox.margin></Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <ToggleButton fx:id="appearanceButton" mnemonicParsing="false" onAction="#handleAppearanceButton" prefWidth="125.0" selected="true" styleClass="settingNavigationButton" text="Appearance" textFill="#0066cc">
+                  <ToggleButton fx:id="appearanceButton" mnemonicParsing="false" onAction="#handleAppearanceButton" prefWidth="125.0" selected="true" text="Appearance" textFill="#0066cc">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>
                      <toggleGroup>
                         <ToggleGroup fx:id="settingNavigationGroup" />
-                     </toggleGroup></ToggleButton>
-                  <ToggleButton fx:id="behaviorButton" mnemonicParsing="false" onAction="#handleBehaviorButton" prefWidth="125.0" styleClass="settingNavigationButton" text="Behavior" textFill="#0066cc" toggleGroup="$settingNavigationGroup">
+                     </toggleGroup>
+                     <styleClass>
+                        <String fx:value="settingNavigationButton" />
+                        <String fx:value="startNav" />
+                     </styleClass></ToggleButton>
+                  <ToggleButton fx:id="behaviorButton" mnemonicParsing="false" onAction="#handleBehaviorButton" prefWidth="125.0" text="Behavior" textFill="#0066cc" toggleGroup="$settingNavigationGroup">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
-                     </font></ToggleButton>
-                  <ToggleButton fx:id="accuracyButton" mnemonicParsing="false" onAction="#handleAccuracyButton" prefWidth="125.0" styleClass="settingNavigationButton" text="Accuracy" textFill="#0066cc" toggleGroup="$settingNavigationGroup">
+                     </font>
+                     <styleClass>
+                        <String fx:value="settingNavigationButton" />
+                        <String fx:value="midNav" />
+                     </styleClass></ToggleButton>
+                  <ToggleButton fx:id="accuracyButton" mnemonicParsing="false" onAction="#handleAccuracyButton" prefWidth="125.0" text="Accuracy" textFill="#0066cc" toggleGroup="$settingNavigationGroup">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
-                     </font></ToggleButton>
-                  <ToggleButton fx:id="estimateButton" mnemonicParsing="false" onAction="#handleEstimateButton" prefWidth="125.0" styleClass="settingNavigationButton" text="Estimation" textFill="#0066cc" toggleGroup="$settingNavigationGroup">
+                     </font>
+                     <styleClass>
+                        <String fx:value="settingNavigationButton" />
+                        <String fx:value="midNav" />
+                     </styleClass></ToggleButton>
+                  <ToggleButton fx:id="estimateButton" mnemonicParsing="false" onAction="#handleEstimateButton" prefWidth="125.0" text="Estimation" textFill="#0066cc" toggleGroup="$settingNavigationGroup">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
-                     </font></ToggleButton>
+                     </font>
+                     <styleClass>
+                        <String fx:value="settingNavigationButton" />
+                        <String fx:value="endNav" />
+                     </styleClass></ToggleButton>
                </children>
             </HBox>
             <StackPane fx:id="settingPane" VBox.vgrow="ALWAYS">
@@ -179,10 +196,7 @@
                                     <Font name="Segoe UI Italic" size="16.0" />
                                  </font>
                               </Label>
-                              <HBox prefHeight="50.0" prefWidth="200.0" spacing="10.0">
-                                 <padding>
-                                    <Insets left="92.0" />
-                                 </padding>
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                                  <children>
                                     <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="96.0" selected="true" style="-fx-background-radius: 16; -fx-background-color: #5ce1e6;" styleClass="amplifierPrefButton" text="Ω">
                                        <font>
@@ -203,6 +217,9 @@
                                        </font>
                                     </ToggleButton>
                                  </children>
+                                 <padding>
+                                    <Insets left="32.0" />
+                                 </padding>
                               </HBox>
                               <Label text="Capacitor Units:" textFill="#0066cc">
                                  <font>

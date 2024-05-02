@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="inputsPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.InputOptionsController">
+<AnchorPane id="AnchorPane" fx:id="inputsPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.InputOptionsController">
    <children>
       <BorderPane layoutX="243.0" layoutY="134.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
@@ -38,7 +38,7 @@
                      <children>
                         <Label text="            Enter the your controlled input parameters for the amplifier. If you do not know what to enter, please refer to the tutorials section accessible through the sidebar. These values are constants that are not affected by the calculation of other parameters. The signal input voltage is the peak-to-peak voltage of the signal that goes through the amplifier. The Biasing voltage of the source allows for the amplification to happen. The input frequency is the frequency of the input signal. Depending on how the frequency response will be set on the next stage, this is meant to be the same on the output." textAlignment="JUSTIFY" wrapText="true" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Segoe UI Italic" size="12.0" />
+                              <Font name="Segoe UI Italic" size="14.0" />
                            </font></Label>
                      </children>
                   </HBox>
@@ -117,7 +117,7 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="returnToOutputsButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToOutputsButton" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ff3131; -fx-background-radius: 16;">
+                        <Button fx:id="returnToOutputsButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToOutputsButton" prefHeight="50.0" prefWidth="200.0" styleClass="navigationBackButton">
                            <HBox.margin>
                               <Insets left="16.0" />
                            </HBox.margin>
@@ -139,7 +139,7 @@
                            </graphic>
                         </Button>
                         <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="toFrequencyResponseButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleToFrequencyResponseButton" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;">
+                        <Button fx:id="toFrequencyResponseButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleToFrequencyResponseButton" prefHeight="100.0" prefWidth="200.0" styleClass="navigationProceedButton">
                            <HBox.margin>
                               <Insets right="16.0" />
                            </HBox.margin>

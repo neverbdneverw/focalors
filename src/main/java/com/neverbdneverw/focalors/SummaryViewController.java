@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 /**
@@ -36,13 +37,19 @@ public class SummaryViewController implements Initializable {
     private ImageView previousImageView;
     @FXML
     private ImageView nextImageView;
+    @FXML
+    private Button saveButton;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        previousImageView.setImage(Utils.getImage("back", Color.WHITE));
+        nextImageView.setImage(Utils.getImage("save", Color.WHITE));
+        
+        Utils.buttonAddHoverEffect(saveButton);
+        Utils.buttonAddHoverEffect(returnToFreqResButton);
     }    
 
     @FXML

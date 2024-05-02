@@ -48,6 +48,9 @@ public class InputOptionsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         previousImageView.setImage(Utils.getImage("back", Color.WHITE));
         nextImageView.setImage(Utils.getImage("next", Color.WHITE));
+        
+        Utils.buttonAddHoverEffect(returnToOutputsButton);
+        Utils.buttonAddHoverEffect(toFrequencyResponseButton);
     }    
 
     @FXML

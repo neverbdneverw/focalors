@@ -1,34 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/13" fx:controller="com.neverbdneverw.focalors.FeedbackController">
+<AnchorPane id="feedbackAnchorPane" fx:id="feedbackPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.FeedbackController">
    <children>
-      <VBox layoutX="346.0" layoutY="196.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="30.0">
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="32.0">
                <children>
-                  <Button fx:id="settingReturn" mnemonicParsing="false" onAction="#handleSettingReturn" text="Return" />
-                  <Label text="Feedback" />
+                  <HBox prefHeight="64.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <Label text="Feedback" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Segoe UI Bold Italic" size="32.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <StackPane fx:id="feedBackSwitcherPane" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <AnchorPane fx:id="secondFeedbackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="890.0" visible="false">
+                           <children>
+                              <ImageView fitHeight="590.0" fitWidth="890.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../Downloads/tristan/FP%20-%20Start%20rating/FP%20-%20Start%20rating/src/image/White%20Blue%20Simple%20Modern%20Business%20Proposal%20Pitch%20Deck%20Presentation%20Design%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="403.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We would like you to rate your experience with our app." textAlignment="CENTER" wrappingWidth="234.2109375">
+                                 <font>
+                                    <Font name="Gadugi" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="412.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you'd like to contact you regarding your feedback, please provide your contact detailes here." textAlignment="CENTER" wrappingWidth="234.2109375">
+                                 <font>
+                                    <Font name="Gadugi" size="15.0" />
+                                 </font>
+                              </Text>
+                              <TextField layoutX="429.0" layoutY="196.0" prefHeight="26.0" prefWidth="199.0" style="-fx-border-color: black;" text="E-mail" />
+                              <Button layoutX="556.0" layoutY="235.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="73.0" style="-fx-background-radius: 30; -fx-background-color: #0066cc;" text="Submit" textFill="WHITE" />
+                              <Button layoutX="430.0" layoutY="70.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" />
+                              <Button layoutX="505.0" layoutY="70.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" />
+                              <Button layoutX="542.0" layoutY="70.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" />
+                              <Button layoutX="581.0" layoutY="70.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" />
+                              <Button layoutX="467.0" layoutY="70.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="firstFeedbackPane">
+                           <children>
+                              <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label prefWidth="250.0" text="Hi! Your insight on our app will significantly aid in its refinement." textAlignment="CENTER" wrapText="true">
+                                       <font>
+                                          <Font name="Segoe UI" size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="100.0" top="64.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Button fx:id="giveFeedbackButton" mnemonicParsing="false" onAction="#handleGiveFeedbackButtonClicked" prefHeight="48.0" prefWidth="200.0" style="-fx-background-color: #0066cc; -fx-background-radius: 32;" text="Give Feedback" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets left="120.0" top="32.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                       <padding>
+                                          <Insets left="30.0" />
+                                       </padding>
+                                       <children>
+                                          <ImageView fitHeight="64.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../icons/emailIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="emailLinkText" text="neverbackdownneverwhatteyvat@gmail.com">
+                                             <font>
+                                                <Font name="Segoe UI" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                             <image>
+                                                <Image url="@../../../icons/logo_smaller.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets left="100.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </StackPane>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <ToggleButton mnemonicParsing="false" text="Appearance" />
-                  <ToggleButton mnemonicParsing="false" text="Behavior" />
-                  <ToggleButton mnemonicParsing="false" text="Accuracy" />
-                  <ToggleButton mnemonicParsing="false" text="Estimation" />
-               </children>
-            </HBox>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00cc66;" VBox.vgrow="ALWAYS" />
-         </children>
-      </VBox>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

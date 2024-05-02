@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="fetOptionsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.FETOptionsController">
+<AnchorPane fx:id="fetOptionsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.FETOptionsController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
@@ -39,7 +39,7 @@
                      <children>
                         <Label text="            Enter your desired output values for the amplifier. If you do not know what to input, check the tutorial button on the sidebar. This form takes the desired collector current which is typically in the milliamperes, the voltage gain, and the desired input and output impedance which are important parameters to take into account especially as the amplifier will be connected to other circuits." wrapText="true" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Segoe UI Italic" size="12.0" />
+                              <Font name="Segoe UI Italic" size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -133,7 +133,7 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="returnToMainQueueButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToMainQueueButton" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ff3131; -fx-background-radius: 16;">
+                        <Button fx:id="returnToMainQueueButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToMainQueueButton" prefHeight="50.0" prefWidth="200.0" styleClass="navigationBackButton">
                            <HBox.margin>
                               <Insets left="16.0" />
                            </HBox.margin>
@@ -155,7 +155,7 @@
                            </graphic>
                         </Button>
                         <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="fetToInputsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleFETToInputsButton" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;">
+                        <Button fx:id="fetToInputsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleFETToInputsButton" prefHeight="100.0" prefWidth="200.0" styleClass="navigationProceedButton">
                            <HBox.margin>
                               <Insets right="16.0" />
                            </HBox.margin>

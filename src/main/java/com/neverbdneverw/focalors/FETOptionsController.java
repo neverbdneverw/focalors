@@ -43,6 +43,9 @@ public class FETOptionsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         previousImageView.setImage(Utils.getImage("back", Color.WHITE));
         nextImageView.setImage(Utils.getImage("next", Color.WHITE));
+        
+        Utils.buttonAddHoverEffect(fetToInputsButton);
+        Utils.buttonAddHoverEffect(returnToMainQueueButton);
     }
     
     @FXML

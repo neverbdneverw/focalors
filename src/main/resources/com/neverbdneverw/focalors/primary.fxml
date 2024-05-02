@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -89,6 +88,23 @@
                               <Font name="Segoe UI" size="16.0" />
                            </font>
                         </Button>
+                        <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#handleAboutButtonEvent" styleClass="sideBarButton" textFill="WHITE">
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="16.0">
+                                 <children>
+                                    <ImageView fx:id="aboutImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label fx:id="aboutText" styleClass="sideBarButtonText" text="About" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI" size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Button>
                      </children>
                      <padding>
                         <Insets bottom="30.0" left="10.0" top="30.0" />
@@ -100,76 +116,47 @@
                <children>
                   <AnchorPane fx:id="homePane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="TOP_CENTER" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <HBox alignment="CENTER_LEFT">
                                  <children>
                                     <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="aboutFocalorsButton" mnemonicParsing="false" text="About FOCALORS" textFill="#0066cc">
-                                       <HBox.margin>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </HBox.margin>
-                                       <font>
-                                          <Font name="Segoe UI Semibold" size="16.0" />
-                                       </font>
-                                    </Button>
                                  </children>
                               </HBox>
-                              <HBox spacing="50.0">
-                                 <VBox.margin>
-                                    <Insets bottom="50.0" left="50.0" right="30.0" top="30.0" />
-                                 </VBox.margin>
-                                 <children>
-                                    <VBox prefWidth="400.0" spacing="30.0" HBox.hgrow="ALWAYS">
+                              <Pane fx:id="imagePane" prefHeight="300.0" prefWidth="200.0">
+                                 <padding>
+                                    <Insets left="30.0" />
+                                 </padding>
+                              </Pane>
+                              <Label styleClass="featureText" text="FOCALORS is an amplifier designer and calculator by engineering students for engineering students." textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="Segoe UI Semibold Italic" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="primaryButton" alignment="TOP_CENTER" onAction="#switchToMainQueue" style="-fx-background-radius: 32;">
+                                 <graphic>
+                                    <HBox alignment="CENTER" prefHeight="48.0" prefWidth="254.0" spacing="16.0">
                                        <children>
-                                          <Pane fx:id="imagePane" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                             <padding>
-                                                <Insets left="30.0" />
-                                             </padding>
-                                          </Pane>
-                                          <Label text="Focalors is an Electronic Amplifier Designer built upon Java and JavaFX." wrapText="true">
+                                          <ImageView fx:id="startImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <Label text="Start Designing" textFill="WHITE">
                                              <font>
-                                                <Font name="Segoe UI Italic" size="21.0" />
+                                                <Font name="Segoe UI Semibold Italic" size="24.0" />
                                              </font>
+                                             <HBox.margin>
+                                                <Insets right="16.0" />
+                                             </HBox.margin>
                                           </Label>
-                                          <AnchorPane>
-                                             <children>
-                                                <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <center>
-                                                      <Button fx:id="primaryButton" alignment="TOP_CENTER" onAction="#switchToMainQueue" style="-fx-background-color: #0066cc; -fx-background-radius: 32;">
-                                                         <graphic>
-                                                            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="254.0" spacing="16.0">
-                                                               <children>
-                                                                  <ImageView fx:id="startImageView" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                                                                     <HBox.margin>
-                                                                        <Insets />
-                                                                     </HBox.margin>
-                                                                  </ImageView>
-                                                                  <Label text="Start Designer" textFill="WHITE">
-                                                                     <font>
-                                                                        <Font name="Segoe UI Bold Italic" size="24.0" />
-                                                                     </font>
-                                                                     <HBox.margin>
-                                                                        <Insets right="16.0" />
-                                                                     </HBox.margin>
-                                                                  </Label>
-                                                               </children>
-                                                            </HBox>
-                                                         </graphic>
-                                                      </Button>
-                                                   </center>
-                                                </BorderPane>
-                                             </children>
-                                          </AnchorPane>
                                        </children>
-                                    </VBox>
-                                    <Pane fx:id="promotionPane" prefHeight="100.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
-                                       <padding>
-                                          <Insets left="30.0" />
-                                       </padding>
-                                    </Pane>
-                                 </children>
-                              </HBox>
+                                    </HBox>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets top="16.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                         </VBox>
                      </children>

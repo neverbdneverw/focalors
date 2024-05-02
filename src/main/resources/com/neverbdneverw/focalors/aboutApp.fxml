@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="aboutAppPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.AboutAppController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <VBox>
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <Label text="Application Settings">
+                           <font>
+                              <Font name="Segoe UI Bold Italic" size="32.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0">
+                     <children>
+                        <ImageView fitHeight="158.0" fitWidth="172.0" layoutX="29.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="214.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Launched in 2024, Focalors is an electronic amplifier design application made by using Java language. Whether you're an experienced electronics enthusiast, new to the field of amplifier design, or a student, Focalors offers you the tools and flexibility you need to develop circuits that are personalized to your needs." wrappingWidth="415.13671875" />
+                        <Text fill="#0066cc" layoutX="41.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FEATURES:" wrappingWidth="133.13671875">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="80.0" fitWidth="84.0" layoutX="32.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/circuit-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="84.0" layoutX="41.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/custom-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="84.0" layoutX="38.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/setting-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="84.0" layoutX="38.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/ui-rpreview.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#0066cc" layoutX="514.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 All Rights Reserved, Focalors®" wrappingWidth="230.13671875" />
+                        <Text fill="#0066cc" layoutX="124.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify your own Circuit Design:" wrappingWidth="198.74609375">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#0066cc" layoutX="124.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customizable Design Parameters:">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#0066cc" layoutX="124.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Application Settings:">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#0066cc" layoutX="127.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User-Friendly Interface:" textAlignment="JUSTIFY">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="124.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Focalors offers a wide range of design possibilities, such as BJT, FET, and Op Amp. With these possibilities at your fingertips, you can design circuits based on your specific needs." textAlignment="JUSTIFY" wrappingWidth="250.13671875">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="124.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set your preferred settings for voltage and other parameters, and let Focalors handle the rest. Our simple interface allows you to easily input your options, resulting in circuit designs that meet precisely to your needs." textAlignment="JUSTIFY" wrappingWidth="250.13671875">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="125.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set your preferred settings for appearance, behavior  and other parameters, and let Focalors handle the rest. Our simple interface allows you to easily input options, resulting in circuit designs that fit perfectly with what you want." textAlignment="JUSTIFY" wrappingWidth="250.13671875">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="124.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Focalors has a user-friendly UI that will enhance your experience. With easy-to-recognize buttons and navigation.You'll feel right at home as soon as you load the app, " textAlignment="JUSTIFY" wrappingWidth="250.13671875">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#0066cc" layoutX="435.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SOFTWARE USED:" wrappingWidth="133.13671875">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#0066cc" layoutX="435.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LICENSES:" wrappingWidth="133.13671875">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="250.0" fitWidth="250.0" layoutX="535.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/furina%20think.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#0066cc" layoutX="63.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Check us out on..." />
+                        <Button layoutX="158.0" layoutY="562.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../Downloads/AboutApp1/AboutApp1/src/aboutapp1/github-mark.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ImageView fitHeight="89.0" fitWidth="73.0" layoutX="435.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/scenebuilderpreview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="77.0" fitWidth="133.0" layoutX="482.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/netbeans-preview.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

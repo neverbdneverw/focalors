@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="summaryViewPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.SummaryViewController">
+<AnchorPane id="AnchorPane" fx:id="summaryViewPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../styles/application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.SummaryViewController">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -22,6 +22,25 @@
                   <Insets />
                </BorderPane.margin>
                <children>
+                  <HBox alignment="CENTER_LEFT" spacing="30.0">
+                     <children>
+                        <Label text="Calculation Summary">
+                           <font>
+                              <Font name="Segoe UI Bold Italic" size="32.0" />
+                           </font>
+                        </Label>
+                        <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="100.0">
+                     <children>
+                        <Label text="            This is the summary of the necessary components that you should procure in order to build the circuit with the parameters you entered earlier. The left pane shows the schematic diagram of how the circuit should look like and the right pane shows the values of the components that you should use. These are approximation and manual adjustments should be made by you to accomodate your circuit requirements." textAlignment="JUSTIFY" wrapText="true" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Segoe UI Italic" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00cc66;" HBox.hgrow="ALWAYS" />
@@ -30,7 +49,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="returnToFreqResButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToFreqResButton" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ff3131; -fx-background-radius: 16;">
+                        <Button fx:id="returnToFreqResButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleReturnToFreqResButton" prefHeight="50.0" prefWidth="200.0" styleClass="navigationBackButton">
                            <HBox.margin>
                               <Insets left="16.0" />
                            </HBox.margin>
@@ -52,7 +71,7 @@
                            </graphic>
                         </Button>
                         <Separator opacity="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;">
+                        <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="summarySavedButton">
                            <HBox.margin>
                               <Insets right="16.0" />
                            </HBox.margin>

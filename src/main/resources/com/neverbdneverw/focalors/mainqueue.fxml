@@ -20,27 +20,18 @@
          <center>
             <VBox alignment="TOP_CENTER">
                <children>
-                  <HBox>
+                  <HBox alignment="CENTER">
                      <children>
-                        <Label text="Choose Amplifier Base:">
+                        <Label alignment="CENTER" text="Choose Amplifier Base" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI Bold Italic" size="32.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <AnchorPane prefHeight="64.0">
-                     <children>
-                        <Label text="          Amplifiers typically use transistors in the form of Bipolar Junction Transistors (BJT), Metal-oxide Semiconductor Field Effect Transistor (MOSFET), or General Operational Amplifiers (Op Amp). For the transistors, the common modes used are Common Emitter for BJTs and Common Source for MOSFETS. Such modes are currently offered by the application." textAlignment="JUSTIFY" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font name="Segoe UI Italic" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <GridPane alignment="CENTER" hgap="16.0" prefWidth="600.0" vgap="16.0">
+                        <GridPane alignment="CENTER" hgap="24.0" prefWidth="600.0" vgap="24.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.20001220703125" minWidth="10.0" prefWidth="298.4000244140625" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.79998779296875" minWidth="10.0" prefWidth="301.5999755859375" />
@@ -50,7 +41,7 @@
                               <RowConstraints maxHeight="154.79999389648435" minHeight="10.0" prefHeight="154.79999389648435" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Button fx:id="bjtButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleBJTChosenEvent" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #ff3131; -fx-background-radius: 16;" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                              <Button fx:id="bjtButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleBJTChosenEvent" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #ff3131; -fx-background-radius: 16;" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                                  <graphic>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
@@ -77,7 +68,7 @@
                                     </HBox>
                                  </graphic>
                               </Button>
-                              <Button fx:id="fetButton" mnemonicParsing="false" onAction="#handleFETChosenEvent" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                              <Button fx:id="fetButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleFETChosenEvent" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #7ed957; -fx-background-radius: 16;" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                  <graphic>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
@@ -104,7 +95,7 @@
                                     </HBox>
                                  </graphic>
                               </Button>
-                              <Button fx:id="opAmpButton" mnemonicParsing="false" onAction="#handleOpAmpChosenEvent" prefHeight="216.0" prefWidth="250.0" style="-fx-background-color: #0066cc; -fx-background-radius: 16;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2">
+                              <Button fx:id="opAmpButton" mnemonicParsing="false" onAction="#handleOpAmpChosenEvent" prefHeight="223.0" prefWidth="250.0" style="-fx-background-color: #0066cc; -fx-background-radius: 16;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2">
                                  <graphic>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
@@ -133,11 +124,16 @@
                               </Button>
                            </children>
                            <HBox.margin>
-                              <Insets bottom="64.0" left="64.0" right="64.0" top="64.0" />
+                              <Insets bottom="32.0" left="64.0" right="64.0" top="32.0" />
                            </HBox.margin>
                         </GridPane>
                      </children>
                   </HBox>
+                  <Label text="          Amplifiers typically use transistors in the form of Bipolar Junction Transistors (BJT), Metal-oxide Semiconductor Field Effect Transistor (MOSFET), or General Operational Amplifiers (Op Amp). For the transistors, the common modes used are Common Emitter for BJTs and Common Source for MOSFETS. Such modes are currently offered by the application." textAlignment="JUSTIFY" wrapText="true">
+                     <font>
+                        <Font name="Segoe UI Italic" size="14.0" />
+                     </font>
+                  </Label>
                </children>
                <BorderPane.margin>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />

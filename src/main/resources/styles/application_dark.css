@@ -1,65 +1,33 @@
-#mainPane {
+.mainPane {
     -fx-background-color: #4d4d4d;
 }
+/*SIDEBAR*/
+#sideBarPane {
+    -fx-background-color: #333333;
+}
 
-#settingReturn {
+.sideBarButton {
     -fx-background-color: transparent;
     -fx-border-color: none;
     -fx-border-width: 0px;
 }
 
-#settingReturn:hover {
-    -fx-background-color: #38b6ff;
+.sideBarButton:hover {
+    -fx-background-color: #fafafa;
+    -fx-background-radius: 8 0 0 8;
     -fx-border-color: none;
     -fx-border-width: 0px;
 }
 
-#returnHomeButton {
-    -fx-background-color: transparent;
+.sideBarButton:selected {
+    -fx-background-color: #fafafa;
+    -fx-background-radius: 8 0 0 8;
     -fx-border-color: none;
     -fx-border-width: 0px;
 }
 
-#returnHomeButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#tutorialButton {
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#tutorialButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#settingButton {
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#settingButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#feedbackButton {
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
-
-#feedbackButton:hover {
-    -fx-background-color: #38b6ff;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
+.sideBarButtonLabel {
+    -fx-text-fill: white;
 }
 
 .settingNavigationButton {
@@ -68,6 +36,12 @@
     -fx-border-color: #0066cc;
     -fx-border-radius: 5px;
     -fx-background-insets: 2px;
+}
+/*END OF SIDEBAR*/
+
+/*Main page*/
+.featureText {
+    -fx-text-fill: black;
 }
 
 .settingNavigationButton:hover {

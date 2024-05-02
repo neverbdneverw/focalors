@@ -20,7 +20,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 1024, 600);
-        App.setCSS("application");
+        App.setCSS(false);
         stage.setTitle("FOCALORS");
         stage.setScene(scene);
         
@@ -40,10 +40,12 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     
-    public static void setCSS (String themeFilename) {
-        scene.getStylesheets().clear();
-        setUserAgentStylesheet(null);
-        scene.getStylesheets().add(App.class.getResource(String.format("/styles/%s.css", themeFilename)).toExternalForm());
+    public static void setCSS (boolean darkMode) {
+        if (darkMode) {
+            scene.getStylesheets().add(App.class.getResource("/styles/application_dark.css").toExternalForm());
+        } else {
+            scene.getStylesheets().add(App.class.getResource("/styles/application.css").toExternalForm());
+        }
     }
 
     public static void main(String[] args) {

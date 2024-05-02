@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 /**
@@ -44,7 +45,11 @@ public class FrequencyResponseOptionsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        previousImageView.setImage(Utils.getImage("back", Color.WHITE));
+        nextImageView.setImage(Utils.getImage("next", Color.WHITE));
+        
+        Utils.buttonAddHoverEffect(toSummaryViewButton);
+        Utils.buttonAddHoverEffect(returnToInputsButton);
     }    
 
     @FXML

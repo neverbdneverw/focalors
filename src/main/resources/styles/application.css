@@ -1,3 +1,28 @@
+#homePane {
+    -fx-background-color: linear-gradient(to right, #fafafa 0%, #d6d6d6 50%, #fafafa 100%);
+    -fx-background-image: url("/icons/background_image.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+#firstFeedbackPane {
+    -fx-background-image: url("/icons/feedbackBg.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+#secondFeedbackPane {
+    -fx-background-image: url("/icons/secondFeedbackBG.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+#emailLinkText:hover {
+    -fx-underline: true;
+}
+
 /*SIDEBAR*/
 #sideBarPane {
     -fx-background-color: #333333;
@@ -26,30 +51,69 @@
 .sideBarButtonLabel {
     -fx-text-fill: black;
 }
+/*END OF SIDEBAR*/
+
+#homePagePane {
+    -fx-background-color: white;
+}
+
+/*Main page*/
+.featureText {
+    -fx-text-fill: black;
+}
+
+#aboutFocalorsButton:hover {
+    -fx-underline: true;
+}
+
+#primaryButton {
+    -fx-background-color: #0066cc;
+    -fx-background-radius: 32;
+}
+
+.navigationBackButton {
+    -fx-background-color: #ff3131;
+    -fx-background-radius: 16;
+}
+
+.navigationProceedButton {
+    -fx-background-color: #7ed957;
+    -fx-background-radius: 16;
+}
+
+.summarySavedButton {
+    -fx-background-color: #0066cc;
+    -fx-background-radius: 16;
+}
 
 .settingNavigationButton {
-    -fx-background-color: #d9d9d9;
-    -fx-border-width: 1px;
+    -fx-background-color: #5ce1e6;
     -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
+    -fx-border-radius: 8px 0px 0px 8px;
+    -fx-background-insets: 1px;
 }
-/*END OF SIDEBAR*/
+
+.midNav.settingNavigationButton {
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-border-radius: 0px 0px 0px 0px;
+}
+
+.endNav.settingNavigationButton {
+    -fx-border-radius: 0px 8px 8px 0px;
+}
 
 .settingNavigationButton:hover {
     -fx-background-color: #38b6ff;
     -fx-border-width: 1px;
-    -fx-background-insets: 2px;
     -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
+    -fx-border-radius: 8px 0px 0px 8px;
 }
 
 .settingNavigationButton:selected {
     -fx-background-color: white;
     -fx-border-width: 1px;
     -fx-border-color: #0066cc;
-    -fx-border-radius: 5px;
-    -fx-background-insets: 2px;
+    -fx-border-radius: 8px 0px 0px 8px;
 }
 
 #aboutFocalorsButton {
@@ -57,17 +121,9 @@
 }
 
 #imagePane {
-    -fx-background-image: url("/icons/logo_smaller.png");
+    -fx-background-image: url("/icons/newlogo.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: 300;
-    -fx-background-attachment: fixed;
-    -fx-background-position: center;
-}
-
-#promotionPane {
-    -fx-background-image: url("/icons/promotion.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: inherit;
     -fx-background-attachment: fixed;
     -fx-background-position: center;
 }

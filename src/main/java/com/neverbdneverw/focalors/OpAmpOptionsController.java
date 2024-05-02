@@ -43,6 +43,9 @@ public class OpAmpOptionsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         previousImageView.setImage(Utils.getImage("back", Color.WHITE));
         nextImageView.setImage(Utils.getImage("next", Color.WHITE));
+        
+        Utils.buttonAddHoverEffect(opAmpToInputsButton);
+        Utils.buttonAddHoverEffect(returnToMainQueueButton);
     }
     
     @FXML
@@ -57,7 +60,7 @@ public class OpAmpOptionsController implements Initializable {
             homePagePane = (AnchorPane) opAmpOptionsPane.getParent();
             homePagePane.getChildren().add(mainQueuePane);
 
-            mainQueuePane.translateXProperty().set(-1 * homePagePane.getWidth());
+            mainQueuePane.translateXProperty().set(-1 * homePagePane.getWidth() / 4);
             mainQueuePane.setOpacity(0);
 
             homePagePane.setTopAnchor(mainQueuePane, 0.0);
