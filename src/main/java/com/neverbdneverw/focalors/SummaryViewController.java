@@ -4,7 +4,10 @@
  */
 package com.neverbdneverw.focalors;
 
-import com.neverbdneverw.focalors.Utils.Direction;
+import com.neverbdneverw.focalors.Utilities.Utils;
+import com.neverbdneverw.focalors.AmplificationProcessors.Processors;
+import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
+import com.neverbdneverw.focalors.Utilities.Utils.Direction;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,6 +56,18 @@ public class SummaryViewController extends ProcedureSwitchingPaneController impl
         Utils.buttonAddHoverEffect(returnToFreqResButton);
         
         this.setPaneName("Summary");
+        
+        summaryViewPane.translateXProperty().addListener((ob, old, nw) -> {
+            if (nw.doubleValue() == 00) {
+                OpAmpAmplificationProcessor processor = (OpAmpAmplificationProcessor) Processors.getActiveProcessor("opamp");
+                System.out.println("Desired Gain: " + processor.voltageGain + "\nAmplifier Type: " + processor.amplificationType + 
+                        "\nInput voltage signal: " + processor.peakToPeakSignalVoltage + " Vpp\nDC Biasing Voltage: " + processor.biasingVoltage +
+                        " V\nInput Frequency: " + processor.inputFrequency + " Hz\n\nLow Cutoff Frequency: " + processor.lowCutoffFrequency +
+                        " Hz\nHigh Cutoff Frequency: " + processor.highCutoffFrequency + " Hz");
+                
+                processor.getComponents();
+            }
+        });
     }    
 
     @FXML

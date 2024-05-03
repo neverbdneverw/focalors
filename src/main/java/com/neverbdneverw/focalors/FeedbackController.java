@@ -4,6 +4,8 @@
  */
 package com.neverbdneverw.focalors;
 
+import com.neverbdneverw.focalors.Utilities.BounceInterpolator;
+import com.neverbdneverw.focalors.Utilities.Utils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

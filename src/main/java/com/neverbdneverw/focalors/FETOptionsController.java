@@ -4,7 +4,8 @@
  */
 package com.neverbdneverw.focalors;
 
-import com.neverbdneverw.focalors.Utils.Direction;
+import com.neverbdneverw.focalors.Utilities.Utils;
+import com.neverbdneverw.focalors.Utilities.Utils.Direction;
 import javafx.scene.control.Button;
 import java.io.IOException;
 import java.net.URL;

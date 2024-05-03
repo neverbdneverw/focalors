@@ -63,7 +63,7 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-border-radius: 8; -fx-background-color: white; -fx-background-insets: 1; -fx-border-width: 2;" />
+                              <TextField fx:id="signalInputField" prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-border-radius: 8; -fx-background-color: white; -fx-background-insets: 1; -fx-border-width: 2;" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.rowIndex="1">
@@ -76,7 +76,7 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-insets: 1; -fx-background-color: white; -fx-border-radius: 8; -fx-border-width: 2;" />
+                              <TextField fx:id="biasingInputField" prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-insets: 1; -fx-background-color: white; -fx-border-radius: 8; -fx-border-width: 2;" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.rowIndex="2">
@@ -89,20 +89,20 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-color: white; -fx-background-insets: 1; -fx-border-radius: 8; -fx-border-width: 2;" />
+                              <TextField fx:id="frequencyInputField" prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-color: white; -fx-background-insets: 1; -fx-border-radius: 8; -fx-border-width: 2;" />
                            </children>
                         </VBox>
-                        <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 8;" GridPane.columnIndex="1">
+                        <ComboBox fx:id="signalVoltageCombo" prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 8;" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="16.0" top="28.0" />
                            </GridPane.margin>
                         </ComboBox>
-                        <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <ComboBox fx:id="biasingVoltageCombo" prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="16.0" top="28.0" />
                            </GridPane.margin>
                         </ComboBox>
-                        <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 9;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <ComboBox fx:id="frequencyCombo" prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 9;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="16.0" top="28.0" />
                            </GridPane.margin>

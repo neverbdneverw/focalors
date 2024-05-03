@@ -2,12 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.neverbdneverw.focalors;
+package com.neverbdneverw.focalors.Utilities;
 
+import com.neverbdneverw.focalors.App;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBase;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
@@ -54,7 +56,7 @@ public class Utils {
         return output;
     }
     
-    public static void buttonAddHoverEffect(Button button) {
+    public static void buttonAddHoverEffect(ButtonBase button) {
         button.hoverProperty().addListener((a, b, hovered) -> {
             if (hovered) {
                 KeyValue buttonHoverXKV = new KeyValue(button.scaleXProperty(), 1.125, new BounceInterpolator());
@@ -78,5 +80,14 @@ public class Utils {
                 timeline.play();
             }
         });
+    }
+    
+    public static boolean isNumeric(String str) { 
+        try {  
+          Double.parseDouble(str);  
+          return true;
+        } catch(NumberFormatException e){  
+          return false;  
+        }  
     }
 }

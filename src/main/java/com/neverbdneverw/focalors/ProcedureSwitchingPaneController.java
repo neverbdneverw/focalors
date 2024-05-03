@@ -4,7 +4,8 @@
  */
 package com.neverbdneverw.focalors;
 
-import com.neverbdneverw.focalors.Utils.Direction;
+import com.neverbdneverw.focalors.Utilities.BounceInterpolator;
+import com.neverbdneverw.focalors.Utilities.Utils.Direction;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

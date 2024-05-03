@@ -23,6 +23,12 @@
     -fx-underline: true;
 }
 
+.opAmpTypeButton:selected {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-radius: 16px;
+}
+
 /*SIDEBAR*/
 #sideBarPane {
     -fx-background-color: #333333;
