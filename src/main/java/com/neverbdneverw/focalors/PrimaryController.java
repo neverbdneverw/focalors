@@ -310,10 +310,6 @@ public class PrimaryController implements Initializable {
     private void handleReturnHomeButtonEvent(ActionEvent event) throws IOException {
         AnchorPane removablePane = (AnchorPane) homePagePane.getChildren().get(0);
         
-        if (activePane.getId().equals("homePane")) {
-            return;
-        }
-        
         if (!homePagePane.getChildren().contains(homePane)) {
             homePagePane.getChildren().add(homePane);
         }

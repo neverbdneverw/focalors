@@ -63,7 +63,7 @@
                               <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="16.0">
                                  <children>
                                     <ImageView fx:id="settingImageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Label fx:id="settingText" styleClass="sideBarButtonText" text="Setting" textFill="WHITE">
+                                    <Label fx:id="settingText" styleClass="sideBarButtonText" text="Settings" textFill="WHITE">
                                        <font>
                                           <Font name="Segoe UI" size="16.0" />
                                        </font>
