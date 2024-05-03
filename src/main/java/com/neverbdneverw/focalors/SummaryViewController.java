@@ -51,6 +51,8 @@ public class SummaryViewController extends ProcedureSwitchingPaneController impl
         
         Utils.buttonAddHoverEffect(saveButton);
         Utils.buttonAddHoverEffect(returnToFreqResButton);
+        
+        this.setPaneName("Summary");
     }    
 
     @FXML

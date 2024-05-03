@@ -15,4 +15,5 @@ import javafx.scene.layout.AnchorPane;
 public abstract class BaseController {
     public String paneName;
     public abstract void switchPane(AnchorPane parent, AnchorPane fromPane, AnchorPane toPane, Direction direction);
+    public abstract void setPaneName(String name);
 }

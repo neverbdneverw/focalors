@@ -25,7 +25,7 @@ import javafx.util.Duration;
  *
  * @author HUAWEI-Pc
  */
-public class FeedbackController implements Initializable {
+public class FeedbackController extends NavigationSwitchingPaneController implements Initializable {
 
     @FXML
     private AnchorPane feedbackPane;
@@ -43,6 +43,8 @@ public class FeedbackController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         feedbackPane.setId("feedbackAnchorPane");
         Utils.buttonAddHoverEffect(giveFeedbackButton);
+        
+        this.setPaneName("Feedback");
     }
 
     @FXML

@@ -52,6 +52,8 @@ public class InputOptionsController extends ProcedureSwitchingPaneController imp
         
         Utils.buttonAddHoverEffect(returnToOutputsButton);
         Utils.buttonAddHoverEffect(toFrequencyResponseButton);
+        
+        this.setPaneName("Input Options");
     }    
 
     @FXML

@@ -1,16 +1,13 @@
 <div>
     <h1 align="center">Focalors</h1>
-    <h3 align="center">A Java-powered Amplifier Designer</h3>
+    <h3 align="center">An amplifier designer and calculator circuit, by engineering students for engineering students.</h3>
+    <h3 align="center">Powered by Java and JAVAFX.</h3>
 </div>
 
 ![screenshot](app_screenshot.png)
 
 <br>
-Focalors is an amplifier designer built with Java designed to help engineers, students, and hobbyists determine the best values for their next amplification endeavors.
-
-# WIP
-
-# Heavy Work in Progress Underway
+Focalors is an amplifier designer built with Java designed to help engineers, students, and hobbyists determine the best values for their next electronic amplification endeavors.
 
 ## Try
 Install the following dependencies using pip
@@ -39,6 +36,9 @@ Feel free to send pull requests to this repository with your code.
 <sup><b>License</b>: MIT License</sup>
 
 ## A project by:
+
+## Never back down, never what
+
 ### Malicsi, Owen David P.
 ### Paña, Ralph John H.
 ### Torino, Tristan Kirby E.

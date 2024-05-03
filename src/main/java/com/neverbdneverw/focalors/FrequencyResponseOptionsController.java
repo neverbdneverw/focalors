@@ -51,6 +51,8 @@ public class FrequencyResponseOptionsController extends ProcedureSwitchingPaneCo
         
         Utils.buttonAddHoverEffect(toSummaryViewButton);
         Utils.buttonAddHoverEffect(returnToInputsButton);
+        
+        this.setPaneName("Frequency Response Options");
     }    
 
     @FXML

@@ -52,6 +52,8 @@ public class MainQueueController extends ProcedureSwitchingPaneController implem
         Utils.buttonAddHoverEffect(bjtButton);
         Utils.buttonAddHoverEffect(fetButton);
         Utils.buttonAddHoverEffect(opAmpButton);
+        
+        this.setPaneName("Main Queue");
     }
     
     @FXML

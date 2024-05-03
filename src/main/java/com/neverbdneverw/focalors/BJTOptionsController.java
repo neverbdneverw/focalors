@@ -47,6 +47,8 @@ public class BJTOptionsController extends ProcedureSwitchingPaneController imple
         
         Utils.buttonAddHoverEffect(bjtToInputsButton);
         Utils.buttonAddHoverEffect(returnToMainQueueButton);
+        
+        this.setPaneName("BJT Options");
     }
     
     @FXML

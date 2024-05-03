@@ -38,7 +38,7 @@ import javafx.util.Duration;
  *
  * @author HUAWEI-Pc
  */
-public class SettingsController implements Initializable {
+public class SettingsController extends ProcedureSwitchingPaneController implements Initializable {
 
     @FXML
     private ToggleButton appearanceButton;
@@ -157,6 +157,8 @@ public class SettingsController implements Initializable {
         toggleButtons.add(behaviorButton);
         toggleButtons.add(accuracyButton);
         toggleButtons.add(estimateButton);
+        
+        this.setPaneName("Settings");
     }
 
     @FXML

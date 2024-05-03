@@ -47,6 +47,8 @@ public class FETOptionsController extends ProcedureSwitchingPaneController imple
         
         Utils.buttonAddHoverEffect(fetToInputsButton);
         Utils.buttonAddHoverEffect(returnToMainQueueButton);
+        
+        this.setPaneName("FET Options");
     }
     
     @FXML

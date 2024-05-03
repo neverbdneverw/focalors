@@ -17,7 +17,7 @@ import javafx.scene.control.Button;
  *
  * @author HUAWEI-Pc
  */
-public class TutorialController implements Initializable {
+public class TutorialController extends ProcedureSwitchingPaneController implements Initializable {
 
 
     @FXML
@@ -27,7 +27,7 @@ public class TutorialController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.setPaneName("Tutorial");
     }    
     
     @FXML

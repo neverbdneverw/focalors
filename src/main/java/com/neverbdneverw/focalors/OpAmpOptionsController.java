@@ -47,6 +47,8 @@ public class OpAmpOptionsController extends ProcedureSwitchingPaneController imp
         
         Utils.buttonAddHoverEffect(opAmpToInputsButton);
         Utils.buttonAddHoverEffect(returnToMainQueueButton);
+        
+        this.setPaneName("Operational Amplifier Options");
     }
     
     @FXML

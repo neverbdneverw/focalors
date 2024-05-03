@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author HUAWEI-Pc
  */
-public class AboutAppController implements Initializable {
+public class AboutAppController extends ProcedureSwitchingPaneController implements Initializable {
 
     @FXML
     private AnchorPane aboutAppPane;
@@ -26,6 +26,7 @@ public class AboutAppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         aboutAppPane.setId("aboutAppAnchorPane");
-    }    
-    
+        
+        setPaneName("About App");
+    }
 }

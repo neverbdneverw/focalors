@@ -10,6 +10,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -20,7 +21,9 @@ public class ProcedureSwitchingPaneController extends BaseController {
 
     @Override
     public void switchPane(AnchorPane parent, AnchorPane fromPane, AnchorPane toPane, Direction direction) {
-        parent.getChildren().add(toPane);
+        if (!parent.getChildren().contains(toPane)) {
+            parent.getChildren().add(toPane);
+        }
         
         KeyValue fromPaneKV = null;
         KeyFrame paneOpacityKF = null;
@@ -57,5 +60,10 @@ public class ProcedureSwitchingPaneController extends BaseController {
         });
 
         timeline.play();
+    }
+
+    @Override
+    public void setPaneName(String name) {
+        this.paneName = name;
     }
 }
