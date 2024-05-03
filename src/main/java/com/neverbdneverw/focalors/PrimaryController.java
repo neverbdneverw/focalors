@@ -2,12 +2,16 @@ package com.neverbdneverw.focalors;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
@@ -32,15 +37,13 @@ import javafx.util.Duration;
 public class PrimaryController implements Initializable {
 
     @FXML
-    private Button returnHomeButton;
+    private ToggleButton returnHomeButton;
     @FXML
-    private Separator returnHomeSeparator;
+    private ToggleButton settingButton;
     @FXML
-    private Button settingButton;
+    private ToggleButton tutorialButton;
     @FXML
-    private Button tutorialButton;
-    @FXML
-    private Button feedbackButton;
+    private ToggleButton feedbackButton;
     @FXML
     private Pane imagePane;
     @FXML
@@ -67,8 +70,6 @@ public class PrimaryController implements Initializable {
     @FXML
     private Button primaryButton;
     @FXML
-    private Button aboutFocalorsButton;
-    @FXML
     private ImageView startImageView;
     @FXML
     private Label tutorialText;
@@ -81,17 +82,19 @@ public class PrimaryController implements Initializable {
     
     private AnchorPane activePane;
     @FXML
-    private Button aboutButton;
+    private ToggleButton aboutButton;
     @FXML
     private ImageView aboutImageView;
     @FXML
     private Label aboutText;
+    @FXML
+    private ToggleGroup sideBarButtons;
+    @FXML
+    private VBox sideBarButtonBox;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sideBox = (VBox) sideBarPane.getChildren().get(0);
-        sideBox.getChildren().remove(returnHomeButton);
-        sideBox.getChildren().remove(returnHomeSeparator);
         
         homePane.setId("homePane");
         
@@ -135,9 +138,6 @@ public class PrimaryController implements Initializable {
         
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(homePane);
-            
-            sideBox.getChildren().add(0, returnHomeButton);
-            sideBox.getChildren().add(1, returnHomeSeparator);
         });
         
         timeline.play();
@@ -179,9 +179,6 @@ public class PrimaryController implements Initializable {
         
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(homePane);
-            
-            sideBox.getChildren().add(0, returnHomeButton);
-            sideBox.getChildren().add(1, returnHomeSeparator);
         });
         
         timeline.play();
@@ -220,9 +217,6 @@ public class PrimaryController implements Initializable {
         
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(homePane);
-            
-            sideBox.getChildren().add(0, returnHomeButton);
-            sideBox.getChildren().add(1, returnHomeSeparator);
         });
         
         timeline.play();
@@ -265,9 +259,6 @@ public class PrimaryController implements Initializable {
         
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(homePane);
-            
-            sideBox.getChildren().add(0, returnHomeButton);
-            sideBox.getChildren().add(1, returnHomeSeparator);
         });
         
         timeline.play();
@@ -310,9 +301,6 @@ public class PrimaryController implements Initializable {
         
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(homePane);
-            
-            sideBox.getChildren().add(0, returnHomeButton);
-            sideBox.getChildren().add(1, returnHomeSeparator);
         });
         
         timeline.play();
@@ -321,6 +309,10 @@ public class PrimaryController implements Initializable {
     @FXML
     private void handleReturnHomeButtonEvent(ActionEvent event) throws IOException {
         AnchorPane removablePane = (AnchorPane) homePagePane.getChildren().get(0);
+        
+        if (activePane.getId().equals("homePane")) {
+            return;
+        }
         
         if (!homePagePane.getChildren().contains(homePane)) {
             homePagePane.getChildren().add(homePane);
@@ -360,9 +352,6 @@ public class PrimaryController implements Initializable {
 
         timeline.setOnFinished((e) -> {
             homePagePane.getChildren().remove(removablePane);
-
-            sideBox.getChildren().remove(returnHomeButton);
-            sideBox.getChildren().remove(returnHomeSeparator);
         });
 
         timeline.play();
@@ -372,9 +361,11 @@ public class PrimaryController implements Initializable {
         returnHomeButton.hoverProperty().addListener((observable, oldValue, hovered) -> {
             if (hovered) {
                 returnHomeText.getStyleClass().add("sideBarButtonLabel");
+                returnHomeButton.getStyleClass().add("sideBarButtonHighlight");
                 homeImageView.setImage(Utils.getImage("home", Color.BLACK));
             } else {
                 returnHomeText.getStyleClass().remove("sideBarButtonLabel");
+                returnHomeButton.getStyleClass().remove("sideBarButtonHighlight");
                 homeImageView.setImage(Utils.getImage("home", Color.WHITE));
             }
         });
@@ -382,29 +373,35 @@ public class PrimaryController implements Initializable {
         tutorialButton.hoverProperty().addListener((observable, oldValue, hovered) -> {
             if (hovered) {
                 tutorialText.getStyleClass().add("sideBarButtonLabel");
+                tutorialButton.getStyleClass().add("sideBarButtonHighlight");
                 tutorialImageView.setImage(Utils.getImage("tutorial", Color.BLACK));
             } else {
                 tutorialText.getStyleClass().remove("sideBarButtonLabel");
+                tutorialButton.getStyleClass().remove("sideBarButtonHighlight");
                 tutorialImageView.setImage(Utils.getImage("tutorial", Color.WHITE));
             }
         });
-        
+//        
         settingButton.hoverProperty().addListener((observable, oldValue, hovered) -> {
             if (hovered) {
                 settingText.getStyleClass().add("sideBarButtonLabel");
+                settingButton.getStyleClass().add("sideBarButtonHighlight");
                 settingImageView.setImage(Utils.getImage("setting", Color.BLACK));
             } else {
                 settingText.getStyleClass().remove("sideBarButtonLabel");
+                settingButton.getStyleClass().remove("sideBarButtonHighlight");
                 settingImageView.setImage(Utils.getImage("setting", Color.WHITE));
             }
         });
-        
+
         feedbackButton.hoverProperty().addListener((observable, oldValue, hovered) -> {
             if (hovered) {
                 feedbackText.getStyleClass().add("sideBarButtonLabel");
+                feedbackButton.getStyleClass().add("sideBarButtonHighlight");
                 feedbackImageView.setImage(Utils.getImage("feedback", Color.BLACK));
             } else {
                 feedbackText.getStyleClass().remove("sideBarButtonLabel");
+                feedbackButton.getStyleClass().remove("sideBarButtonHighlight");
                 feedbackImageView.setImage(Utils.getImage("feedback", Color.WHITE));
             }
         });
@@ -412,9 +409,11 @@ public class PrimaryController implements Initializable {
         aboutButton.hoverProperty().addListener((observable, oldValue, hovered) -> {
             if (hovered) {
                 aboutText.getStyleClass().add("sideBarButtonLabel");
+                aboutButton.getStyleClass().add("sideBarButtonHighlight");
                 aboutImageView.setImage(Utils.getImage("about", Color.BLACK));
             } else {
                 aboutText.getStyleClass().remove("sideBarButtonLabel");
+                aboutButton.getStyleClass().remove("sideBarButtonHighlight");
                 aboutImageView.setImage(Utils.getImage("about", Color.WHITE));
             }
         });

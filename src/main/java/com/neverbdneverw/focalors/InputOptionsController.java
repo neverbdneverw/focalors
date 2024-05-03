@@ -4,6 +4,7 @@
  */
 package com.neverbdneverw.focalors;
 
+import com.neverbdneverw.focalors.Utils.Direction;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +26,7 @@ import javafx.util.Duration;
  *
  * @author HUAWEI-Pc
  */
-public class InputOptionsController implements Initializable {
+public class InputOptionsController extends ProcedureSwitchingPaneController implements Initializable {
 
     @FXML
     private Button returnToOutputsButton;
@@ -58,33 +59,7 @@ public class InputOptionsController implements Initializable {
         sourceOutputPane = (AnchorPane) App.loadFXML("bjtOptions");
         
         homePagePane = (AnchorPane) inputsPane.getParent();
-        homePagePane.getChildren().add(sourceOutputPane);
-
-        sourceOutputPane.translateXProperty().set(-1 * homePagePane.getWidth() / 4);
-        sourceOutputPane.setOpacity(0);
-
-        homePagePane.setTopAnchor(sourceOutputPane, 0.0);
-        homePagePane.setBottomAnchor(sourceOutputPane, 0.0);
-        homePagePane.setLeftAnchor(sourceOutputPane, 0.0);
-        homePagePane.setRightAnchor(sourceOutputPane, 0.0);
-
-        KeyValue inputsPaneKV = new KeyValue(inputsPane.translateXProperty(), inputsPane.getWidth(), new BounceInterpolator());
-        KeyFrame inputsPaneKF = new KeyFrame(Duration.millis(300), inputsPaneKV);
-        KeyValue sourceOutputPaneKV = new KeyValue(sourceOutputPane.translateXProperty(), 0, new BounceInterpolator());
-        KeyFrame sourceOutputPaneKF = new KeyFrame(Duration.millis(300), sourceOutputPaneKV);
-        KeyValue sourceOutputPaneOpacityKV = new KeyValue(sourceOutputPane.opacityProperty(), 1, Interpolator.EASE_IN);
-        KeyFrame sourceOutputPaneOpacityKF = new KeyFrame(Duration.millis(300), sourceOutputPaneOpacityKV);
-
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(inputsPaneKF);
-        timeline.getKeyFrames().add(sourceOutputPaneKF);
-        timeline.getKeyFrames().add(sourceOutputPaneOpacityKF);
-
-        timeline.setOnFinished((e) -> {
-            homePagePane.getChildren().remove(inputsPane);
-        });
-
-        timeline.play();
+        switchPane(homePagePane, inputsPane, sourceOutputPane, Direction.BACKWARD);
     }
 
     @FXML
@@ -92,31 +67,6 @@ public class InputOptionsController implements Initializable {
         AnchorPane frequencyResponsePane = (AnchorPane) App.loadFXML("frequencyResponseOptions");
         
         homePagePane = (AnchorPane) inputsPane.getParent();
-        homePagePane.getChildren().add(frequencyResponsePane);
-        frequencyResponsePane.translateXProperty().set(homePagePane.getWidth());
-        homePagePane.setTopAnchor(frequencyResponsePane, 0.0);
-        homePagePane.setBottomAnchor(frequencyResponsePane, 0.0);
-        homePagePane.setLeftAnchor(frequencyResponsePane, 0.0);
-        homePagePane.setRightAnchor(frequencyResponsePane, 0.0);
-
-        KeyValue inputsPaneKV = new KeyValue(inputsPane.translateXProperty(), -1 * inputsPane.getWidth(), new BounceInterpolator());
-        KeyFrame inputsPaneKF = new KeyFrame(Duration.millis(300), inputsPaneKV);
-        KeyValue inputsPaneOpacityKV = new KeyValue(inputsPane.opacityProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame inputsPaneOpacityKF = new KeyFrame(Duration.millis(50), inputsPaneOpacityKV);
-        KeyValue frequencyResponsePaneKV = new KeyValue(frequencyResponsePane.translateXProperty(), 0, new BounceInterpolator());
-        KeyFrame frequencyResponsePaneKF = new KeyFrame(Duration.millis(300), frequencyResponsePaneKV);
-
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(inputsPaneKF);
-        timeline.getKeyFrames().add(inputsPaneOpacityKF);
-        timeline.getKeyFrames().add(frequencyResponsePaneKF);
-
-        timeline.setOnFinished((e) -> {
-            homePagePane.getChildren().remove(inputsPane);
-        });
-
-        timeline.play();
+        switchPane(homePagePane, inputsPane, frequencyResponsePane, Direction.FORWARD);
     }
-
-    
 }

@@ -30,22 +30,25 @@
 
 .sideBarButton {
     -fx-background-color: transparent;
+    -fx-background-radius: 8 0 0 8;
     -fx-border-color: none;
     -fx-border-width: 0px;
 }
 
 .sideBarButton:hover {
     -fx-background-color: #fafafa;
-    -fx-background-radius: 8 0 0 8;
-    -fx-border-color: none;
-    -fx-border-width: 0px;
-}
+}/*
 
 .sideBarButton:selected {
     -fx-background-color: #fafafa;
     -fx-background-radius: 8 0 0 8;
     -fx-border-color: none;
     -fx-border-width: 0px;
+}*/
+
+.sideBarButtonHighlight {
+    -fx-background-color: #fafafa;
+    -fx-background-radius: 8 0 0 8;
 }
 
 .sideBarButtonLabel {

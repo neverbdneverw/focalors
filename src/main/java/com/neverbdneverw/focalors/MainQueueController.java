@@ -1,5 +1,6 @@
 package com.neverbdneverw.focalors;
 
+import com.neverbdneverw.focalors.Utils.Direction;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 
-public class MainQueueController implements Initializable {
+public class MainQueueController extends ProcedureSwitchingPaneController implements Initializable {
     
     @FXML
     private Button bjtButton;
@@ -55,100 +56,25 @@ public class MainQueueController implements Initializable {
     
     @FXML
     private void handleBJTChosenEvent (ActionEvent event) throws IOException {
-        if (event.getSource().equals(bjtButton)) {
-            bjtOptionsPane = (AnchorPane) App.loadFXML("bjtOptions");
-            
-            homePagePane = (AnchorPane) mainQueuePane.getParent();
-            homePagePane.getChildren().add(bjtOptionsPane);
-            bjtOptionsPane.translateXProperty().set(homePagePane.getWidth());
-            homePagePane.setTopAnchor(bjtOptionsPane, 0.0);
-            homePagePane.setBottomAnchor(bjtOptionsPane, 0.0);
-            homePagePane.setLeftAnchor(bjtOptionsPane, 0.0);
-            homePagePane.setRightAnchor(bjtOptionsPane, 0.0);
+        bjtOptionsPane = (AnchorPane) App.loadFXML("bjtOptions");
 
-            KeyValue mainQueuePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
-            KeyFrame mainQueuePaneKF = new KeyFrame(Duration.millis(300), mainQueuePaneKV);
-            KeyValue mainQueuePaneOpacityKV = new KeyValue(mainQueuePane.opacityProperty(), 0, Interpolator.EASE_IN);
-            KeyFrame mainQueuePaneOpacityKF = new KeyFrame(Duration.millis(50), mainQueuePaneOpacityKV);
-            KeyValue bjtOptionsPaneKV = new KeyValue(bjtOptionsPane.translateXProperty(), 0, new BounceInterpolator());
-            KeyFrame bjtOptionsPaneKF = new KeyFrame(Duration.millis(300), bjtOptionsPaneKV);
-
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(mainQueuePaneKF);
-            timeline.getKeyFrames().add(bjtOptionsPaneKF);
-            timeline.getKeyFrames().add(mainQueuePaneOpacityKF);
-
-            timeline.setOnFinished((e) -> {
-                homePagePane.getChildren().remove(mainQueuePane);
-            });
-
-            timeline.play();
-        }
+        homePagePane = (AnchorPane) mainQueuePane.getParent();
+        switchPane(homePagePane, mainQueuePane, bjtOptionsPane, Direction.FORWARD);
     }
     
     @FXML
     private void handleFETChosenEvent (ActionEvent event) throws IOException {
-        if (event.getSource().equals(fetButton)) {
-            fetOptionsPane = (AnchorPane) App.loadFXML("fetOptions");
-            
-            homePagePane = (AnchorPane) mainQueuePane.getParent();
-            homePagePane.getChildren().add(fetOptionsPane);
-            fetOptionsPane.translateXProperty().set(homePagePane.getWidth());
-            homePagePane.setTopAnchor(fetOptionsPane, 0.0);
-            homePagePane.setBottomAnchor(fetOptionsPane, 0.0);
-            homePagePane.setLeftAnchor(fetOptionsPane, 0.0);
-            homePagePane.setRightAnchor(fetOptionsPane, 0.0);
+        fetOptionsPane = (AnchorPane) App.loadFXML("fetOptions");
 
-            KeyValue mainQueuePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
-            KeyFrame mainQueuePaneKF = new KeyFrame(Duration.millis(300), mainQueuePaneKV);
-            KeyValue mainQueuePaneOpacityKV = new KeyValue(mainQueuePane.opacityProperty(), 0, Interpolator.EASE_IN);
-            KeyFrame mainQueuePaneOpacityKF = new KeyFrame(Duration.millis(50), mainQueuePaneOpacityKV);
-            KeyValue fetOptionsPaneKV = new KeyValue(fetOptionsPane.translateXProperty(), 0, new BounceInterpolator());
-            KeyFrame fetOptionsPaneKF = new KeyFrame(Duration.millis(300), fetOptionsPaneKV);
-
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(mainQueuePaneKF);
-            timeline.getKeyFrames().add(fetOptionsPaneKF);
-            timeline.getKeyFrames().add(mainQueuePaneOpacityKF);
-
-            timeline.setOnFinished((e) -> {
-                homePagePane.getChildren().remove(mainQueuePane);
-            });
-
-            timeline.play();
-        }
+        homePagePane = (AnchorPane) mainQueuePane.getParent();
+        switchPane(homePagePane, mainQueuePane, fetOptionsPane, Direction.FORWARD);
     }
     
     @FXML
     private void handleOpAmpChosenEvent (ActionEvent event) throws IOException {
-        if (event.getSource().equals(opAmpButton)) {
-            opAmpOptionsPane = (AnchorPane) App.loadFXML("opAmpOptions");
-            
-            homePagePane = (AnchorPane) mainQueuePane.getParent();
-            homePagePane.getChildren().add(opAmpOptionsPane);
-            opAmpOptionsPane.translateXProperty().set(homePagePane.getWidth());
-            homePagePane.setTopAnchor(opAmpOptionsPane, 0.0);
-            homePagePane.setBottomAnchor(opAmpOptionsPane, 0.0);
-            homePagePane.setLeftAnchor(opAmpOptionsPane, 0.0);
-            homePagePane.setRightAnchor(opAmpOptionsPane, 0.0);
+        opAmpOptionsPane = (AnchorPane) App.loadFXML("opAmpOptions");
 
-            KeyValue mainQueuePaneKV = new KeyValue(mainQueuePane.translateXProperty(), -1 * mainQueuePane.getWidth(), new BounceInterpolator());
-            KeyFrame mainQueuePaneKF = new KeyFrame(Duration.millis(300), mainQueuePaneKV);
-            KeyValue mainQueuePaneOpacityKV = new KeyValue(mainQueuePane.opacityProperty(), 0, Interpolator.EASE_IN);
-            KeyFrame mainQueuePaneOpacityKF = new KeyFrame(Duration.millis(50), mainQueuePaneOpacityKV);
-            KeyValue opAmpOptionsPaneKV = new KeyValue(opAmpOptionsPane.translateXProperty(), 0, new BounceInterpolator());
-            KeyFrame opAmpOptionsPaneKF = new KeyFrame(Duration.millis(300), opAmpOptionsPaneKV);
-
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(mainQueuePaneKF);
-            timeline.getKeyFrames().add(opAmpOptionsPaneKF);
-            timeline.getKeyFrames().add(mainQueuePaneOpacityKF);
-
-            timeline.setOnFinished((e) -> {
-                homePagePane.getChildren().remove(mainQueuePane);
-            });
-
-            timeline.play();
-        }
+        homePagePane = (AnchorPane) mainQueuePane.getParent();
+        switchPane(homePagePane, mainQueuePane, opAmpOptionsPane, Direction.FORWARD);
     }
 }

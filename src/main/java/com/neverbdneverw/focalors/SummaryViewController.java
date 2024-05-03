@@ -4,6 +4,7 @@
  */
 package com.neverbdneverw.focalors;
 
+import com.neverbdneverw.focalors.Utils.Direction;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +26,7 @@ import javafx.util.Duration;
  *
  * @author HUAWEI-Pc
  */
-public class SummaryViewController implements Initializable {
+public class SummaryViewController extends ProcedureSwitchingPaneController implements Initializable {
 
     @FXML
     private AnchorPane summaryViewPane;
@@ -57,33 +58,8 @@ public class SummaryViewController implements Initializable {
         AnchorPane frequencyResponsePane = (AnchorPane) App.loadFXML("frequencyResponseOptions");
         
         homePagePane = (AnchorPane) summaryViewPane.getParent();
-        homePagePane.getChildren().add(frequencyResponsePane);
-
-        frequencyResponsePane.translateXProperty().set(-1 * homePagePane.getWidth() / 4);
-        frequencyResponsePane.setOpacity(0);
-
-        homePagePane.setTopAnchor(frequencyResponsePane, 0.0);
-        homePagePane.setBottomAnchor(frequencyResponsePane, 0.0);
-        homePagePane.setLeftAnchor(frequencyResponsePane, 0.0);
-        homePagePane.setRightAnchor(frequencyResponsePane, 0.0);
-
-        KeyValue summaryViewPaneKV = new KeyValue(summaryViewPane.translateXProperty(), summaryViewPane.getWidth(), new BounceInterpolator());
-        KeyFrame summaryViewPaneKF = new KeyFrame(Duration.millis(300), summaryViewPaneKV);
-        KeyValue frequencyResponsePaneKV = new KeyValue(frequencyResponsePane.translateXProperty(), 0, new BounceInterpolator());
-        KeyFrame frequencyResponsePaneKF = new KeyFrame(Duration.millis(300), frequencyResponsePaneKV);
-        KeyValue frequencyResponsePaneOpacityKV = new KeyValue(frequencyResponsePane.opacityProperty(), 1, Interpolator.EASE_IN);
-        KeyFrame frequencyResponsePaneOpacityKF = new KeyFrame(Duration.millis(300), frequencyResponsePaneOpacityKV);
-
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(summaryViewPaneKF);
-        timeline.getKeyFrames().add(frequencyResponsePaneKF);
-        timeline.getKeyFrames().add(frequencyResponsePaneOpacityKF);
-
-        timeline.setOnFinished((e) -> {
-            homePagePane.getChildren().remove(summaryViewPane);
-        });
-
-        timeline.play();
+        
+        switchPane(homePagePane, summaryViewPane, frequencyResponsePane, Direction.BACKWARD);
     }
     
 }

@@ -20,6 +20,13 @@ import javafx.util.Duration;
  * @author HUAWEI-Pc
  */
 public class Utils {
+    public enum Direction {
+        BACKWARD,
+        FORWARD,
+        UPWARD,
+        DOWNWARD
+    }
+    
     public static Image getImage(String iconName, Color color) {
         Image img = new Image(App.class.getResource("/icons/" + iconName + ".png").toExternalForm());
         PixelReader reader = img.getPixelReader();
