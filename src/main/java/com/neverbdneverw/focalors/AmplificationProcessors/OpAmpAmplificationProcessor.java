@@ -66,39 +66,4 @@ public class OpAmpAmplificationProcessor extends AmplificationProcessor {
                 this.lowCutoffFrequency, this.highCutoffFrequency);
         return components;
     }
-    
-    private Dictionary calculateGainResistors() {
-        double resistorR1 = 1000;
-        double resistorR2 = 1000;
-
-        Dictionary<String, Double> dict = new Hashtable<>();
-        dict.put("R1", resistorR1);
-
-        if (amplificationType.equals(OpAmpType.INVERTING)) {
-            resistorR2 = voltageGain * resistorR1;
-        } else {
-            resistorR2 = resistorR1 * (voltageGain - 1);
-        }
-        
-        dict.put("R2", resistorR2);
-        return dict;
-    }
-    
-    private Dictionary calculateFilterComponents() {
-        double capacitorCI = 0.000001;
-        double capacitorCO = 0.000001;
-        double resistorRI = 0;
-        double resistorRO = 0;
-
-        Dictionary<String, Double> dict = new Hashtable<>();
-        dict.put("Ci", capacitorCI);
-        dict.put("Co", capacitorCO);
-
-        resistorRI = 1 / (2 * Math.PI * this.highCutoffFrequency * capacitorCI);
-        resistorRO = 1 / (2 * Math.PI * this.lowCutoffFrequency * capacitorCI);
-        
-        dict.put("Ri", resistorRI);
-        dict.put("Ro", resistorRO);
-        return dict;
-    }
 }

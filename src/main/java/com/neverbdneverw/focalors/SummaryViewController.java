@@ -4,9 +4,12 @@
  */
 package com.neverbdneverw.focalors;
 
+import com.neverbdneverw.focalors.AmplificationProcessors.AmplificationProcessor;
 import com.neverbdneverw.focalors.Utilities.Utils;
 import com.neverbdneverw.focalors.AmplificationProcessors.Processors;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
+import com.neverbdneverw.focalors.Components.Components;
+import com.neverbdneverw.focalors.Components.OpAmpComponents;
 import com.neverbdneverw.focalors.Utilities.Utils.Direction;
 import java.io.IOException;
 import java.net.URL;
@@ -15,10 +18,13 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -43,6 +49,8 @@ public class SummaryViewController extends ProcedureSwitchingPaneController impl
     private ImageView nextImageView;
     @FXML
     private Button saveButton;
+    @FXML
+    private ListView<String> componentsList;
 
     /**
      * Initializes the controller class.
@@ -59,13 +67,8 @@ public class SummaryViewController extends ProcedureSwitchingPaneController impl
         
         summaryViewPane.translateXProperty().addListener((ob, old, nw) -> {
             if (nw.doubleValue() == 00) {
-                OpAmpAmplificationProcessor processor = (OpAmpAmplificationProcessor) Processors.getActiveProcessor("opamp");
-                System.out.println("Desired Gain: " + processor.voltageGain + "\nAmplifier Type: " + processor.amplificationType + 
-                        "\nInput voltage signal: " + processor.peakToPeakSignalVoltage + " Vpp\nDC Biasing Voltage: " + processor.biasingVoltage +
-                        " V\nInput Frequency: " + processor.inputFrequency + " Hz\n\nLow Cutoff Frequency: " + processor.lowCutoffFrequency +
-                        " Hz\nHigh Cutoff Frequency: " + processor.highCutoffFrequency + " Hz");
-                
-                processor.getComponents();
+                AmplificationProcessor processor = Processors.getActiveProcessor("");
+                showComponentsView(processor.getComponents());
             }
         });
     }    
@@ -78,5 +81,22 @@ public class SummaryViewController extends ProcedureSwitchingPaneController impl
         
         switchPane(homePagePane, summaryViewPane, frequencyResponsePane, Direction.BACKWARD);
     }
-    
+
+    private void showComponentsView(Components components) {
+        if (components.getType().equals("OpAmpComponents")) {
+            OpAmpComponents opAmpComponents = (OpAmpComponents) components;
+            ObservableList<String> items = FXCollections.observableArrayList (
+                String.format("R1: %s", String.valueOf(opAmpComponents.getResistorR1())),
+                String.format("R2: %s", String.valueOf(opAmpComponents.getResistorR2())),
+                String.format("Cin: %s F", String.valueOf(opAmpComponents.getCapacitorInput())),
+                String.format("Cout: %s F", String.valueOf(opAmpComponents.getCapacitorOutput())),
+                String.format("Rin: %s", String.valueOf(opAmpComponents.getInputFilterResistor())),
+                String.format("Rout: %s", String.valueOf(opAmpComponents.getOutputFilterResistor())),
+                String.format("VCC: %s V", String.valueOf(opAmpComponents.getBiasingVoltage())),
+                String.format("-VCC: -%s V", String.valueOf(opAmpComponents.getBiasingVoltage()))
+            );
+            
+            componentsList.setItems(items);
+        }
+    }
 }

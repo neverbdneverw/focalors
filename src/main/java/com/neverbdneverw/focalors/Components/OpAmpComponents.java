@@ -6,59 +6,124 @@ package com.neverbdneverw.focalors.Components;
 
 import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
-import java.util.Enumeration;
+import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
 
 /**
  *
  * @author HUAWEI-Pc
  */
 public class OpAmpComponents extends Components {
-    public double resistorR1;
-    public double resistorR2;
-    public double resistorRf;
-    public double capacitorInput;
-    public double capacitorOutput;
+    private double resistorR1;
+    private double resistorR2;
+    private double inputFilterResistor;
+    private double outputFilterResistor;
+    private double capacitorInput;
+    private double capacitorOutput;
+    
+    private double signalVoltage;
+    private double biasingVoltage;
+    private double inputFrequency;
 
     public OpAmpComponents() {
         this.setType("OpAmpComponents");
     }
+    
+    private void calculateGainResistors(OpAmpType amplificationType, double voltageGain) {
+        this.setResistorR1(1000);
 
-    public void setParameters(OpAmpAmplificationProcessor.OpAmpType amplificationType, double voltageGain, double peakToPeakSignalVoltage, double biasingVoltage, double inputFrequency, double lowCutoffFrequency, double highCutoffFrequency) {
-        
+        if (amplificationType.equals(OpAmpAmplificationProcessor.OpAmpType.INVERTING)) {
+            this.setResistorR2(voltageGain * resistorR1);
+        } else {
+            this.setResistorR2(resistorR1 * (voltageGain - 1));
+        }
+    }
+    
+    private void calculateFilterComponents(double lowCutoffFrequency, double highCutoffFrequency) {
+        this.setCapacitorInput(0.000001);
+        this.setCapacitorOutput(0.000001);
+
+        this.setInputFilterResistor(1 / (2 * Math.PI * highCutoffFrequency * this.getCapacitorInput()));
+        this.setOutputFilterResistor(1 / (2 * Math.PI * lowCutoffFrequency * this.getCapacitorOutput()));
     }
 
-    @Override
-    public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setParameters(OpAmpType amplificationType, double voltageGain, double peakToPeakSignalVoltage, double biasingVoltage, double inputFrequency, double lowCutoffFrequency, double highCutoffFrequency) {
+        calculateGainResistors(amplificationType, voltageGain);
+        calculateFilterComponents(lowCutoffFrequency, highCutoffFrequency);
+
+        this.setSignalVoltage(peakToPeakSignalVoltage);
+        this.setBiasingVoltage(biasingVoltage);
+        this.setInputFrequency(inputFrequency);
+    }
+    
+    public double getResistorR1() {
+        return resistorR1;
     }
 
-    @Override
-    public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setResistorR1(double resistorR1) {
+        this.resistorR1 = resistorR1;
     }
 
-    @Override
-    public Enumeration keys() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public double getResistorR2() {
+        return resistorR2;
     }
 
-    @Override
-    public Enumeration elements() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setResistorR2(double resistorR2) {
+        this.resistorR2 = resistorR2;
     }
 
-    @Override
-    public Object get(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public double getInputFilterResistor() {
+        return inputFilterResistor;
     }
 
-    @Override
-    public Object put(Object key, Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setInputFilterResistor(double inputFilterResistor) {
+        this.inputFilterResistor = inputFilterResistor;
     }
 
-    @Override
-    public Object remove(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public double getOutputFilterResistor() {
+        return outputFilterResistor;
+    }
+
+    public void setOutputFilterResistor(double outputFilterResistor) {
+        this.outputFilterResistor = outputFilterResistor;
+    }
+
+    public double getCapacitorInput() {
+        return capacitorInput;
+    }
+
+    public void setCapacitorInput(double capacitorInput) {
+        this.capacitorInput = capacitorInput;
+    }
+
+    public double getCapacitorOutput() {
+        return capacitorOutput;
+    }
+
+    public void setCapacitorOutput(double capacitorOutput) {
+        this.capacitorOutput = capacitorOutput;
+    }
+
+    public double getSignalVoltage() {
+        return signalVoltage;
+    }
+
+    public void setSignalVoltage(double signalVoltage) {
+        this.signalVoltage = signalVoltage;
+    }
+
+    public double getBiasingVoltage() {
+        return biasingVoltage;
+    }
+
+    public void setBiasingVoltage(double biasingVoltage) {
+        this.biasingVoltage = biasingVoltage;
+    }
+
+    public double getInputFrequency() {
+        return inputFrequency;
+    }
+
+    public void setInputFrequency(double inputFrequency) {
+        this.inputFrequency = inputFrequency;
     }
 }

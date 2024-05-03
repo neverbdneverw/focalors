@@ -10,7 +10,7 @@ import java.util.Dictionary;
  *
  * @author HUAWEI-Pc
  */
-public abstract class Components extends Dictionary {
+public abstract class Components {
     private String type;
     public void setType(String typeName) {
         type = typeName;
