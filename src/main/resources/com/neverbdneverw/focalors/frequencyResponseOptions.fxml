@@ -44,8 +44,8 @@
                   <GridPane VBox.vgrow="ALWAYS">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.5999450683594" minWidth="10.0" prefWidth="337.5999450683594" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="353.60003662109375" minWidth="10.0" prefWidth="182.40005493164062" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.9999938964844" minWidth="10.0" prefWidth="495.9999938964844" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="353.60003662109375" minWidth="10.0" prefWidth="53.80000610351567" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints maxHeight="236.0" minHeight="10.0" prefHeight="145.60003662109375" vgrow="SOMETIMES" />
@@ -78,7 +78,7 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="lowCutoffSlider" max="1.0E7" min="1.0" />
+                              <Slider fx:id="lowCutoffSlider" max="1000000.0" min="1.0" />
                            </children>
                            <GridPane.margin>
                               <Insets left="32.0" />
@@ -94,7 +94,7 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="highCutoffSlider" max="1.0E7" min="1.0" />
+                              <Slider fx:id="highCutoffSlider" max="1000000.0" min="1.0" />
                            </children>
                            <GridPane.margin>
                               <Insets left="32.0" />

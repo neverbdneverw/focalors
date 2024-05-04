@@ -56,97 +56,12 @@
                      </font>
                      <styleClass>
                         <String fx:value="settingNavigationButton" />
-                        <String fx:value="midNav" />
-                     </styleClass></ToggleButton>
-                  <ToggleButton fx:id="estimateButton" mnemonicParsing="false" onAction="#handleEstimateButton" prefWidth="125.0" text="Estimation" textFill="#0066cc" toggleGroup="$settingNavigationGroup">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="settingNavigationButton" />
                         <String fx:value="endNav" />
                      </styleClass></ToggleButton>
                </children>
             </HBox>
             <StackPane fx:id="settingPane" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane fx:id="estimationPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" visible="false" StackPane.alignment="CENTER">
-                     <children>
-                        <VBox alignment="CENTER" spacing="32.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <HBox fx:id="darkModePrefHBox1" alignment="CENTER_LEFT" prefWidth="200.0" spacing="20.0">
-                                 <children>
-                                    <Label text="Estimate Resistor Values:" textFill="#0066cc" HBox.hgrow="ALWAYS">
-                                       <font>
-                                          <Font name="Segoe UI Italic" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <AnchorPane fx:id="estimateResistorValuesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleEstimateResistorClicked" prefHeight="32.0" prefWidth="64.0" style="-fx-background-radius: 16; -fx-border-radius: 16; -fx-border-width: 1; -fx-border-color: black;">
-                                       <children>
-                                          <StackPane fx:id="stackParent3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Region fx:id="estimateResistorIndicator" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: #0066cc; -fx-background-radius: 16;" StackPane.alignment="CENTER_LEFT" />
-                                                <HBox alignment="CENTER" spacing="16.0">
-                                                   <children>
-                                                      <ImageView fx:id="lightImageView1" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../icons/moon.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                      <ImageView fx:id="darkImageView1" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../icons/sun.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </StackPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </HBox>
-                              <HBox fx:id="darkModePrefHBox11" alignment="CENTER_LEFT" prefWidth="200.0" spacing="20.0">
-                                 <children>
-                                    <Label text="Estimate Capacitor Values:" textFill="#0066cc" HBox.hgrow="ALWAYS">
-                                       <font>
-                                          <Font name="Segoe UI Italic" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <AnchorPane fx:id="estimateCapacitorValuesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleEstimateCapacitorClicked" prefHeight="32.0" prefWidth="64.0" style="-fx-background-radius: 16; -fx-border-radius: 16; -fx-border-width: 1; -fx-border-color: black;">
-                                       <children>
-                                          <StackPane fx:id="stackParent31" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Region fx:id="estimateCapacitorIndicator" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: #0066cc; -fx-background-radius: 16;" StackPane.alignment="CENTER_LEFT" />
-                                                <HBox alignment="CENTER" spacing="16.0">
-                                                   <children>
-                                                      <ImageView fx:id="lightImageView11" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../icons/moon.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                      <ImageView fx:id="darkImageView11" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../icons/sun.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </StackPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
-                     <padding>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                     </padding></AnchorPane>
                   <AnchorPane fx:id="accuracyPane" maxWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" visible="false" StackPane.alignment="CENTER">
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -317,38 +232,6 @@
                                                          </image>
                                                       </ImageView>
                                                       <ImageView fx:id="ceilYesImageView" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../icons/sun.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </StackPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </HBox>
-                              <HBox spacing="16.0">
-                                 <children>
-                                    <Label text="Autosave Input Parameters:" textFill="#0066cc">
-                                       <font>
-                                          <Font name="Segoe UI Italic" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <AnchorPane fx:id="autosaveButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleAutoSaveButtonClicked" prefHeight="32.0" prefWidth="64.0" style="-fx-background-radius: 16; -fx-border-radius: 16; -fx-border-width: 1; -fx-border-color: black;">
-                                       <children>
-                                          <StackPane fx:id="stackParent2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Region fx:id="autosaveIndicator" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: #0066cc; -fx-background-radius: 16;" StackPane.alignment="CENTER_LEFT" />
-                                                <HBox alignment="CENTER" spacing="16.0">
-                                                   <children>
-                                                      <ImageView fx:id="autosaveNoImageView" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../icons/moon.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                      <ImageView fx:id="autoSaveYesImageView" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../icons/sun.png" />
                                                          </image>

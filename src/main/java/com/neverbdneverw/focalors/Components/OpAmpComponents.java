@@ -13,6 +13,7 @@ import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProc
  * @author HUAWEI-Pc
  */
 public class OpAmpComponents extends Components {
+    private OpAmpType amplificationType;
     private double resistorR1;
     private double resistorR2;
     private double inputFilterResistor;
@@ -28,10 +29,11 @@ public class OpAmpComponents extends Components {
         this.setType("OpAmpComponents");
     }
     
-    private void calculateGainResistors(OpAmpType amplificationType, double voltageGain) {
+    private void calculateGainResistors(OpAmpType amplification, double voltageGain) {
         this.setResistorR1(1000);
+        this.setAmplificationType(amplification);
 
-        if (amplificationType.equals(OpAmpAmplificationProcessor.OpAmpType.INVERTING)) {
+        if (amplification.equals(OpAmpAmplificationProcessor.OpAmpType.INVERTING)) {
             this.setResistorR2(voltageGain * resistorR1);
         } else {
             this.setResistorR2(resistorR1 * (voltageGain - 1));
@@ -53,6 +55,14 @@ public class OpAmpComponents extends Components {
         this.setSignalVoltage(peakToPeakSignalVoltage);
         this.setBiasingVoltage(biasingVoltage);
         this.setInputFrequency(inputFrequency);
+    }
+    
+    public OpAmpType getAmplificationType() {
+        return amplificationType;
+    }
+    
+    public void setAmplificationType(OpAmpType amplification) {
+        this.amplificationType = amplification;
     }
     
     public double getResistorR1() {

@@ -140,9 +140,6 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
     private ArrayList<ToggleButton> toggleButtons = new ArrayList<ToggleButton>();
     private boolean darkModeState = false;
     private boolean ceilState = false;
-    private boolean autoSaveState = false;
-    private boolean estimateResistorState = false;
-    private boolean estimateCapacitorState = false;
     /**
      * Initializes the controller class.
      */
@@ -153,12 +150,10 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
         settingPanes.add(appearancePane);
         settingPanes.add(behaviorPane);
         settingPanes.add(accuracyPane);
-        settingPanes.add(estimationPane);
         
         toggleButtons.add(appearanceButton);
         toggleButtons.add(behaviorButton);
         toggleButtons.add(accuracyButton);
-        toggleButtons.add(estimateButton);
         
         this.setPaneName("Settings");
     }
@@ -176,11 +171,6 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
     @FXML
     private void handleAccuracyButton(ActionEvent event) {
         animatePaneSwitching(accuracyPane);
-    }
-
-    @FXML
-    private void handleEstimateButton(ActionEvent event) {
-        animatePaneSwitching(estimationPane);
     }
     
     private void animatePaneSwitching(AnchorPane pane) {
@@ -276,63 +266,6 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
         } else {
             switchKV = new KeyValue(ceilStateIndicator.translateXProperty(), 32, new BounceInterpolator());
             ceilState = true;
-        }
-        
-        KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
-        
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(switchKF);
-        timeline.play();
-    }
-
-    @FXML
-    private void handleAutoSaveButtonClicked(MouseEvent event) {
-        KeyValue switchKV = null;
-
-        if (autoSaveState) {
-            switchKV = new KeyValue(autosaveIndicator.translateXProperty(), 0, new BounceInterpolator());
-            autoSaveState = false;
-        } else {
-            switchKV = new KeyValue(autosaveIndicator.translateXProperty(), 32, new BounceInterpolator());
-            autoSaveState = true;
-        }
-        
-        KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
-        
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(switchKF);
-        timeline.play();
-    }
-
-    @FXML
-    private void handleEstimateResistorClicked(MouseEvent event) {
-        KeyValue switchKV = null;
-
-        if (estimateResistorState) {
-            switchKV = new KeyValue(estimateResistorIndicator.translateXProperty(), 0, new BounceInterpolator());
-            estimateResistorState = false;
-        } else {
-            switchKV = new KeyValue(estimateResistorIndicator.translateXProperty(), 32, new BounceInterpolator());
-            estimateResistorState = true;
-        }
-        
-        KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
-        
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(switchKF);
-        timeline.play();
-    }
-
-    @FXML
-    private void handleEstimateCapacitorClicked(MouseEvent event) {
-        KeyValue switchKV = null;
-
-        if (estimateCapacitorState) {
-            switchKV = new KeyValue(estimateCapacitorIndicator.translateXProperty(), 0, new BounceInterpolator());
-            estimateCapacitorState = false;
-        } else {
-            switchKV = new KeyValue(estimateCapacitorIndicator.translateXProperty(), 32, new BounceInterpolator());
-            estimateCapacitorState = true;
         }
         
         KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);

@@ -43,7 +43,10 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <Pane fx:id="circuitPane" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <ImageView fx:id="circuitImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" />
+                           </children></Pane>
                         <VBox>
                            <children>
                               <Label text="Components List:">
