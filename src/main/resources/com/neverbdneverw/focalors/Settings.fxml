@@ -257,9 +257,9 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <HBox fx:id="darkModePrefHBox" prefWidth="200.0" spacing="20.0" visible="false">
+                              <HBox fx:id="darkModePrefHBox" prefWidth="200.0" spacing="20.0" visible="true">
                                  <children>
-                                    <Label text="Background Preference:" textFill="#0066cc" HBox.hgrow="ALWAYS">
+                                    <Label text="Show Furina at the Sidebar:" textFill="#0066cc" HBox.hgrow="ALWAYS">
                                        <font>
                                           <Font name="Segoe UI Italic" size="16.0" />
                                        </font>
@@ -273,12 +273,12 @@
                                                    <children>
                                                       <ImageView fx:id="lightImageView" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@../icons/moon.png" />
+                                                            <Image url="@../../../icons/furina_chibi.png" />
                                                          </image>
                                                       </ImageView>
                                                       <ImageView fx:id="darkImageView" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@../icons/sun.png" />
+                                                            <Image url="@../../../icons/furina%20think.png" />
                                                          </image>
                                                       </ImageView>
                                                    </children>

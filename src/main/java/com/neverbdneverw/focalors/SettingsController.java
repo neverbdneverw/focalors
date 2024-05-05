@@ -39,6 +39,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Toggle;
 import javafx.util.Duration;
 import java.util.prefs.Preferences;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -356,19 +357,24 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
     
     @FXML
     private void handleDarkModePrefClicked(MouseEvent event) {
+        HBox parent = (HBox) settingAnchorPane.getParent().getParent();
+        ImageView furinaPic = (ImageView) (((VBox) ((AnchorPane) parent.getChildren().get(0)).getChildren().get(0)).getChildren().get(5));
+        
         KeyValue switchKV = null;
         
         if (event != null) {
             if (darkModeState) {
                 switchKV = new KeyValue(stateIndicator.translateXProperty(), 0, new BounceInterpolator());
-                lightImageView.setImage(Utils.getImage("sun", Color.rgb(0, 102, 204)));
-                darkImageView.setImage(Utils.getImage("moon", Color.BLACK));
+                lightImageView.setImage(new Image(App.class.getResource("/icons/furina think.png").toExternalForm()));
+                darkImageView.setImage(new Image(App.class.getResource("/icons/furina_chibi.png").toExternalForm()));
                 darkModeState = false;
+                furinaPic.setVisible(false);
             } else {
                 switchKV = new KeyValue(stateIndicator.translateXProperty(), 32, new BounceInterpolator());
-                lightImageView.setImage(Utils.getImage("sun", Color.BLACK));
-                darkImageView.setImage(Utils.getImage("moon", Color.rgb(0, 102, 204)));
+                lightImageView.setImage(new Image(App.class.getResource("/icons/furina think.png").toExternalForm()));
+                darkImageView.setImage(new Image(App.class.getResource("/icons/furina_chibi.png").toExternalForm()));
                 darkModeState = true;
+                furinaPic.setVisible(true);
             }
             
             settings.putBoolean("darkMode", darkModeState);
@@ -377,10 +383,12 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
                 switchKV = new KeyValue(stateIndicator.translateXProperty(), 0, new BounceInterpolator());
                 lightImageView.setImage(Utils.getImage("sun", Color.rgb(0, 102, 204)));
                 darkImageView.setImage(Utils.getImage("moon", Color.BLACK));
+                furinaPic.setVisible(false);
             } else {
                 switchKV = new KeyValue(stateIndicator.translateXProperty(), 32, new BounceInterpolator());
                 lightImageView.setImage(Utils.getImage("sun", Color.BLACK));
                 darkImageView.setImage(Utils.getImage("moon", Color.rgb(0, 102, 204)));
+                furinaPic.setVisible(true);
             }
         }
         
