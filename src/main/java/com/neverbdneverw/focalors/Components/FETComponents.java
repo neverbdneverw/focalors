@@ -7,10 +7,12 @@ package com.neverbdneverw.focalors.Components;
 import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
+import com.neverbdneverw.focalors.App;
 import java.math.BigDecimal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -39,7 +41,9 @@ public class FETComponents extends Components {
     public void calculateRDRS(double gain, double thresholdVoltage, double transconductanceParameter, double biasingVoltage) {
         // We want to make sure the voltage across the drain VD is of higher potential than VGS which we want to be half the supply
         // This is calculated on the saturation region thus there is no significant current gains.
-        double drainResistor = (3 / (2 * transconductanceParameter)) * ((gain * gain) / biasingVoltage);
+        double transconductanceFactor = (3 / (2 * transconductanceParameter));
+        double gainFactor = ((gain * gain) / biasingVoltage);
+        double drainResistor =  transconductanceFactor * gainFactor;
         this.setResistorRD(drainResistor);
         
         transconductance = gain / drainResistor;
@@ -179,5 +183,6 @@ public class FETComponents extends Components {
         );
 
         componentsList.setItems(items);
+        circuitImageView.setImage(new Image(App.class.getResource("/icons/circuit_mosfet.png").toExternalForm()));
     }
 }

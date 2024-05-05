@@ -7,10 +7,12 @@ package com.neverbdneverw.focalors.Components;
 import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
+import com.neverbdneverw.focalors.App;
 import java.math.BigDecimal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -186,5 +188,6 @@ public class BJTComponents extends Components {
         );
 
         componentsList.setItems(items);
+        circuitImageView.setImage(new Image(App.class.getResource("/icons/circuit_bjt.png").toExternalForm()));
     }
 }
