@@ -1,34 +1,497 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/13" fx:controller="com.neverbdneverw.focalors.TutorialController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #F4F4F4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neverbdneverw.focalors.TutorialController">
    <children>
-      <VBox layoutX="346.0" layoutY="196.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="30.0">
+      <Text layoutX="24.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutorial Page" wrappingWidth="186.13671875">
+         <font>
+            <Font name="System Bold Italic" size="29.0" />
+         </font>
+      </Text>
+      <BorderPane layoutY="81.0" prefHeight="480.0" prefWidth="800.0">
+         <left>
+            <VBox prefHeight="534.0" prefWidth="170.0" style="-fx-background-color: #F4F4F4;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="settingReturn" mnemonicParsing="false" onAction="#handleSettingReturn" text="Return" />
-                  <Label text="Tutorial" />
+                  <Button fx:id="bjt_tutorial" mnemonicParsing="false" prefHeight="62.0" prefWidth="178.0" style="-fx-background-color: #FF3131; -fx-background-radius: 12;" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="8.0" right="8.0" top="8.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <HBox prefHeight="100.0" prefWidth="288.0">
+                           <children>
+                              <ImageView fitHeight="52.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets top="3.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../../../icons/bjt.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefHeight="56.0" prefWidth="34.0" text="BJT" textFill="#fffdfd">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="mosfet_tutorial" mnemonicParsing="false" prefHeight="62.0" prefWidth="178.0" style="-fx-background-color: #7ED957; -fx-background-radius: 12;" text="MOSFET" textFill="#fffbfb">
+                     <VBox.margin>
+                        <Insets left="8.0" right="8.0" top="12.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <HBox prefHeight="61.0" prefWidth="140.0">
+                           <children>
+                              <ImageView fitHeight="51.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/mosfet.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets top="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label prefHeight="66.0" prefWidth="86.0" text="MOSFET" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="opamp_tutorial" mnemonicParsing="false" prefHeight="62.0" prefWidth="178.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" textFill="#fffefe">
+                     <VBox.margin>
+                        <Insets left="8.0" right="8.0" top="12.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="54.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/opamp.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefHeight="66.0" prefWidth="86.0" text="Op Amp" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+            </VBox>
+         </left>
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                <children>
-                  <ToggleButton mnemonicParsing="false" text="Appearance" />
-                  <ToggleButton mnemonicParsing="false" text="Behavior" />
-                  <ToggleButton mnemonicParsing="false" text="Accuracy" />
-                  <ToggleButton mnemonicParsing="false" text="Estimation" />
+                  <AnchorPane fx:id="opamp_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label layoutX="13.0" layoutY="14.0" prefHeight="32.0" prefWidth="222.0" text="Frequency Response" textFill="#0066cc">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="15.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency response refers to how a system, device, or circuit responds to signals of different frequencies. In the context of electronics or signal processing, it typically describes the relationship between input and output signals across a range of frequencies." textAlignment="JUSTIFY" wrappingWidth="578.9366683959961" />
+                        <Label layoutX="15.0" layoutY="270.0" prefHeight="30.0" prefWidth="219.0" text="Low Cutoff Frequency" textFill="#0066cc">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="13.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refers to the frequency below which a filter attenuates signals. In other words, for frequencies lower than the cutoff frequency, the filter passes signals with relatively little attenuation." textAlignment="JUSTIFY" wrappingWidth="222.93685150146484" />
+                        <Label layoutX="13.0" layoutY="129.0" prefHeight="30.0" prefWidth="219.0" text="High Cutoff Frequency" textFill="#0066cc">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="15.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refers to the frequency above which a filter attenuates signals. In contrast to the low cutoff frequency, for frequencies higher than the cutoff frequency, the filter starts to attenuate signals." textAlignment="JUSTIFY" wrappingWidth="227.73680877685547" />
+                        <Label layoutX="291.0" layoutY="114.0" prefHeight="30.0" prefWidth="290.0" text="Below is an example of what your inputs may look like:" textFill="#0066cc">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="286.0" fitWidth="302.0" layoutX="286.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/Frequency%20Response.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane fx:id="ip_opam_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: white;">
+                           <children>
+                              <Label layoutX="25.0" layoutY="292.0" prefHeight="26.0" prefWidth="143.0" text="Signal Input Voltage" textFill="#0066cc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text layoutX="23.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The signal input voltage refers to the voltage level of an electrical signal being applied to a device or circuit as an input. It is measured in units of volts (V). (To modify the unit, use the choicebox located to the right of the textfield)." textAlignment="JUSTIFY" wrappingWidth="266.13671112060547" />
+                              <ImageView fitHeight="98.0" fitWidth="241.0" layoutX="327.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/Input%20Voltage%20Parameter.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="22.0" layoutY="14.0" prefHeight="26.0" prefWidth="114.0" text="Biasing Voltage" textFill="#0066cc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text layoutX="22.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Biasing voltage refers to a direct current (DC) voltage applied to electronic components such as transistors or diodes to establish a specific operating point or operating conditions. It is measured in units of volts (V). (To modify the unit, use the choicebox located to the right of the textfield)." textAlignment="JUSTIFY" wrappingWidth="269.33678436279297" />
+                              <ImageView fitHeight="101.0" fitWidth="250.0" layoutX="329.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/Biasing%20Voltage%20Parameter.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="25.0" layoutY="163.0" prefHeight="26.0" prefWidth="143.0" text="Input Frequency" textFill="#0066cc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text layoutX="22.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input frequency refers to the rate at which a periodic signal, such as an electrical or electromagnetic wave, repeats over a certain period of time. It is measured in units of hertz (Hz). (To modify the unit, use the choicebox located to the right of the textfield)" textAlignment="JUSTIFY" wrappingWidth="269.33678436279297" />
+                              <ImageView fitHeight="82.0" fitWidth="242.0" layoutX="326.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/Input%20Frequency.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="next3_opam" layoutX="225.0" layoutY="425.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" text="Next" textFill="#fffdfd">
+                                 <font>
+                                    <Font name="System Italic" size="16.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane fx:id="dov_opam_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: white;">
+                                 <children>
+                                    <Label layoutX="28.0" layoutY="14.0" prefHeight="35.0" prefWidth="170.0" text="Voltage Gain" textFill="#0066cc">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Text layoutX="28.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The voltage gain of an amplifier is the ratio of the output voltage to the input voltage. For example, if an amplifier has a voltage gain of two, then the output voltage will be twice the input voltage. (There are 2 types of voltage gain.)" textAlignment="JUSTIFY" wrappingWidth="573.3365707397461">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <ImageView fitHeight="176.0" fitWidth="348.0" layoutX="141.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../icons/DOV%20Op%20Amp.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text layoutX="34.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The gain of an inverting amplifier may be less than, more than or equal to unity (1). While the gain of a non-inverting amplifier is always more than 1." textAlignment="JUSTIFY" wrappingWidth="562.1366806030273">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Button fx:id="next2_opam" layoutX="225.0" layoutY="427.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" text="Next" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Italic" size="16.0" />
+                                       </font>
+                                    </Button>
+                                    <AnchorPane fx:id="front_opam_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: #ffffff;">
+                                       <children>
+                                          <Label layoutX="35.0" layoutY="78.0" prefHeight="64.0" prefWidth="254.0" text="Op Amp Circuit" textFill="#0066cc">
+                                             <font>
+                                                <Font name="System Bold" size="34.0" />
+                                             </font>
+                                          </Label>
+                                          <Text layoutX="49.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Op-amps are widely used in analog electronics because of their versatility and ability to amplify signals with high gain.They're commonly used in signal conditioning, filtering, mathematical operations, and many other applications in electronics and signal processing." textAlignment="JUSTIFY" wrappingWidth="226.93671417236328">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <ImageView fitHeight="231.0" fitWidth="259.0" layoutX="315.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../icons/Op%20Amp%20Circuit.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button fx:id="next1_opam" layoutX="225.0" layoutY="427.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" text="Next" textFill="#fffdfd">
+                                             <font>
+                                                <Font name="System Italic" size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="mosfet_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label layoutX="13.0" layoutY="22.0" prefHeight="32.0" prefWidth="222.0" text="Frequency Response" textFill="#0066cc">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="17.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency response refers to how a system, device, or circuit responds to signals of different frequencies. In the context of electronics or signal processing, it typically describes the relationship between input and output signals across a range of frequencies." textAlignment="JUSTIFY" wrappingWidth="578.9366683959961" />
+                        <Label layoutX="15.0" layoutY="262.0" prefHeight="30.0" prefWidth="219.0" text="Low Cutoff Frequency" textFill="#0066cc">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="17.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refers to the frequency below which a filter attenuates signals. In other words, for frequencies lower than the cutoff frequency, the filter passes signals with relatively little attenuation." textAlignment="JUSTIFY" wrappingWidth="222.93685150146484" />
+                        <Label layoutX="15.0" layoutY="129.0" prefHeight="30.0" prefWidth="219.0" text="High Cutoff Frequency" textFill="#0066cc">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="15.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refers to the frequency above which a filter attenuates signals. In contrast to the low cutoff frequency, for frequencies higher than the cutoff frequency, the filter starts to attenuate signals." textAlignment="JUSTIFY" wrappingWidth="227.73680877685547" />
+                        <Label layoutX="292.0" layoutY="102.0" prefHeight="30.0" prefWidth="290.0" text="Below is an example of what your inputs may look like:" textFill="#0066cc">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="286.0" fitWidth="302.0" layoutX="286.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/Frequency%20Response.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane fx:id="ip_mos_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: white;">
+                           <children>
+                              <Label layoutX="25.0" layoutY="292.0" prefHeight="26.0" prefWidth="143.0" text="Signal Input Voltage" textFill="#0066cc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text layoutX="23.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The signal input voltage refers to the voltage level of an electrical signal being applied to a device or circuit as an input. It is measured in units of volts (V). (To modify the unit, use the choicebox located to the right of the textfield)." textAlignment="JUSTIFY" wrappingWidth="266.13671112060547" />
+                              <ImageView fitHeight="98.0" fitWidth="241.0" layoutX="327.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/Input%20Voltage%20Parameter.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="22.0" layoutY="14.0" prefHeight="26.0" prefWidth="114.0" text="Biasing Voltage" textFill="#0066cc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text layoutX="22.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Biasing voltage refers to a direct current (DC) voltage applied to electronic components such as transistors or diodes to establish a specific operating point or operating conditions. It is measured in units of volts (V). (To modify the unit, use the choicebox located to the right of the textfield)." textAlignment="JUSTIFY" wrappingWidth="269.33678436279297" />
+                              <ImageView fitHeight="101.0" fitWidth="250.0" layoutX="329.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/Biasing%20Voltage%20Parameter.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="25.0" layoutY="163.0" prefHeight="26.0" prefWidth="143.0" text="Input Frequency" textFill="#0066cc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text layoutX="22.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input frequency refers to the rate at which a periodic signal, such as an electrical or electromagnetic wave, repeats over a certain period of time. It is measured in units of hertz (Hz). (To modify the unit, use the choicebox located to the right of the textfield)" textAlignment="JUSTIFY" wrappingWidth="269.33678436279297" />
+                              <ImageView fitHeight="82.0" fitWidth="242.0" layoutX="326.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/Input%20Frequency.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="next3_mos" layoutX="225.0" layoutY="425.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" text="Next" textFill="#fffdfd">
+                                 <font>
+                                    <Font name="System Italic" size="16.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane fx:id="dov_mos_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: white;">
+                                 <children>
+                                    <Label layoutX="22.0" layoutY="14.0" prefHeight="35.0" prefWidth="273.0" text="Transconductance Parameter" textFill="#0066cc">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Text layoutX="22.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The transconductance parameter, is a key parameter in the analysis of electronic devices, particularly in field-effect transistors (FETs) and vacuum tubes. It represents the relationship between the input voltage and the output current in these devices.In other words, it quantifies how much the drain current changes in response to a change in the gate-source voltage, under constant drain-source voltage conditions." textAlignment="JUSTIFY" wrappingWidth="585.3364486694336" />
+                                    <Button fx:id="next2_mos" layoutX="225.0" layoutY="427.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" text="Next" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Italic" size="16.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="24.0" layoutY="120.0" prefHeight="35.0" prefWidth="165.0" text="Voltage Gain" textFill="#0066cc">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Text layoutX="22.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The voltage gain of an amplifier is the ratio of the output voltage to the input voltage. For example, if an amplifier has a voltage gain of two, then the output voltage will be twice the input voltage." textAlignment="JUSTIFY" wrappingWidth="585.3364486694336" />
+                                    <Label layoutX="22.0" layoutY="197.0" prefHeight="35.0" prefWidth="273.0" text="Threshold Voltage" textFill="#0066cc">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Text layoutX="22.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It represents the gate-source voltage at which the transistor begins to conduct current between its source and drain terminals.For MOSFETs,below the threshold voltage, the transistor is in the &quot;off&quot; state, and above the threshold voltage, it is in the &quot;on&quot; state. (To modify the unit, use the choicebox located to the right of the textfield)." textAlignment="JUSTIFY" wrappingWidth="585.3364486694336" />
+                                    <ImageView fitHeight="96.0" fitWidth="342.0" layoutX="147.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../icons/Threshold%20Voltage.png" />
+                                       </image>
+                                    </ImageView>
+                                    <AnchorPane fx:id="front_mos_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: #ffffff;">
+                                       <children>
+                                          <Label layoutX="60.0" layoutY="110.0" prefHeight="64.0" prefWidth="254.0" text="MOSFET Circuit" textFill="#0066cc">
+                                             <font>
+                                                <Font name="System Bold" size="34.0" />
+                                             </font>
+                                          </Label>
+                                          <Text layoutX="58.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MOSFETs are semiconductor devices that can amplify electronic signals with high efficiency and low distortion. MOSFETs offer several advantages for amplifier design, including high input impedance, low input capacitance, and low noise." textAlignment="JUSTIFY" wrappingWidth="258.9367141723633">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <ImageView fitHeight="231.0" fitWidth="259.0" layoutX="362.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../icons/MOSFET%20CIrcuit.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button fx:id="next1_mos" layoutX="225.0" layoutY="427.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" text="Next" textFill="#fffdfd">
+                                             <font>
+                                                <Font name="System Italic" size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="bjt_pane" layoutX="10.0" layoutY="10.0" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label layoutX="13.0" layoutY="24.0" prefHeight="32.0" prefWidth="222.0" text="Frequency Response" textFill="#0066cc">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency response refers to how a system, device, or circuit responds to signals of different frequencies. In the context of electronics or signal processing, it typically describes the relationship between input and output signals across a range of frequencies." textAlignment="JUSTIFY" wrappingWidth="578.9366683959961" />
+                        <Label layoutX="15.0" layoutY="257.0" prefHeight="30.0" prefWidth="219.0" text="Low Cutoff Frequency" textFill="#0066cc">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="17.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refers to the frequency below which a filter attenuates signals. In other words, for frequencies lower than the cutoff frequency, the filter passes signals with relatively little attenuation." textAlignment="JUSTIFY" wrappingWidth="222.93685150146484" />
+                        <Label layoutX="15.0" layoutY="133.0" prefHeight="30.0" prefWidth="219.0" text="High Cutoff Frequency" textFill="#0066cc">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="15.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refers to the frequency above which a filter attenuates signals. In contrast to the low cutoff frequency, for frequencies higher than the cutoff frequency, the filter starts to attenuate signals." textAlignment="JUSTIFY" wrappingWidth="227.73680877685547" />
+                        <Label layoutX="292.0" layoutY="118.0" prefHeight="30.0" prefWidth="290.0" text="Below is an example of what your inputs may look like:" textFill="#0066cc">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="286.0" fitWidth="302.0" layoutX="286.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/Frequency%20Response.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane fx:id="ip_bjt_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: white;">
+                           <children>
+                              <Label layoutX="25.0" layoutY="292.0" prefHeight="26.0" prefWidth="143.0" text="Signal Input Voltage" textFill="#0066cc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text layoutX="23.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The signal input voltage refers to the voltage level of an electrical signal being applied to a device or circuit as an input. It is measured in units of volts (V). (To modify the unit, use the choicebox located to the right of the textfield)." textAlignment="JUSTIFY" wrappingWidth="266.13671112060547" />
+                              <ImageView fitHeight="98.0" fitWidth="241.0" layoutX="327.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/Input%20Voltage%20Parameter.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="22.0" layoutY="14.0" prefHeight="26.0" prefWidth="114.0" text="Biasing Voltage" textFill="#0066cc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text layoutX="22.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Biasing voltage refers to a direct current (DC) voltage applied to electronic components such as transistors or diodes to establish a specific operating point or operating conditions. It is measured in units of volts (V). (To modify the unit, use the choicebox located to the right of the textfield)." textAlignment="JUSTIFY" wrappingWidth="269.33678436279297" />
+                              <ImageView fitHeight="101.0" fitWidth="250.0" layoutX="329.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/Biasing%20Voltage%20Parameter.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="25.0" layoutY="163.0" prefHeight="26.0" prefWidth="143.0" text="Input Frequency" textFill="#0066cc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Text layoutX="22.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input frequency refers to the rate at which a periodic signal, such as an electrical or electromagnetic wave, repeats over a certain period of time. It is measured in units of hertz (Hz). (To modify the unit, use the choicebox located to the right of the textfield)" textAlignment="JUSTIFY" wrappingWidth="269.33678436279297" />
+                              <ImageView fitHeight="82.0" fitWidth="242.0" layoutX="326.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/Input%20Frequency.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="next3_bjt" layoutX="225.0" layoutY="425.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" text="Next" textFill="#fffdfd">
+                                 <font>
+                                    <Font name="System Italic" size="16.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane fx:id="dov_bjt_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: white;">
+                                 <children>
+                                    <Label layoutX="22.0" layoutY="14.0" prefHeight="35.0" prefWidth="273.0" text="Collector Current" textFill="#0066cc">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Text layoutX="22.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The collector current is the current flowing through the collector terminal of the transistor.In an NPN transistor, for example, the collector current flows from the collector to the emitter. In a PNP transistor, it flows from the emitter to the collector.It is measured in units of amps (A). (To modify the unit, use the choicebox located to the right of the textfield)." textAlignment="JUSTIFY" wrappingWidth="585.3364486694336" />
+                                    <Button fx:id="next2_bjt" layoutX="225.0" layoutY="427.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" text="Next" textFill="#fffdfd">
+                                       <font>
+                                          <Font name="System Italic" size="16.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="22.0" layoutY="222.0" prefHeight="35.0" prefWidth="165.0" text="Voltage Gain" textFill="#0066cc">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Text layoutX="22.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The voltage gain of an amplifier is the ratio of the output voltage to the input voltage. For example, if an amplifier has a voltage gain of two, then the output voltage will be twice the input voltage." textAlignment="JUSTIFY" wrappingWidth="585.3364486694336" />
+                                    <Label layoutX="22.0" layoutY="301.0" prefHeight="35.0" prefWidth="273.0" text="Threshold Voltage" textFill="#0066cc">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Text layoutX="22.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DC current gain, is a parameter used to describe the amplification capability of a bipolar junction transistor (BJT) in its active region. It represents the ratio of the collector current to the base current when the transistor is in active mode." textAlignment="JUSTIFY" wrappingWidth="585.3364486694336" />
+                                    <ImageView fitHeight="96.0" fitWidth="342.0" layoutX="146.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../icons/Collector%20Current.png" />
+                                       </image>
+                                    </ImageView>
+                                    <AnchorPane fx:id="front_bjt_pane" prefHeight="480.0" prefWidth="630.0" style="-fx-background-color: #ffffff;">
+                                       <children>
+                                          <Label layoutX="81.0" layoutY="92.0" prefHeight="64.0" prefWidth="179.0" text="BJT Circuit" textFill="#0066cc">
+                                             <font>
+                                                <Font name="System Bold" size="34.0" />
+                                             </font>
+                                          </Label>
+                                          <Text layoutX="58.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A Bipolar Junction Transistor (BJT) amplifier is a type of electronic amplifier that uses bipolar junction transistors to amplify electrical signals.In a BJT amplifier circuit, the transistor(s) are biased in such a way that they operate within their active region, allowing them to amplify small input signals." textAlignment="JUSTIFY" wrappingWidth="226.93671417236328">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <ImageView fitHeight="231.0" fitWidth="259.0" layoutX="301.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../icons/BJT%20Circuit.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button fx:id="next1_bjt" layoutX="225.0" layoutY="427.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #0066cc; -fx-background-radius: 12;" text="Next" textFill="#fffdfd">
+                                             <font>
+                                                <Font name="System Italic" size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
                </children>
-            </HBox>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00cc66;" VBox.vgrow="ALWAYS" />
-         </children>
-      </VBox>
+            </StackPane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>
