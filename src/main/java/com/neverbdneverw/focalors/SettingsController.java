@@ -34,7 +34,11 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import java.util.Properties;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Toggle;
 import javafx.util.Duration;
+import java.util.prefs.Preferences;
 
 /**
  * FXML Controller class
@@ -136,19 +140,21 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
     @FXML
     private ToggleGroup settingNavigationGroup;
     
-    private Properties properties;
+    private Preferences settings;
 
     private int activePaneIndex;
     private ArrayList<AnchorPane> settingPanes = new ArrayList<AnchorPane>();
     private ArrayList<ToggleButton> toggleButtons = new ArrayList<ToggleButton>();
-    private boolean darkModeState = false;
-    private boolean ceilState = false;
+    private ArrayList<String> amplifierPreference = new ArrayList<String>();
+    private boolean darkModeState;
+    private boolean ceilState;
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        properties = new Properties();
+        settings = App.getPreferences();
         settingAnchorPane.setId("settingAnchorPane");
         
         settingPanes.add(appearancePane);
@@ -159,11 +165,118 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
         toggleButtons.add(behaviorButton);
         toggleButtons.add(accuracyButton);
         
+        handleSavedSettings();
+        
         this.setPaneName("Settings");
         
-        resistorColor.selectedToggleProperty().addListener((observer, old, newButton) -> {
-            if (newButton != null) {
+        resistorColor.selectedToggleProperty().addListener((ob, old, newValue) -> {
+            if (newValue != null) {
+                String color = ((ToggleButton) newValue).getStyle().split(" ")[1].replace(";", "");
+                settings.put("resistorColor", color);
+            }
+        });
+        
+        capacitorColor.selectedToggleProperty().addListener((ob, old, newValue) -> {
+            if (newValue != null) {
+                String color = ((ToggleButton) newValue).getStyle().split(" ")[1].replace(";", "");
+                settings.put("capacitorColor", color);
+            }
+        });
+        
+        amplifierPref.selectedToggleProperty().addListener((ob, old, newValue) -> {
+            if (newValue != null) {
+                settings.put("preferredAmp", ((ToggleButton) newValue).getText().toLowerCase().strip());
+            }
+        });
+        
+        decimalPlacesGroup.selectedToggleProperty().addListener((ob, old, newValue) -> {
+            if (newValue != null) {
+                settings.put("decimalPlaces", ((ToggleButton) newValue).getText());
+            }
+        });
+        
+        resistorUnitsGroup.selectedToggleProperty().addListener((ob, old, newValue) -> {
+            if (newValue != null) {
+                settings.put("resistanceUnit", ((ToggleButton) newValue).getText());
+            }
+        });
+        
+        capacitorUnitsGroup.selectedToggleProperty().addListener((ob, old, newValue) -> {
+            if (newValue != null) {
+                settings.put("capacitanceUnit", ((ToggleButton) newValue).getText());
+            }
+        });
+    }
+    
+    public void handleSavedSettings() {
+        ArrayList<String> resistorColors = new ArrayList<String>();
+        resistorColors.add("#0066cc");
+        resistorColors.add("#cb6ce6");
+        resistorColors.add("#ff66c4");
+        resistorColors.add("#5ce1e6");
+        resistorColors.add("#c1ff72");
+        resistorColors.add("#ffde59");
+        resistorColors.add("#ffbd59");
+        
+        ArrayList<String> capacitorColors = new ArrayList<String>();
+        capacitorColors.add("#ff3131");
+        capacitorColors.add("#ff914d");
+        capacitorColors.add("#ffbd59");
+        capacitorColors.add("#ffde59");
+        capacitorColors.add("#c1ff72");
+        capacitorColors.add("#5ce1e6");
+        capacitorColors.add("#ff66c4");
+        
+        amplifierPreference = new ArrayList<String>();
+        amplifierPreference.add("ask always");
+        amplifierPreference.add("bjt");
+        amplifierPreference.add("mosfet");
+        amplifierPreference.add("op amp");
+        
+        ArrayList<String> decimalPlaces = new ArrayList<String>();
+        decimalPlaces.add("0");
+        decimalPlaces.add("0.1");
+        decimalPlaces.add("0.01");
+        decimalPlaces.add("0.001");
+        decimalPlaces.add("0.0001");
+        
+        ArrayList<String> resistanceUnits = new ArrayList<String>();
+        resistanceUnits.add("Ω");
+        resistanceUnits.add("kΩ");
+        resistanceUnits.add("MΩ");
+        
+        ArrayList<String> capacitanceUnits = new ArrayList<String>();
+        capacitanceUnits.add("pF");
+        capacitanceUnits.add("nF");
+        capacitanceUnits.add("μF");
+        capacitanceUnits.add("mF");
+        capacitanceUnits.add("F");
+        
+        settingAnchorPane.translateYProperty().addListener((ob, o, n) -> {
+            if (n.doubleValue() == 0) {
+                String resistor = settings.get("resistorColor", "");
+                resistorColor.selectToggle(resistorColor.getToggles().get(resistorColors.indexOf(resistor)));
+
+                String capacitor = settings.get("capacitorColor", "");
+                capacitorColor.selectToggle(capacitorColor.getToggles().get(capacitorColors.indexOf(capacitor)));
                 
+                darkModeState = settings.getBoolean("darkMode", false);
+                this.handleDarkModePrefClicked(null);
+                
+                String ampPref = settings.get("preferredAmp", "askalways");
+                amplifierPref.selectToggle(amplifierPref.getToggles().get(amplifierPreference.indexOf(ampPref)));
+                
+                ceilState = settings.getBoolean("alwaysCeil", false);
+                this.handleCeilButtonClicked(null);
+                
+                String decimalPlace = settings.get("decimalPlaces", "0.01");
+                decimalPlacesGroup.selectToggle(decimalPlacesGroup.getToggles().get(decimalPlaces.indexOf(decimalPlace)));
+                
+                String resistanceUnit = settings.get("resistanceUnit", "Ω");
+                resistorUnitsGroup.selectToggle(resistorUnitsGroup.getToggles().get(resistanceUnits.indexOf(resistanceUnit)));
+                
+                String capacitanceUnit = settings.get("capacitanceUnit", "μF");
+                capacitorUnitsGroup.selectToggle(capacitorUnitsGroup.getToggles().get(capacitanceUnits.indexOf(capacitanceUnit)));
             }
         });
     }
@@ -244,20 +357,32 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
     @FXML
     private void handleDarkModePrefClicked(MouseEvent event) {
         KeyValue switchKV = null;
-
-        if (darkModeState) {
-            switchKV = new KeyValue(stateIndicator.translateXProperty(), 0, new BounceInterpolator());
-            lightImageView.setImage(Utils.getImage("sun", Color.rgb(0, 102, 204)));
-            darkImageView.setImage(Utils.getImage("moon", Color.BLACK));
-            darkModeState = false;
-        } else {
-            switchKV = new KeyValue(stateIndicator.translateXProperty(), 32, new BounceInterpolator());
-            lightImageView.setImage(Utils.getImage("sun", Color.BLACK));
-            darkImageView.setImage(Utils.getImage("moon", Color.rgb(0, 102, 204)));
-            darkModeState = true;
-        }
         
-        App.setCSS(darkModeState);
+        if (event != null) {
+            if (darkModeState) {
+                switchKV = new KeyValue(stateIndicator.translateXProperty(), 0, new BounceInterpolator());
+                lightImageView.setImage(Utils.getImage("sun", Color.rgb(0, 102, 204)));
+                darkImageView.setImage(Utils.getImage("moon", Color.BLACK));
+                darkModeState = false;
+            } else {
+                switchKV = new KeyValue(stateIndicator.translateXProperty(), 32, new BounceInterpolator());
+                lightImageView.setImage(Utils.getImage("sun", Color.BLACK));
+                darkImageView.setImage(Utils.getImage("moon", Color.rgb(0, 102, 204)));
+                darkModeState = true;
+            }
+            
+            settings.putBoolean("darkMode", darkModeState);
+        } else {
+            if (!darkModeState) {
+                switchKV = new KeyValue(stateIndicator.translateXProperty(), 0, new BounceInterpolator());
+                lightImageView.setImage(Utils.getImage("sun", Color.rgb(0, 102, 204)));
+                darkImageView.setImage(Utils.getImage("moon", Color.BLACK));
+            } else {
+                switchKV = new KeyValue(stateIndicator.translateXProperty(), 32, new BounceInterpolator());
+                lightImageView.setImage(Utils.getImage("sun", Color.BLACK));
+                darkImageView.setImage(Utils.getImage("moon", Color.rgb(0, 102, 204)));
+            }
+        }
         
         KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);
         
@@ -269,13 +394,23 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
     @FXML
     private void handleCeilButtonClicked(MouseEvent event) {
         KeyValue switchKV = null;
-
-        if (ceilState) {
-            switchKV = new KeyValue(ceilStateIndicator.translateXProperty(), 0, new BounceInterpolator());
-            ceilState = false;
+        
+        if (event != null) {
+            if (ceilState) {
+                switchKV = new KeyValue(ceilStateIndicator.translateXProperty(), 0, new BounceInterpolator());
+                ceilState = false;
+            } else {
+                switchKV = new KeyValue(ceilStateIndicator.translateXProperty(), 32, new BounceInterpolator());
+                ceilState = true;
+            }
+            
+            settings.putBoolean("alwaysCeil", ceilState);
         } else {
-            switchKV = new KeyValue(ceilStateIndicator.translateXProperty(), 32, new BounceInterpolator());
-            ceilState = true;
+            if (!ceilState) {
+                switchKV = new KeyValue(ceilStateIndicator.translateXProperty(), 0, new BounceInterpolator());
+            } else {
+                switchKV = new KeyValue(ceilStateIndicator.translateXProperty(), 32, new BounceInterpolator());
+            }
         }
         
         KeyFrame switchKF = new KeyFrame(Duration.millis(250), switchKV);

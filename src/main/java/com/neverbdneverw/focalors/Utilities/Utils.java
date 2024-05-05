@@ -5,6 +5,12 @@
 package com.neverbdneverw.focalors.Utilities;
 
 import com.neverbdneverw.focalors.App;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Properties;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -16,12 +22,12 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-
 /**
  *
  * @author HUAWEI-Pc
  */
 public class Utils {
+    private static Properties propertiesInstance;
     public enum Direction {
         BACKWARD,
         FORWARD,

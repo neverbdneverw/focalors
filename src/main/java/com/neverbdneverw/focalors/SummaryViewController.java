@@ -17,6 +17,7 @@ import com.neverbdneverw.focalors.Utilities.Utils.Direction;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -27,6 +28,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -60,14 +62,39 @@ public class SummaryViewController extends ProcedureSwitchingPaneController impl
     private Pane circuitPane;
     @FXML
     private ImageView circuitImageView;
+    
+    private Preferences settings;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        settings = App.getPreferences();
         previousImageView.setImage(Utils.getImage("back", Color.WHITE));
         nextImageView.setImage(Utils.getImage("save", Color.WHITE));
+        
+        componentsList.setCellFactory(param -> new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle(null);
+                } else {
+                    if (item.startsWith("R")) {
+                        setText(item);
+                        setStyle("-fx-background-color: " + settings.get("resistorColor", "") + ";");
+                    } else if (item.startsWith("C")) {
+                        setText(item);
+                        setStyle("-fx-background-color: " + settings.get("capacitorColor", "") + ";");
+                    } else {
+                        setText(item);
+                    }
+                }
+            }
+        });
         
         Utils.buttonAddHoverEffect(saveButton);
         Utils.buttonAddHoverEffect(returnToFreqResButton);
