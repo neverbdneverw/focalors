@@ -11,6 +11,7 @@ import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProc
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
 import com.neverbdneverw.focalors.Components.BJTComponents;
 import com.neverbdneverw.focalors.Components.Components;
+import com.neverbdneverw.focalors.Components.FETComponents;
 import com.neverbdneverw.focalors.Components.OpAmpComponents;
 import com.neverbdneverw.focalors.Utilities.Utils.Direction;
 import java.io.IOException;
@@ -100,6 +101,9 @@ public class SummaryViewController extends ProcedureSwitchingPaneController impl
         } else if (components.getType().equals("BJTComponents")) {
             BJTComponents bjtComponents = (BJTComponents) components;
             bjtComponents.updateSummary(componentsList, circuitImageView);
+        } else if (components.getType().equals("FETComponents")) {
+            FETComponents fetComponents = (FETComponents) components;
+            fetComponents.updateSummary(componentsList, circuitImageView);
         }
     }
 }

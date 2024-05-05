@@ -4,29 +4,27 @@
  */
 package com.neverbdneverw.focalors.AmplificationProcessors;
 
-import com.neverbdneverw.focalors.AmplificationProcessors.AmplificationProcessor;
 import com.neverbdneverw.focalors.Components.BJTComponents;
 import com.neverbdneverw.focalors.Components.Components;
-import java.util.Dictionary;
-import java.util.Hashtable;
+import com.neverbdneverw.focalors.Components.FETComponents;
 
 /**
  *
  * @author HUAWEI-Pc
  */
-public class BJTAmplificationProcessor extends AmplificationProcessor {
-    private double collectorCurrent;
-    private double hfe;
+public class FETAmplificationProcessor extends AmplificationProcessor {
+    private double transconductanceParameter;
+    private double thresholdVoltage;
     
     @Override
     public String getType() {
-        return "bjt";
+        return "fet";
     }
     
-    public void setDesiredOutput(double voltageGain, double collectorCurrent, double hfe) {
+    public void setDesiredOutput(double voltageGain, double transconductanceParameter, double thresholdVoltage) {
         this.voltageGain = voltageGain;
-        this.collectorCurrent = collectorCurrent;
-        this.hfe = hfe;
+        this.transconductanceParameter = transconductanceParameter;
+        this.thresholdVoltage = thresholdVoltage;
     }
     
     @Override
@@ -56,8 +54,8 @@ public class BJTAmplificationProcessor extends AmplificationProcessor {
     }
 
     public Components getComponents() {
-        BJTComponents components = new BJTComponents();
-        components.setParameters(this.voltageGain, this.collectorCurrent, this.hfe, this.inputFrequency, this.peakToPeakSignalVoltage, this.biasingVoltage, this.lowCutoffFrequency);
+        FETComponents components = new FETComponents();
+        components.setParameters(this.voltageGain, this.thresholdVoltage, this.transconductanceParameter, this.inputFrequency, this.peakToPeakSignalVoltage, this.biasingVoltage, this.lowCutoffFrequency);
         return components;
     }
 }

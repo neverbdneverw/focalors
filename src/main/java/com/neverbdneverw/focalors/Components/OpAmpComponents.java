@@ -8,6 +8,7 @@ import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
 import com.neverbdneverw.focalors.App;
+import java.math.BigDecimal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -148,15 +149,15 @@ public class OpAmpComponents extends Components {
         ObservableList<String> items = FXCollections.observableArrayList (
             String.format("Type: %s", String.valueOf(this.getAmplificationType())),
             String.format("Driver: OP AMP"),
-            String.format("R1: %s Ω", String.valueOf(this.getResistorR1())),
-            String.format("R2: %s Ω", String.valueOf(this.getResistorR2())),
-            String.format("Cin: %s F", String.valueOf(this.getCapacitorInput())),
-            String.format("Cout: %s F", String.valueOf(this.getCapacitorOutput())),
-            String.format("Rin: %s Ω", String.valueOf(this.getInputFilterResistor())),
-            String.format("Rout: %s Ω", String.valueOf(this.getOutputFilterResistor())),
-            String.format("VCC: %s V", String.valueOf(this.getBiasingVoltage())),
-            String.format("-VCC: -%s V", String.valueOf(this.getBiasingVoltage())),
-            String.format("Source: %s V", String.valueOf(this.getSignalVoltage()))
+            String.format("R1: %s Ω", new BigDecimal(this.getResistorR1()).toPlainString()),
+            String.format("R2: %s Ω", new BigDecimal(this.getResistorR2()).toPlainString()),
+            String.format("Cin: %s F", new BigDecimal(this.getCapacitorInput()).toPlainString()),
+            String.format("Cout: %s F", new BigDecimal(this.getCapacitorOutput()).toPlainString()),
+            String.format("Rin: %s Ω", new BigDecimal(this.getInputFilterResistor()).toPlainString()),
+            String.format("Rout: %s Ω", new BigDecimal(this.getOutputFilterResistor()).toPlainString()),
+            String.format("VCC: %s V", new BigDecimal(this.getBiasingVoltage()).toPlainString()),
+            String.format("-VCC: -%s V", new BigDecimal(this.getBiasingVoltage()).toPlainString()),
+            String.format("Source: %s V", new BigDecimal(this.getSignalVoltage()).toPlainString())
         );
 
         componentsList.setItems(items);

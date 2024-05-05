@@ -37,6 +37,8 @@ public class Processors {
             activeProcessor = new OpAmpAmplificationProcessor();
         } else if (type.equals("bjt")) {
             activeProcessor = new BJTAmplificationProcessor();
+        } else if (type.equals("fet")) {
+            activeProcessor = new FETAmplificationProcessor();
         }
     }
 }

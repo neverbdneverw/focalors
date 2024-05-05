@@ -7,6 +7,7 @@ package com.neverbdneverw.focalors.Components;
 import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
+import java.math.BigDecimal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -173,15 +174,15 @@ public class BJTComponents extends Components {
             "Type: INVERTING",
             "Driver: Bipolar Junction Transistor",
             "Mode: Common Emitter Amplifier (Bypassed)",
-            String.format("R1: %s", String.valueOf(this.getResistorR1())),
-            String.format("R2: %s", String.valueOf(this.getResistorR2())),
-            String.format("RC: %s", String.valueOf(this.getResistorRC())),
-            String.format("RE: %s", String.valueOf(this.getResistorRE())),
-            String.format("Cin: %s F", String.valueOf(this.getCapacitorInput())),
-            String.format("Cout: %s F", String.valueOf(this.getCapacitorOutput())),
-            String.format("CE: %s F", String.valueOf(this.getCapacitorBypass())),
-            String.format("VCC: %s V", String.valueOf(this.getBiasingVoltage())),
-            String.format("Source: %s V", String.valueOf(this.getSignalVoltage()))
+            String.format("R1: %s Ω", new BigDecimal(this.getResistorR1()).toPlainString()),
+            String.format("R2: %s Ω", new BigDecimal(this.getResistorR2()).toPlainString()),
+            String.format("RC: %s Ω", new BigDecimal(this.getResistorRC()).toPlainString()),
+            String.format("RE: %s Ω", new BigDecimal(this.getResistorRE()).toPlainString()),
+            String.format("Cin: %s F", new BigDecimal(this.getCapacitorInput()).toPlainString()),
+            String.format("Cout: %s F", new BigDecimal(this.getCapacitorOutput()).toPlainString()),
+            String.format("CE: %s F", new BigDecimal(this.getCapacitorBypass()).toPlainString()),
+            String.format("VCC: %s V", new BigDecimal(this.getBiasingVoltage()).toPlainString()),
+            String.format("Source: %s V", new BigDecimal(this.getSignalVoltage()).toPlainString())
         );
 
         componentsList.setItems(items);

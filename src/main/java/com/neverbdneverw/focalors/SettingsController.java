@@ -33,6 +33,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import java.util.Properties;
 import javafx.util.Duration;
 
 /**
@@ -134,6 +135,8 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
     private Region autosaveIndicator;
     @FXML
     private ToggleGroup settingNavigationGroup;
+    
+    private Properties properties;
 
     private int activePaneIndex;
     private ArrayList<AnchorPane> settingPanes = new ArrayList<AnchorPane>();
@@ -145,6 +148,7 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        properties = new Properties();
         settingAnchorPane.setId("settingAnchorPane");
         
         settingPanes.add(appearancePane);
@@ -156,6 +160,12 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
         toggleButtons.add(accuracyButton);
         
         this.setPaneName("Settings");
+        
+        resistorColor.selectedToggleProperty().addListener((observer, old, newButton) -> {
+            if (newButton != null) {
+                
+            }
+        });
     }
 
     @FXML

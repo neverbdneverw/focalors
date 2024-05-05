@@ -300,6 +300,9 @@
                                        </padding>
                                     </Label>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="16.0" />
+                                 </padding>
                               </AnchorPane>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                                  <children>
@@ -321,6 +324,9 @@
                                        <font>
                                           <Font name="Segoe UI Italic" size="16.0" />
                                        </font>
+                                       <padding>
+                                          <Insets bottom="16.0" />
+                                       </padding>
                                     </Label>
                                  </children>
                                  <padding>
@@ -339,32 +345,6 @@
                                     <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #c1ff72; -fx-background-radius: 24;" styleClass="capacitorColor" toggleGroup="$capacitorColor" />
                                     <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #5ce1e6; -fx-background-radius: 24;" styleClass="capacitorColor" toggleGroup="$capacitorColor" />
                                     <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #ff66c4; -fx-background-radius: 24;" styleClass="capacitorColor" toggleGroup="$capacitorColor" />
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label alignment="CENTER" text="Wire Color:" textFill="#0066cc" HBox.hgrow="ALWAYS">
-                                       <font>
-                                          <Font name="Segoe UI Italic" size="16.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <padding>
-                                    <Insets top="30.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
-                                 <children>
-                                    <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" selected="true" style="-fx-background-color: #c1ff72; -fx-background-radius: 24;" styleClass="wireColor">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="wireColor" />
-                                       </toggleGroup></ToggleButton>
-                                    <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #0066cc; -fx-background-radius: 24;" styleClass="wireColor" toggleGroup="$wireColor" />
-                                    <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #cb6ce6; -fx-background-radius: 24;" styleClass="wireColor" toggleGroup="$wireColor" />
-                                    <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #5ce1e6; -fx-background-radius: 24;" styleClass="wireColor" toggleGroup="$wireColor" />
-                                    <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #ffde59; -fx-background-radius: 24;" styleClass="wireColor" toggleGroup="$wireColor" />
-                                    <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #ff914d; -fx-background-radius: 24;" styleClass="wireColor" toggleGroup="$wireColor" />
-                                    <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #ff3131; -fx-background-radius: 24;" styleClass="wireColor" toggleGroup="$wireColor" />
                                  </children>
                               </HBox>
                            </children>

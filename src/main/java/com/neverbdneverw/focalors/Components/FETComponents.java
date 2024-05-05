@@ -7,6 +7,7 @@ package com.neverbdneverw.focalors.Components;
 import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
+import java.math.BigDecimal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -25,21 +26,23 @@ public class FETComponents extends Components {
     private double capacitorOutput;
     private double capacitorBypass;
     
+    private double transconductance;
+    
     private double signalVoltage;
     private double biasingVoltage;
     private double inputFrequency;
 
     public FETComponents() {
-        this.setType("BJTComponents");
+        this.setType("FETComponents");
     }
     
     public void calculateRDRS(double gain, double thresholdVoltage, double transconductanceParameter, double biasingVoltage) {
         // We want to make sure the voltage across the drain VD is of higher potential than VGS which we want to be half the supply
         // This is calculated on the saturation region thus there is no significant current gains.
-        double drainResistor = (3 / 2 * transconductanceParameter) * ((gain * gain) / biasingVoltage);
+        double drainResistor = (3 / (2 * transconductanceParameter)) * ((gain * gain) / biasingVoltage);
         this.setResistorRD(drainResistor);
         
-        double transconductance = gain / drainResistor;
+        transconductance = gain / drainResistor;
         
         // Overdrive voltage is the difference between Vgs and Vth.
         double overdriveVoltage = transconductance / transconductanceParameter;
@@ -55,16 +58,24 @@ public class FETComponents extends Components {
         this.setResistorRS(sourceResistor);
     }
     
-    public void calculateCapacitors(double hfe, double lowCutoffFrequency) {
+    public void calculateCapacitors(double lowCutoffFrequency) {
+        double equivalentResistanceRi = 1 / ((1 / this.getResistorR1()) + (1 / this.getResistorR2()));
         
+        this.setCapacitorInput(1 / (2 * Math.PI * equivalentResistanceRi * lowCutoffFrequency));
+        this.setCapacitorOutput(1 / (2 * Math.PI * this.getResistorRD() * lowCutoffFrequency));
+        
+        double equivalentResistanceRs = 1 / ((1 / this.getResistorRS()) + transconductance);
+        
+        this.setCapacitorBypass(1 / (2 * Math.PI * equivalentResistanceRs * lowCutoffFrequency));
     }
 
     public void setParameters(double voltageGain, double thresholdVoltage, double transconductanceParameter, double inputFrequency, double peakToPeakSignalVoltage, double biasingVoltage, double lowCutoffFrequency) {
-        calculateRDRS(voltageGain, thresholdVoltage, transconductanceParameter, biasingVoltage);
-//        calculateCapacitors(hfe, lowCutoffFrequency);
-        
         this.setResistorR1(1000000); // We want to bias the gate to half the supply voltage while keeping the input impedance high.
         this.setResistorR2(1000000);
+
+        calculateRDRS(voltageGain, thresholdVoltage, transconductanceParameter, biasingVoltage);
+        calculateCapacitors(lowCutoffFrequency);
+        
         this.setSignalVoltage(peakToPeakSignalVoltage);
         this.setBiasingVoltage(biasingVoltage);
         this.setInputFrequency(inputFrequency);
@@ -152,21 +163,21 @@ public class FETComponents extends Components {
 
     @Override
     public void updateSummary(ListView<String> componentsList, ImageView circuitImageView) {
-//        ObservableList<String> items = FXCollections.observableArrayList (
-//            "Type: INVERTING",
-//            "Driver: Bipolar Junction Transistor",
-//            "Mode: Common Emitter Amplifier (Bypassed)",
-//            String.format("R1: %s", String.valueOf(this.getResistorR1())),
-//            String.format("R2: %s", String.valueOf(this.getResistorR2())),
-//            String.format("RC: %s", String.valueOf(this.getResistorRC())),
-//            String.format("RE: %s", String.valueOf(this.getResistorRE())),
-//            String.format("Cin: %s F", String.valueOf(this.getCapacitorInput())),
-//            String.format("Cout: %s F", String.valueOf(this.getCapacitorOutput())),
-//            String.format("CE: %s F", String.valueOf(this.getCapacitorBypass())),
-//            String.format("VCC: %s V", String.valueOf(this.getBiasingVoltage())),
-//            String.format("Source: %s V", String.valueOf(this.getSignalVoltage()))
-//        );
-//
-//        componentsList.setItems(items);
+        ObservableList<String> items = FXCollections.observableArrayList (
+            "Type: INVERTING",
+            "Driver: Metal Oxide Semiconductor Field Effect Transistor",
+            "Mode: Common Source Amplifier (Bypassed)",
+            String.format("R1: %s Ω", new BigDecimal(this.getResistorR1()).toPlainString()),
+            String.format("R2: %s Ω", new BigDecimal(this.getResistorR2()).toPlainString()),
+            String.format("RD: %s Ω", new BigDecimal(this.getResistorRD()).toPlainString()),
+            String.format("RS: %s Ω", new BigDecimal(this.getResistorRS()).toPlainString()),
+            String.format("Cin: %s F", new BigDecimal(this.getCapacitorInput()).toPlainString()),
+            String.format("Cout: %s F", new BigDecimal(this.getCapacitorOutput()).toPlainString()),
+            String.format("Cs: %s F", new BigDecimal(this.getCapacitorBypass()).toPlainString()),
+            String.format("VDD: %s V", new BigDecimal(this.getBiasingVoltage()).toPlainString()),
+            String.format("Source: %s V", new BigDecimal(this.getSignalVoltage()).toPlainString())
+        );
+
+        componentsList.setItems(items);
     }
 }

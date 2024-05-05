@@ -65,7 +65,7 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-border-radius: 8; -fx-background-color: white; -fx-background-insets: 1; -fx-border-width: 2;" />
+                              <TextField fx:id="transconductanceParameterInputField" prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-border-radius: 8; -fx-background-color: white; -fx-background-insets: 1; -fx-border-width: 2;" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.rowIndex="1">
@@ -78,7 +78,7 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-insets: 1; -fx-background-color: white; -fx-border-radius: 8; -fx-border-width: 2;" />
+                              <TextField fx:id="voltageGainInputField" prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-insets: 1; -fx-background-color: white; -fx-border-radius: 8; -fx-border-width: 2;" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.rowIndex="2">
@@ -91,19 +91,22 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-color: white; -fx-background-insets: 1; -fx-border-radius: 8; -fx-border-width: 2;" />
+                              <TextField fx:id="thresholdVoltageInputField" prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-color: white; -fx-background-insets: 1; -fx-border-radius: 8; -fx-border-width: 2;" />
                            </children>
                         </VBox>
-                        <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 8;" GridPane.columnIndex="1">
+                        <ComboBox fx:id="thresholdVoltageUnitCombo" prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 9;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="16.0" top="28.0" />
                            </GridPane.margin>
                         </ComboBox>
-                        <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 9;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label text="mA/V^2" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                            <GridPane.margin>
-                              <Insets left="16.0" top="28.0" />
+                              <Insets top="28.0" />
                            </GridPane.margin>
-                        </ComboBox>
+                           <font>
+                              <Font name="Segoe UI Semibold" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                      <padding>
                         <Insets bottom="16.0" left="30.0" right="30.0" top="16.0" />
