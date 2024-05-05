@@ -248,7 +248,7 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
         ArrayList<String> capacitanceUnits = new ArrayList<String>();
         capacitanceUnits.add("pF");
         capacitanceUnits.add("nF");
-        capacitanceUnits.add("μF");
+        capacitanceUnits.add("uF");
         capacitanceUnits.add("mF");
         capacitanceUnits.add("F");
         
@@ -263,7 +263,7 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
                 darkModeState = settings.getBoolean("darkMode", false);
                 this.handleDarkModePrefClicked(null);
                 
-                String ampPref = settings.get("preferredAmp", "askalways");
+                String ampPref = settings.get("preferredAmp", "ask always");
                 amplifierPref.selectToggle(amplifierPref.getToggles().get(amplifierPreference.indexOf(ampPref)));
                 
                 ceilState = settings.getBoolean("alwaysCeil", false);
@@ -275,7 +275,7 @@ public class SettingsController extends ProcedureSwitchingPaneController impleme
                 String resistanceUnit = settings.get("resistanceUnit", "Ω");
                 resistorUnitsGroup.selectToggle(resistorUnitsGroup.getToggles().get(resistanceUnits.indexOf(resistanceUnit)));
                 
-                String capacitanceUnit = settings.get("capacitanceUnit", "μF");
+                String capacitanceUnit = settings.get("capacitanceUnit", "uF");
                 capacitorUnitsGroup.selectToggle(capacitorUnitsGroup.getToggles().get(capacitanceUnits.indexOf(capacitanceUnit)));
             }
         });

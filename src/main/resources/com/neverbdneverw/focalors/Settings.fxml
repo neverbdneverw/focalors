@@ -159,7 +159,7 @@
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
                                     </ToggleButton>
-                                    <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="96.0" selected="true" style="-fx-background-radius: 16; -fx-background-color: #ffde59;" styleClass="amplifierPrefButton" text="μF" toggleGroup="$capacitorUnitsGroup">
+                                    <ToggleButton mnemonicParsing="false" prefHeight="48.0" prefWidth="96.0" selected="true" style="-fx-background-radius: 16; -fx-background-color: #ffde59;" styleClass="amplifierPrefButton" text="uF" toggleGroup="$capacitorUnitsGroup">
                                        <font>
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
@@ -257,7 +257,7 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <HBox fx:id="darkModePrefHBox" prefWidth="200.0" spacing="20.0">
+                              <HBox fx:id="darkModePrefHBox" prefWidth="200.0" spacing="20.0" visible="false">
                                  <children>
                                     <Label text="Background Preference:" textFill="#0066cc" HBox.hgrow="ALWAYS">
                                        <font>

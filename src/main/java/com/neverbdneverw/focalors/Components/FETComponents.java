@@ -8,7 +8,10 @@ import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
 import com.neverbdneverw.focalors.App;
+import com.neverbdneverw.focalors.Utilities.Utils;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.prefs.Preferences;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -41,22 +44,22 @@ public class FETComponents extends Components {
     public void calculateRDRS(double gain, double thresholdVoltage, double transconductanceParameter, double biasingVoltage) {
         // We want to make sure the voltage across the drain VD is of higher potential than VGS which we want to be half the supply
         // This is calculated on the saturation region thus there is no significant current gains.
-        double transconductanceFactor = (3 / (2 * transconductanceParameter));
-        double gainFactor = ((gain * gain) / biasingVoltage);
+        double transconductanceFactor = (3 / (2 * transconductanceParameter)) * 1000;
+        double gainFactor = (Math.pow(gain, 2) / biasingVoltage);
         double drainResistor =  transconductanceFactor * gainFactor;
         this.setResistorRD(drainResistor);
         
         transconductance = gain / drainResistor;
         
         // Overdrive voltage is the difference between Vgs and Vth.
-        double overdriveVoltage = transconductance / transconductanceParameter;
+        double overdriveVoltage = (transconductance / transconductanceParameter) * 1000;
         double gateSourceVoltage = overdriveVoltage + thresholdVoltage;
         
         double gateVoltage = biasingVoltage / 2;
         double sourceVoltage = gateVoltage - gateSourceVoltage;
         
         // We have the source voltage so we need the drain current which is approx. equal to the source current to gete the source resistor.
-        double drainCurrentAtSaturation = (transconductanceParameter * (overdriveVoltage * overdriveVoltage)) / 2;
+        double drainCurrentAtSaturation = ((transconductanceParameter / 1000) * (Math.pow(overdriveVoltage, 2))) / 2;
         double sourceResistor = sourceVoltage / drainCurrentAtSaturation;
         
         this.setResistorRS(sourceResistor);
@@ -171,15 +174,15 @@ public class FETComponents extends Components {
             "Type: INVERTING",
             "Driver: Metal Oxide Semiconductor Field Effect Transistor",
             "Mode: Common Source Amplifier (Bypassed)",
-            String.format("R1: %s Ω", new BigDecimal(this.getResistorR1()).toPlainString()),
-            String.format("R2: %s Ω", new BigDecimal(this.getResistorR2()).toPlainString()),
-            String.format("RD: %s Ω", new BigDecimal(this.getResistorRD()).toPlainString()),
-            String.format("RS: %s Ω", new BigDecimal(this.getResistorRS()).toPlainString()),
-            String.format("Cin: %s F", new BigDecimal(this.getCapacitorInput()).toPlainString()),
-            String.format("Cout: %s F", new BigDecimal(this.getCapacitorOutput()).toPlainString()),
-            String.format("Cs: %s F", new BigDecimal(this.getCapacitorBypass()).toPlainString()),
-            String.format("VDD: %s V", new BigDecimal(this.getBiasingVoltage()).toPlainString()),
-            String.format("Source: %s V", new BigDecimal(this.getSignalVoltage()).toPlainString())
+            String.format("R1: %s", Utils.cleanDouble(this.getResistorR1(), "r")),
+            String.format("R2: %s", Utils.cleanDouble(this.getResistorR2(), "r")),
+            String.format("RD: %s", Utils.cleanDouble(this.getResistorRD(), "r")),
+            String.format("RS: %s", Utils.cleanDouble(this.getResistorRS(), "r")),
+            String.format("Cin: %s", Utils.cleanDouble(this.getCapacitorInput(), "c")),
+            String.format("Cout: %s", Utils.cleanDouble(this.getCapacitorOutput(), "c")),
+            String.format("Cs: %s", Utils.cleanDouble(this.getCapacitorBypass(), "c")),
+            String.format("VDD: %s V", this.getBiasingVoltage()),
+            String.format("Source: %s V", this.getSignalVoltage())
         );
 
         componentsList.setItems(items);

@@ -78,7 +78,7 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="lowCutoffSlider" max="1000000.0" min="1.0" />
+                              <Slider fx:id="lowCutoffSlider" blockIncrement="100.0" max="100000.0" min="1.0" />
                            </children>
                            <GridPane.margin>
                               <Insets left="32.0" />
@@ -94,7 +94,7 @@
                                     <Font name="Segoe UI Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="highCutoffSlider" max="1000000.0" min="1.0" />
+                              <Slider fx:id="highCutoffSlider" blockIncrement="100.0" max="100000.0" min="1.0" />
                            </children>
                            <GridPane.margin>
                               <Insets left="32.0" />

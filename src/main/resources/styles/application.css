@@ -19,6 +19,10 @@
     -fx-background-size: cover;
 }
 
+#goToGithubButton:hover {
+    -fx-underline: true;
+}
+
 #emailLinkText:hover {
     -fx-underline: true;
 }

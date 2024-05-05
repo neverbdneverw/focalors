@@ -6,7 +6,9 @@ package com.neverbdneverw.focalors;
 
 import com.neverbdneverw.focalors.Utilities.BounceInterpolator;
 import com.neverbdneverw.focalors.Utilities.Utils;
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
@@ -19,6 +21,9 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -41,12 +46,31 @@ public class FeedbackController extends NavigationSwitchingPaneController implem
     private AnchorPane firstFeedbackPane;
     @FXML
     private Label emailLinkText;
+    @FXML
+    private ToggleGroup ratingGroup;
+    @FXML
+    private TextField emailTF;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         feedbackPane.setId("feedbackAnchorPane");
         Utils.buttonAddHoverEffect(giveFeedbackButton);
         
         this.setPaneName("Feedback");
+    }
+    
+    @FXML
+    private void submit(ActionEvent event) {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            // windows
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                desktop.browse(URI.create("https://docs.google.com/forms/d/e/1FAIpQLScxnZkBG8cOEOA242T9hbgpdvhuNccBYGL8fEzsizJCF-O4iw/viewform?usp=pp_url&entry.303980503=" + 
+                        ((ToggleButton) ratingGroup.getSelectedToggle()).getText() + "&entry.1473404077=AMAZING&entry.366478589=" + emailTF.getText()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML

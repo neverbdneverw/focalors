@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -102,6 +103,8 @@ public class PrimaryController implements Initializable {
     private int oldSidebarIndex = 0;
     private int newSidebarIndex = 0;
     
+    private Preferences settings;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -109,6 +112,8 @@ public class PrimaryController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        
+        settings = App.getPreferences();
 
         procedureController = new ProcedureSwitchingPaneController();
         navigationController = new NavigationSwitchingPaneController();
@@ -160,8 +165,17 @@ public class PrimaryController implements Initializable {
     @FXML
     private void switchToMainQueue() throws IOException {
         mainQueuePane = (AnchorPane) App.loadFXML("mainqueue");
+        String preferredAmp = settings.get("preferredAmp", "ask always");
         
-        procedureController.switchPane(homePagePane, homePane, mainQueuePane, Direction.FORWARD);
+        if (preferredAmp.equals("ask always")) {
+            procedureController.switchPane(homePagePane, homePane, mainQueuePane, Direction.FORWARD);
+        } else if (preferredAmp.equals("bjt")) {
+            procedureController.switchPane(homePagePane, homePane, (AnchorPane) App.loadFXML("bjtOptions"), Direction.FORWARD);
+        } else if (preferredAmp.equals("fet")) {
+            procedureController.switchPane(homePagePane, homePane, (AnchorPane) App.loadFXML("fetOptions"), Direction.FORWARD);
+        } else if (preferredAmp.equals("op amp")) {
+            procedureController.switchPane(homePagePane, homePane, (AnchorPane) App.loadFXML("opAmpOptions"), Direction.FORWARD);
+        }
     }
     
     @FXML

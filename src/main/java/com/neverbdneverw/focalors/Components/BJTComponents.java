@@ -8,6 +8,7 @@ import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
 import com.neverbdneverw.focalors.App;
+import com.neverbdneverw.focalors.Utilities.Utils;
 import java.math.BigDecimal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -176,15 +177,15 @@ public class BJTComponents extends Components {
             "Type: INVERTING",
             "Driver: Bipolar Junction Transistor",
             "Mode: Common Emitter Amplifier (Bypassed)",
-            String.format("R1: %s Ω", new BigDecimal(this.getResistorR1()).toPlainString()),
-            String.format("R2: %s Ω", new BigDecimal(this.getResistorR2()).toPlainString()),
-            String.format("RC: %s Ω", new BigDecimal(this.getResistorRC()).toPlainString()),
-            String.format("RE: %s Ω", new BigDecimal(this.getResistorRE()).toPlainString()),
-            String.format("Cin: %s F", new BigDecimal(this.getCapacitorInput()).toPlainString()),
-            String.format("Cout: %s F", new BigDecimal(this.getCapacitorOutput()).toPlainString()),
-            String.format("CE: %s F", new BigDecimal(this.getCapacitorBypass()).toPlainString()),
-            String.format("VCC: %s V", new BigDecimal(this.getBiasingVoltage()).toPlainString()),
-            String.format("Source: %s V", new BigDecimal(this.getSignalVoltage()).toPlainString())
+            String.format("R1: %s", Utils.cleanDouble(this.getResistorR1(), "r")),
+            String.format("R2: %s", Utils.cleanDouble(this.getResistorR2(), "r")),
+            String.format("RC: %s", Utils.cleanDouble(this.getResistorRC(), "r")),
+            String.format("RE: %s", Utils.cleanDouble(this.getResistorRE(), "r")),
+            String.format("Cin: %s", Utils.cleanDouble(this.getCapacitorInput(), "c")),
+            String.format("Cout: %s", Utils.cleanDouble(this.getCapacitorOutput(), "c")),
+            String.format("CE: %s F", Utils.cleanDouble(this.getCapacitorBypass(), "r")),
+            String.format("VCC: %s V", this.getBiasingVoltage()),
+            String.format("Source: %s V", this.getSignalVoltage())
         );
 
         componentsList.setItems(items);

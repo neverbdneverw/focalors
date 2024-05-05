@@ -8,6 +8,7 @@ import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
 import com.neverbdneverw.focalors.App;
+import com.neverbdneverw.focalors.Utilities.Utils;
 import java.math.BigDecimal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -149,15 +150,15 @@ public class OpAmpComponents extends Components {
         ObservableList<String> items = FXCollections.observableArrayList (
             String.format("Type: %s", String.valueOf(this.getAmplificationType())),
             String.format("Driver: OP AMP"),
-            String.format("R1: %s Ω", new BigDecimal(this.getResistorR1()).toPlainString()),
-            String.format("R2: %s Ω", new BigDecimal(this.getResistorR2()).toPlainString()),
-            String.format("Cin: %s F", new BigDecimal(this.getCapacitorInput()).toPlainString()),
-            String.format("Cout: %s F", new BigDecimal(this.getCapacitorOutput()).toPlainString()),
-            String.format("Rin: %s Ω", new BigDecimal(this.getInputFilterResistor()).toPlainString()),
-            String.format("Rout: %s Ω", new BigDecimal(this.getOutputFilterResistor()).toPlainString()),
-            String.format("VCC: %s V", new BigDecimal(this.getBiasingVoltage()).toPlainString()),
-            String.format("-VCC: -%s V", new BigDecimal(this.getBiasingVoltage()).toPlainString()),
-            String.format("Source: %s V", new BigDecimal(this.getSignalVoltage()).toPlainString())
+            String.format("R1: %s", Utils.cleanDouble(this.getResistorR1(), "r")),
+            String.format("R2: %s", Utils.cleanDouble(this.getResistorR2(), "r")),
+            String.format("Cin: %s", Utils.cleanDouble(this.getCapacitorInput(), "c")),
+            String.format("Cout: %s", Utils.cleanDouble(this.getCapacitorOutput(), "c")),
+            String.format("Rin: %s", Utils.cleanDouble(this.getInputFilterResistor(), "r")),
+            String.format("Rout: %s", Utils.cleanDouble(this.getOutputFilterResistor(), "r")),
+            String.format("VCC: %s V", this.getBiasingVoltage()),
+            String.format("-VCC: -%s V", this.getBiasingVoltage()),
+            String.format("Source: %s V", this.getSignalVoltage())
         );
 
         componentsList.setItems(items);

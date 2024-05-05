@@ -123,7 +123,7 @@ public class FETOptionsController extends ProcedureSwitchingPaneController imple
             thresholdVoltage /= 1000;
         }
         
-        double transconductanceParameter = Double.parseDouble(transconductanceParameterInputField.getText()) / 1000;
+        double transconductanceParameter = Double.parseDouble(transconductanceParameterInputField.getText());
         
         FETAmplificationProcessor processor = (FETAmplificationProcessor) Processors.getActiveProcessor("fet");
         processor.setDesiredOutput(Double.parseDouble(voltageGainInputField.getText()), transconductanceParameter, thresholdVoltage);

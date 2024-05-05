@@ -61,7 +61,7 @@ public class App extends Application {
         }
         
         if (preferences.get("capacitanceUnit", "") == null) {
-            preferences.put("capacitanceUnit", "μF");
+            preferences.put("capacitanceUnit", "uF");
         }
     }
 
