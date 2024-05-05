@@ -53,12 +53,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.halignment="RIGHT">
                            <children>
-                              <Label alignment="TOP_LEFT" text="Drain Current:">
+                              <Label alignment="TOP_LEFT" text="Transconductance Parameter (Kn):">
                                  <padding>
                                     <Insets right="16.0" />
                                  </padding>
@@ -84,7 +83,7 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.rowIndex="2">
                            <children>
-                              <Label text="Input Impedance:">
+                              <Label text="Threshold Voltage:">
                                  <padding>
                                     <Insets right="16.0" />
                                  </padding>
@@ -95,25 +94,7 @@
                               <TextField prefHeight="36.0" style="-fx-border-color: #0066cc; -fx-background-color: white; -fx-background-insets: 1; -fx-border-radius: 8; -fx-border-width: 2;" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER_LEFT" spacing="8.0" GridPane.rowIndex="3">
-                           <children>
-                              <Label text="Output Impedance:">
-                                 <padding>
-                                    <Insets right="16.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="Segoe UI Italic" size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField prefHeight="36.0" style="-fx-background-color: white; -fx-background-insets: 1; -fx-border-color: #0066cc; -fx-border-radius: 8; -fx-border-width: 2;" />
-                           </children>
-                        </VBox>
                         <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 8;" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="16.0" top="28.0" />
-                           </GridPane.margin>
-                        </ComboBox>
-                        <ComboBox prefHeight="36.0" prefWidth="64.0" style="-fx-background-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets left="16.0" top="28.0" />
                            </GridPane.margin>

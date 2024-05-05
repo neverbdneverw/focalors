@@ -36,7 +36,7 @@
                   </HBox>
                   <HBox maxHeight="100.0">
                      <children>
-                        <Label text="            Enter the your controlled input parameters for the amplifier. If you do not know what to enter, please refer to the tutorials section accessible through the sidebar. These values are constants that are not affected by the calculation of other parameters. The signal input voltage is the peak-to-peak voltage of the signal that goes through the amplifier. The Biasing voltage of the source allows for the amplification to happen. The input frequency is the frequency of the input signal. Depending on how the frequency response will be set on the next stage, this is meant to be the same on the output." textAlignment="JUSTIFY" wrapText="true" HBox.hgrow="ALWAYS">
+                        <Label text="            Enter your controlled input parameters for the amplifier. If you do not know what to enter, please refer to the tutorials section accessible through the sidebar. These values are constants that are not affected by the calculation of other parameters. The signal input voltage is the peak-to-peak voltage of the signal that goes through the amplifier. The Biasing voltage of the source allows for the amplification to happen. The input frequency is the frequency of the input signal. Depending on how the frequency response will be set on the next stage, this is meant to be the same on the output." textAlignment="JUSTIFY" wrapText="true" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI Italic" size="14.0" />
                            </font></Label>

@@ -7,6 +7,12 @@ package com.neverbdneverw.focalors.Components;
 import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
+import com.neverbdneverw.focalors.App;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -135,5 +141,30 @@ public class OpAmpComponents extends Components {
 
     public void setInputFrequency(double inputFrequency) {
         this.inputFrequency = inputFrequency;
+    }
+
+    @Override
+    public void updateSummary(ListView<String> componentsList, ImageView circuitImageView) {
+        ObservableList<String> items = FXCollections.observableArrayList (
+            String.format("Type: %s", String.valueOf(this.getAmplificationType())),
+            String.format("Driver: OP AMP"),
+            String.format("R1: %s Ω", String.valueOf(this.getResistorR1())),
+            String.format("R2: %s Ω", String.valueOf(this.getResistorR2())),
+            String.format("Cin: %s F", String.valueOf(this.getCapacitorInput())),
+            String.format("Cout: %s F", String.valueOf(this.getCapacitorOutput())),
+            String.format("Rin: %s Ω", String.valueOf(this.getInputFilterResistor())),
+            String.format("Rout: %s Ω", String.valueOf(this.getOutputFilterResistor())),
+            String.format("VCC: %s V", String.valueOf(this.getBiasingVoltage())),
+            String.format("-VCC: -%s V", String.valueOf(this.getBiasingVoltage())),
+            String.format("Source: %s V", String.valueOf(this.getSignalVoltage()))
+        );
+
+        componentsList.setItems(items);
+
+        if (this.getAmplificationType().equals(OpAmpType.INVERTING)) {
+            circuitImageView.setImage(new Image(App.class.getResource("/icons/circuit_inverting.png").toExternalForm()));
+        } else {
+            circuitImageView.setImage(new Image(App.class.getResource("/icons/circuit_noninverting.png").toExternalForm()));
+        }
     }
 }

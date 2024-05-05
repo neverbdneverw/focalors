@@ -4,6 +4,8 @@
  */
 package com.neverbdneverw.focalors;
 
+import com.neverbdneverw.focalors.AmplificationProcessors.BJTAmplificationProcessor;
+import com.neverbdneverw.focalors.AmplificationProcessors.Processors;
 import com.neverbdneverw.focalors.Utilities.Utils;
 import com.neverbdneverw.focalors.Utilities.Utils.Direction;
 import javafx.scene.control.Button;
@@ -14,9 +16,14 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -36,6 +43,14 @@ public class BJTOptionsController extends ProcedureSwitchingPaneController imple
     private ImageView previousImageView;
     @FXML
     private ImageView nextImageView;
+    @FXML
+    private TextField collectorCurrentInputField;
+    @FXML
+    private ComboBox<String> currentUnitCombo;
+    @FXML
+    private TextField voltageGainInputField;
+    @FXML
+    private TextField hfeInputField;
     
     private AnchorPane mainQueuePane;
     private AnchorPane homePagePane;
@@ -50,6 +65,43 @@ public class BJTOptionsController extends ProcedureSwitchingPaneController imple
         Utils.buttonAddHoverEffect(returnToMainQueueButton);
         
         this.setPaneName("BJT Options");
+        
+        String[] currentUnits = {"μA", "mA", "A"};
+        
+        currentUnitCombo.setItems(FXCollections.observableArrayList(currentUnits));
+        
+        bjtOptionsPane.translateXProperty().addListener((ob, old, nw) -> {
+            if (nw.doubleValue() == 00) {
+                bjtToInputsButton.setDisable(true);
+            }
+        });
+        
+        ChangeListener listener = new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (Utils.isNumeric(collectorCurrentInputField.getText()) && 
+                    Utils.isNumeric(voltageGainInputField.getText()) && 
+                    Utils.isNumeric(hfeInputField.getText()) &&
+                    currentUnitCombo.getSelectionModel().getSelectedItem() != null) {
+                    
+                    if (Double.parseDouble(collectorCurrentInputField.getText()) <= 0 &&
+                            Double.parseDouble(voltageGainInputField.getText()) <= 0 &&
+                            Double.parseDouble(hfeInputField.getText()) <= 0) {
+                        bjtToInputsButton.setDisable(true);
+                        return;
+                    }
+                    
+                    bjtToInputsButton.setDisable(false);
+                } else {
+                    bjtToInputsButton.setDisable(true);
+                }
+            }
+        };
+        
+        collectorCurrentInputField.textProperty().addListener(listener);
+        voltageGainInputField.textProperty().addListener(listener);
+        hfeInputField.textProperty().addListener(listener);
+        currentUnitCombo.getSelectionModel().selectedItemProperty().addListener(listener);
     }
     
     @FXML
@@ -63,6 +115,17 @@ public class BJTOptionsController extends ProcedureSwitchingPaneController imple
     @FXML
     private void handleBJTToInputsButton (ActionEvent event) throws IOException {
         inputsPane = (AnchorPane) App.loadFXML("inputOptions");
+        
+        double collectorCurrent = Double.parseDouble(collectorCurrentInputField.getText());
+        
+        if (currentUnitCombo.getSelectionModel().getSelectedItem().equals("μA")) {
+            collectorCurrent /= 1000000;
+        } else if (currentUnitCombo.getSelectionModel().getSelectedItem().equals("mA")) {
+            collectorCurrent /= 1000;
+        }
+        
+        BJTAmplificationProcessor processor = (BJTAmplificationProcessor) Processors.getActiveProcessor("bjt");
+        processor.setDesiredOutput(Double.parseDouble(voltageGainInputField.getText()), collectorCurrent, Double.parseDouble(hfeInputField.getText()));
         
         homePagePane = (AnchorPane) bjtOptionsPane.getParent();
         switchPane(homePagePane, bjtOptionsPane, inputsPane, Direction.FORWARD);

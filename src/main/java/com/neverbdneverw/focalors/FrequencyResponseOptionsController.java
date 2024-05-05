@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
@@ -57,6 +58,8 @@ public class FrequencyResponseOptionsController extends ProcedureSwitchingPaneCo
     private Label lowCutoffLabel;
     @FXML
     private Label highCutoffLabel;
+    @FXML
+    private VBox highCutoffBox;
 
     /**
      * Initializes the controller class.
@@ -71,31 +74,42 @@ public class FrequencyResponseOptionsController extends ProcedureSwitchingPaneCo
         
         this.setPaneName("Frequency Response Options");
         
+        AmplificationProcessor processor = Processors.getActiveProcessor("");
+        
         ChangeListener listener = new ChangeListener<Double>() {
             @Override
             public void changed(ObservableValue<? extends Double> observable, Double oldValue, Double newValue) {
-                XYChart.Series series = new XYChart.Series(); 
-                series.setName("Desired Bode Plot"); 
-                if (lowCutoffSlider.getValue() == highCutoffSlider.getValue() ||
-                        lowCutoffSlider.getValue() > highCutoffSlider.getValue()) {
-                    toSummaryViewButton.setDisable(true);
+                if (processor.getType().equals("opamp")) {
+                    if (lowCutoffSlider.getValue() >= highCutoffSlider.getValue()) {
+                        toSummaryViewButton.setDisable(true);
+                    } else {
+                        toSummaryViewButton.setDisable(false);
+                    }
+
+                    lowCutoffLabel.setText(String.valueOf((int) lowCutoffSlider.getValue()) + " Hz");
+                    highCutoffLabel.setText(String.valueOf((int) highCutoffSlider.getValue()) + " Hz");
                 } else {
+                    lowCutoffLabel.setText(String.valueOf((int) lowCutoffSlider.getValue()) + " Hz");
                     toSummaryViewButton.setDisable(false);
                 }
-                
-                lowCutoffLabel.setText(String.valueOf((int) lowCutoffSlider.getValue()) + " Hz");
-                highCutoffLabel.setText(String.valueOf((int) highCutoffSlider.getValue()) + " Hz");
             }
         };
         
         frequencyResponsePane.translateXProperty().addListener((ob, old, nw) -> {
             if (nw.doubleValue() == 00) {
                 toSummaryViewButton.setDisable(true);
+                
+                lowCutoffSlider.valueProperty().addListener(listener);
+                if (processor.getType().equals("opamp")) {
+                    highCutoffBox.setVisible(true);
+                    highCutoffLabel.setVisible(true);
+                    highCutoffSlider.valueProperty().addListener(listener);
+                } else {
+                    highCutoffBox.setVisible(false);
+                    highCutoffLabel.setVisible(false);
+                }
             }
         });
-        
-        lowCutoffSlider.valueProperty().addListener(listener);
-        highCutoffSlider.valueProperty().addListener(listener);
     }    
 
     @FXML

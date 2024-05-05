@@ -35,6 +35,8 @@ public class Processors {
     public static void createNew (String type) {
         if (type.equals("opamp")) {
             activeProcessor = new OpAmpAmplificationProcessor();
+        } else if (type.equals("bjt")) {
+            activeProcessor = new BJTAmplificationProcessor();
         }
     }
 }

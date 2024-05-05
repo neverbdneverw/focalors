@@ -5,6 +5,8 @@
 package com.neverbdneverw.focalors.Components;
 
 import java.util.Dictionary;
+import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -19,4 +21,6 @@ public abstract class Components {
     public String getType() {
         return this.type;
     }
+
+    public abstract void updateSummary(ListView<String> componentsList, ImageView circuitImageView);
 }

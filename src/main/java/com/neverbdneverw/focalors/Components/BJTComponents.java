@@ -7,62 +7,84 @@ package com.neverbdneverw.focalors.Components;
 import com.neverbdneverw.focalors.Components.Components;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor;
 import com.neverbdneverw.focalors.AmplificationProcessors.OpAmpAmplificationProcessor.OpAmpType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 
 /**
  *
  * @author HUAWEI-Pc
  */
-public class OpAmpComponents extends Components {
-    private OpAmpType amplificationType;
+public class BJTComponents extends Components {
     private double resistorR1;
     private double resistorR2;
-    private double inputFilterResistor;
-    private double outputFilterResistor;
+    private double resistorRC;
+    private double resistorRE;
     private double capacitorInput;
     private double capacitorOutput;
+    private double capacitorBypass;
     
     private double signalVoltage;
     private double biasingVoltage;
     private double inputFrequency;
+    
+    private double acEmitterResistance;
+    
+    static final double COLLECTOR_EMITTER_SATURATION_VOLTAGE = 0.2;
+    static final double BASE_EMITTER_JUNCTION_VOLTAGE_DROP = 0.7;
+    static final double THERMAL_VOLTAGE = 0.026;
 
-    public OpAmpComponents() {
-        this.setType("OpAmpComponents");
+    public BJTComponents() {
+        this.setType("BJTComponents");
     }
     
-    private void calculateGainResistors(OpAmpType amplification, double voltageGain) {
-        this.setResistorR1(1000);
-        this.setAmplificationType(amplification);
-
-        if (amplification.equals(OpAmpAmplificationProcessor.OpAmpType.INVERTING)) {
-            this.setResistorR2(voltageGain * resistorR1);
-        } else {
-            this.setResistorR2(resistorR1 * (voltageGain - 1));
-        }
+    public void calculateRCRE(double gain, double current, double biasingVoltage) {
+        acEmitterResistance = BJTComponents.THERMAL_VOLTAGE / current;
+        
+        this.setResistorRC(acEmitterResistance * gain);
+        
+        double saturationCurrent = current * 2;
+        double emitterResistance = ((biasingVoltage - BJTComponents.COLLECTOR_EMITTER_SATURATION_VOLTAGE) / saturationCurrent) - this.getResistorRC();
+        this.setResistorRE(emitterResistance);
     }
     
-    private void calculateFilterComponents(double lowCutoffFrequency, double highCutoffFrequency) {
-        this.setCapacitorInput(0.000001);
-        this.setCapacitorOutput(0.000001);
-
-        this.setInputFilterResistor(1 / (2 * Math.PI * highCutoffFrequency * this.getCapacitorInput()));
-        this.setOutputFilterResistor(1 / (2 * Math.PI * lowCutoffFrequency * this.getCapacitorOutput()));
+    public void calculateR2(double hfe) {
+        double r2 = 0.8 * ((hfe * this.getResistorRE()) / 2); // 10 times of r2 should be lower than the current gain ratio (hfe) multiplied by RE
+        this.setResistorR2(r2);
+    }
+    
+    public void calculateR1(double collectorCurrent, double biasingVoltage) {
+        double emitterVoltage = collectorCurrent * this.getResistorRE(); // Assuming the difference between Ic and Ie is negligible
+        double voltageAtR2 = emitterVoltage + BJTComponents.BASE_EMITTER_JUNCTION_VOLTAGE_DROP; // base voltage is almost equal to the voltage at r2.
+        
+        double voltageAtR1 = biasingVoltage - voltageAtR2;
+        
+        double r1 = (voltageAtR1 / voltageAtR2) * this.getResistorR2();
+        this.setResistorR1(r1);
+    }
+    
+    public void calculateCapacitors(double hfe, double lowCutoffFrequency) {
+        double equivalentResistanceIn = 1 / ((1 / this.getResistorR1() + (1 / this.getResistorR2()) + (1 / (hfe + 1) * acEmitterResistance)));
+        
+        this.setCapacitorInput(1 / (2 * Math.PI * equivalentResistanceIn * lowCutoffFrequency));
+        this.setCapacitorOutput(1 / (2 * Math.PI * this.getResistorRC() * lowCutoffFrequency));
+        
+        double r1r2TheveninEquivalent = 1 / ((1 / this.getResistorR1()) + ( 1 / this.getResistorR2()));
+        double equivalentResistanceRe = 1 / ((1 / this.getResistorRE()) + (1 / ((r1r2TheveninEquivalent / hfe) + acEmitterResistance)));
+        
+        this.setCapacitorBypass(1 / (2 * Math.PI * equivalentResistanceRe * lowCutoffFrequency));
     }
 
-    public void setParameters(OpAmpType amplificationType, double voltageGain, double peakToPeakSignalVoltage, double biasingVoltage, double inputFrequency, double lowCutoffFrequency, double highCutoffFrequency) {
-        calculateGainResistors(amplificationType, voltageGain);
-        calculateFilterComponents(lowCutoffFrequency, highCutoffFrequency);
-
+    public void setParameters(double voltageGain, double collectorCurrent, double hfe, double inputFrequency, double peakToPeakSignalVoltage, double biasingVoltage, double lowCutoffFrequency) {
+        calculateRCRE(voltageGain, collectorCurrent, biasingVoltage);
+        calculateR2(hfe);
+        calculateR1(collectorCurrent, biasingVoltage);
+        calculateCapacitors(hfe, lowCutoffFrequency);
+        
         this.setSignalVoltage(peakToPeakSignalVoltage);
         this.setBiasingVoltage(biasingVoltage);
         this.setInputFrequency(inputFrequency);
-    }
-    
-    public OpAmpType getAmplificationType() {
-        return amplificationType;
-    }
-    
-    public void setAmplificationType(OpAmpType amplification) {
-        this.amplificationType = amplification;
     }
     
     public double getResistorR1() {
@@ -81,20 +103,20 @@ public class OpAmpComponents extends Components {
         this.resistorR2 = resistorR2;
     }
 
-    public double getInputFilterResistor() {
-        return inputFilterResistor;
+    public double getResistorRC() {
+        return resistorRC;
     }
 
-    public void setInputFilterResistor(double inputFilterResistor) {
-        this.inputFilterResistor = inputFilterResistor;
+    public void setResistorRC(double resistorRC) {
+        this.resistorRC = resistorRC;
     }
 
-    public double getOutputFilterResistor() {
-        return outputFilterResistor;
+    public double getResistorRE() {
+        return resistorRE;
     }
 
-    public void setOutputFilterResistor(double outputFilterResistor) {
-        this.outputFilterResistor = outputFilterResistor;
+    public void setResistorRE(double resistorRE) {
+        this.resistorRE = resistorRE;
     }
 
     public double getCapacitorInput() {
@@ -135,5 +157,33 @@ public class OpAmpComponents extends Components {
 
     public void setInputFrequency(double inputFrequency) {
         this.inputFrequency = inputFrequency;
+    }
+
+    public double getCapacitorBypass() {
+        return capacitorBypass;
+    }
+
+    public void setCapacitorBypass(double capacitorBypass) {
+        this.capacitorBypass = capacitorBypass;
+    }
+
+    @Override
+    public void updateSummary(ListView<String> componentsList, ImageView circuitImageView) {
+        ObservableList<String> items = FXCollections.observableArrayList (
+            "Type: INVERTING",
+            "Driver: Bipolar Junction Transistor",
+            "Mode: Common Emitter Amplifier (Bypassed)",
+            String.format("R1: %s", String.valueOf(this.getResistorR1())),
+            String.format("R2: %s", String.valueOf(this.getResistorR2())),
+            String.format("RC: %s", String.valueOf(this.getResistorRC())),
+            String.format("RE: %s", String.valueOf(this.getResistorRE())),
+            String.format("Cin: %s F", String.valueOf(this.getCapacitorInput())),
+            String.format("Cout: %s F", String.valueOf(this.getCapacitorOutput())),
+            String.format("CE: %s F", String.valueOf(this.getCapacitorBypass())),
+            String.format("VCC: %s V", String.valueOf(this.getBiasingVoltage())),
+            String.format("Source: %s V", String.valueOf(this.getSignalVoltage()))
+        );
+
+        componentsList.setItems(items);
     }
 }
